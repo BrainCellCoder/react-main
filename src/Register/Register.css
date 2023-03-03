@@ -1,0 +1,42 @@
+#register {
+  max-width: 70%;
+  margin-top: 100px;
+  background-color: #e0aaff;
+}
+
+.right-reg {
+  background-color: #f8f9fa;
+  padding: 50px !important;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 90%;
+}
+
+.right-reg h1 {
+  color: #9d4edd;
+  font-size: 2rem;
+}
+
+.reg-button {
+  width: 100%;
+  background-color: #9d4edd !important;
+  border-radius: 0 !important;
+  border: none !important;
+  margin-top: 40px;
+}
+
+.reg-button:hover {
+  background-color: #7b2cbf !important;
+}
+
+.error-message {
+  color: #ef233c;
+}
+
+.form-control {
+  border-radius: 0 !important;
+}
+.form-control:focus {
+  border-color: #c77dff !important;
+  box-shadow: 0 0 0 0.25rem #e0aaff !important;
+}
