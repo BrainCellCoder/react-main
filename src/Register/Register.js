@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./Register.css";
 import { useForm } from "react-hook-form";
@@ -42,7 +43,6 @@ export const Register = () => {
           email: data.email,
           password: data.password,
         }),
-        //   body: data,
       }
     );
     console.log(res);
@@ -67,7 +67,6 @@ export const Register = () => {
                   type="text"
                   placeholder="Enter name"
                   name="name"
-                  //   onChange={nameChangeHandler}
                   {...register("name")}
                 />
                 <p className="error-message">{errors.name?.message}</p>
@@ -78,7 +77,6 @@ export const Register = () => {
                   type="text"
                   placeholder="Enter email"
                   name="email"
-                  //   onChange={emailChangeHandler}
                   {...register("email")}
                 />
                 <p className="error-message">{errors.email?.message}</p>
@@ -89,7 +87,6 @@ export const Register = () => {
                   type="password"
                   placeholder="Enter password"
                   name="password"
-                  //   onChange={passwordChangeHandler}
                   {...register("password")}
                 />
                 <p className="error-message">{errors.password?.message}</p>
@@ -108,6 +105,12 @@ export const Register = () => {
               <Button variant="primary" type="submit" className="reg-button">
                 Submit
               </Button>
+              <p className="reg-bottom-login">
+                Already have an account?
+                <Link className="reg-login" to="/login">
+                  Login
+                </Link>
+              </p>
             </Form>
           </Col>
         </Row>

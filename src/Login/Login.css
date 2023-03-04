@@ -1,10 +1,10 @@
-#register {
+#login {
   max-width: 70%;
   margin-top: 100px;
   background-color: #e0aaff;
 }
 
-.right-reg {
+.right-login {
   padding: 50px 50px !important;
   background-color: #f8f9fa;
   border-top-left-radius: 20px;
@@ -12,16 +12,16 @@
   width: 90%;
 }
 
-.right-reg {
+.right-login {
   padding: 50px 50px !important;
 }
 
-.right-reg h1 {
+.right-login h1 {
   color: #9d4edd;
   font-size: 2rem;
 }
 
-.reg-button {
+.login-button {
   width: 100%;
   background-color: #9d4edd !important;
   border-radius: 0 !important;
@@ -29,7 +29,7 @@
   margin-top: 40px;
 }
 
-.reg-button:hover {
+.login-button:hover {
   background-color: #7b2cbf !important;
 }
 
@@ -45,15 +45,38 @@
   box-shadow: 0 0 0 0.25rem #e0aaff !important;
 }
 
-.reg-bottom-login {
+.signup-with {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-with p {
+  margin: 50px 0;
+}
+
+.sign-up-logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sign-up-logos img {
+  width: 35px;
+  height: 35px;
+  transition: 0.3s ease-in-out;
+}
+
+.sign-up-logos img:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
+}
+
+.login-bottom-reg {
+  margin-top: 40px;
   text-align: center;
-  margin-top: 20px;
 }
 
-.reg-bottom-login .reg-login {
+.login-bottom-reg .reg {
   color: #9d4edd;
-}
-
-.reg-bottom-login .reg-login:hover {
-  color: #7b2cbf;
 }
