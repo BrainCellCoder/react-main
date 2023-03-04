@@ -43,7 +43,8 @@ export const Login = () => {
         }),
       }
     );
-    console.log(res);
+    const resp = await res.json();
+    console.log(resp);
   };
   const onError = () => {
     console.log("Error");
