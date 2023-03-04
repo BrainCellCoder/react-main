@@ -1,19 +1,21 @@
 #register {
   max-width: 70%;
   margin-top: 100px;
-  background-color: #e0aaff;
 }
 
 .right-reg {
-  padding: 50px 50px !important;
+  padding: 50px !important;
   background-color: #f8f9fa;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
   width: 90%;
+  height: 600px;
 }
-
-.right-reg {
-  padding: 50px 50px !important;
+.left-reg {
+  background-image: url("login5.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 600px;
+  padding: 50px !important;
 }
 
 .right-reg h1 {

@@ -1,19 +1,25 @@
 #login {
   max-width: 70%;
   margin-top: 100px;
-  background-color: #e0aaff;
 }
 
 .right-login {
-  padding: 50px 50px !important;
   background-color: #f8f9fa;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
   width: 90%;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px !important;
 }
 
-.right-login {
-  padding: 50px 50px !important;
+.left-login {
+  background-image: url("login4.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 600px;
+  padding: 50px !important;
 }
 
 .right-login h1 {
