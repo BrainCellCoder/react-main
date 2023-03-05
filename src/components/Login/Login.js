@@ -5,8 +5,11 @@ import "./Login.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 
 export const Login = () => {
+  const [isLogin, setIsLogin] = useState(false);
+
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -45,6 +48,13 @@ export const Login = () => {
     );
     const resp = await res.json();
     console.log(resp);
+    if (resp.message === "Logged in successfuy") {
+      setIsLogin(true);
+      console.log("Logged in");
+    } else {
+      console.log("NOOOOOO");
+    }
+    console.log(isLogin);
   };
   const onError = () => {
     console.log("Error");
