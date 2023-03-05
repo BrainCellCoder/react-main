@@ -1,12 +1,8 @@
 import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AppContext } from "../../App";
 
 export const Navbar = () => {
-  const { login, setLogin } = useContext(AppContext);
-
   return (
     <>
       <div className="navbar">
@@ -30,22 +26,17 @@ export const Navbar = () => {
             <input type="text" placeholder="Search Product" />
             <i className="fa-solid fa-magnifying-glass"></i>
           </div>
-          {login ? (
-            <div className="account">
-              <i className="fa-regular fa-user"></i>
-              <span>Account</span>
-            </div>
-          ) : (
-            <Link to="/login">
+          <div className="account">
+            <i className="fa-regular fa-user"></i>
+            <span>Account</span>
+          </div>
+          {/* <Link to="/login">
               Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
-            </Link>
-          )}
-          {login && (
-            <div className="cart">
-              <img id="cart" src={require("./../Navbar/cart.png")} alt="" />
-              <span className="cart-number">0</span>
-            </div>
-          )}
+            </Link> */}
+          <div className="cart">
+            <img id="cart" src={require("./../Navbar/cart.png")} alt="" />
+            <span className="cart-number">0</span>
+          </div>
         </div>
       </div>
     </>

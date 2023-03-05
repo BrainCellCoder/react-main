@@ -5,12 +5,9 @@ import "./Register.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
-import { AppContext } from "../../App";
 import { useState } from "react";
 
 export const Register = () => {
-  const { login, setLogin } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
 
   const schema = yup.object().shape({
@@ -55,7 +52,6 @@ export const Register = () => {
     const resp = await res.json();
     console.log(resp);
     if (resp.success === true) {
-      setLogin(true);
       setLoading(false);
     }
   };

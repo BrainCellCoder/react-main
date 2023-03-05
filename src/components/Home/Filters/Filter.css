@@ -1,0 +1,12 @@
+.filters {
+  margin-top: 20px;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.filters div {
+  margin-right: 20px;
+  background-color: #f2f2f2;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
