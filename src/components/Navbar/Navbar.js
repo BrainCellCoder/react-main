@@ -1,18 +1,32 @@
 import React from "react";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../../App";
+
 export const Navbar = () => {
+  const { login, setLogin } = useContext(AppContext);
+
   return (
     <>
-      <div className="navbar container">
+      <div className="navbar">
         <div className="nav-left">
-          <div className="logo">LOGO</div>
+          <Link to="/" className="logo">
+            <img id="logo" src={require("./../Navbar/logo1.png")} alt="" />
+            <span id="T">T</span>ech<span id="K">K</span>art
+          </Link>
           <div className="category">
             Categories <i className="fa-solid fa-caret-down"></i>
           </div>
           <a href="deals">Deals</a>
           <a href="whats-new">What's New</a>
-          <a href="delivery">
-            <i className="fa-regular fa-heart"></i> Wishlist
+          <a href="/wishlist">
+            <img
+              id="wishlist"
+              src={require("./../Navbar/icons8-love.gif")}
+              alt=""
+            />
+            Wishlist
           </a>
         </div>
         <div className="nav-right">
@@ -20,14 +34,22 @@ export const Navbar = () => {
             <input type="text" placeholder="Search Product" />
             <i className="fa-solid fa-magnifying-glass"></i>
           </div>
-          <div className="account">
-            <i className="fa-regular fa-user"></i>
-            <span>Account</span>
-          </div>
-          <div className="cart">
-            <i className="fa-solid fa-cart-shopping"></i>
-            <span>Cart</span>
-          </div>
+          {login ? (
+            <div className="account">
+              <i className="fa-regular fa-user"></i>
+              <span>Account</span>
+            </div>
+          ) : (
+            <Link to="/login">
+              Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            </Link>
+          )}
+          {login && (
+            <div className="cart">
+              <img id="cart" src={require("./../Navbar/cart.png")} alt="" />
+              <span className="cart-number">0</span>
+            </div>
+          )}
         </div>
       </div>
     </>

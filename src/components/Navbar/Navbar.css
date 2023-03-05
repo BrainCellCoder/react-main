@@ -2,13 +2,23 @@
   display: flex;
   align-items: center;
   height: 4em;
+  padding: 0 60px !important;
+  box-shadow: 0px -14px 20px 0px #000 !important;
 }
 
 .navbar .logo {
-  color: blueviolet;
-  font-weight: 900;
-  font-size: 2rem;
-  letter-spacing: 10px;
+  color: #c041ff;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+#logo {
+  width: 3rem;
+}
+
+#T,
+#K {
+  color: #6310b6;
 }
 
 .navbar a {
@@ -30,6 +40,11 @@
   margin-right: 150px;
 }
 
+#wishlist {
+  width: 1.3rem;
+  margin-right: 4px;
+}
+
 .nav-right {
   flex-grow: 1;
   /* margin-left: 30px; */
@@ -46,4 +61,23 @@
   background-color: transparent;
   overflow: hidden;
   padding: 0.5rem;
+}
+
+.cart {
+  position: relative;
+}
+
+#cart {
+  width: 2rem;
+}
+
+.cart-number {
+  position: absolute;
+  top: -7px;
+  left: 20px;
+  background-color: red;
+  padding: 0 5px;
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 50%;
 }

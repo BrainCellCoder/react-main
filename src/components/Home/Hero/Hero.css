@@ -1,0 +1,34 @@
+.hero {
+  display: flex;
+  /* border-radius: 20px; */
+  height: 41vh;
+  flex-direction: column;
+  background-color: #e5b3fe;
+  padding: 4rem 6rem !important;
+  background-image: url("heroGB.png");
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.hero h1 {
+  font-weight: 700;
+  font-size: 3rem;
+  color: #10002b;
+}
+
+.hero button {
+  width: 150px;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  margin-top: 1rem;
+  color: #fff;
+  background-color: #7b2cbf;
+  transition: 0.3s ease-in-out;
+}
+
+.hero button:hover {
+  background-color: #10002b;
+  transform: translateY(-5px);
+}

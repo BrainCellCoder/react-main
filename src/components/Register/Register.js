@@ -59,7 +59,9 @@ export const Register = () => {
         <Row>
           <Col className="left-reg"></Col>
           <Col className="right-reg">
-            <h1>Register</h1>
+            <h1>
+              Register <i class="fa-regular fa-pen-to-square"></i>
+            </h1>
             <Form onSubmit={handleSubmit(onSubmit, onError)} method="POST">
               <Form.Group className="mb-3">
                 <Form.Label>Name</Form.Label>
@@ -103,7 +105,7 @@ export const Register = () => {
                 </p>
               </Form.Group> */}
               <Button variant="primary" type="submit" className="reg-button">
-                Submit
+                Register
               </Button>
               <p className="reg-bottom-login">
                 Already have an account?

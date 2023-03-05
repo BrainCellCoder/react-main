@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../../App";
 
 export const Login = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const { login, setLogin } = useContext(AppContext);
+  const [loading, setLoading] = useState(false);
 
   const schema = yup.object().shape({
     email: yup
@@ -28,10 +30,10 @@ export const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  // https://react-http-9d849-default-rtdb.firebaseio.com/
-  // https://rose-doubtful-moth.cyclic.app/user/register
+
   const onSubmit = async (data) => {
     console.log(data);
+    setLoading(true);
     const res = await fetch(
       "https://rose-doubtful-moth.cyclic.app/user/login",
       {
@@ -49,18 +51,13 @@ export const Login = () => {
     const resp = await res.json();
     console.log(resp);
     if (resp.message === "Logged in successfuy") {
-      setIsLogin(true);
-      console.log("Logged in");
-    } else {
-      console.log("NOOOOOO");
+      setLogin(true);
+      setLoading(false);
     }
-    console.log(isLogin);
   };
   const onError = () => {
     console.log("Error");
   };
-
-  <form />;
 
   return (
     <>
@@ -68,7 +65,9 @@ export const Login = () => {
         <Row>
           <Col className="left-login"></Col>
           <Col className="right-login">
-            <h1>Login</h1>
+            <h1>
+              Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            </h1>
             <Form onSubmit={handleSubmit(onSubmit, onError)} method="POST">
               <Form.Group className="mb-3">
                 <Form.Label>Email</Form.Label>
@@ -91,7 +90,16 @@ export const Login = () => {
                 <p className="error-message">{errors.password?.message}</p>
               </Form.Group>
               <Button variant="primary" type="submit" className="login-button">
-                Submit
+                {loading ? (
+                  <div class="lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                ) : (
+                  "Login"
+                )}
               </Button>
             </Form>
 
