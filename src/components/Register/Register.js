@@ -5,8 +5,14 @@ import "./Register.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import { AppContext } from "../../App";
+import { useState } from "react";
 
 export const Register = () => {
+  const { login, setLogin } = useContext(AppContext);
+  const [loading, setLoading] = useState(false);
+
   const schema = yup.object().shape({
     name: yup.string().required("*name is required"),
     email: yup
@@ -30,6 +36,7 @@ export const Register = () => {
   // https://rose-doubtful-moth.cyclic.app/user/register
   const onSubmit = async (data) => {
     console.log(data);
+    setLoading(true);
     const res = await fetch(
       "https://rose-doubtful-moth.cyclic.app/user/register",
       {
@@ -45,7 +52,12 @@ export const Register = () => {
         }),
       }
     );
-    console.log(res);
+    const resp = await res.json();
+    console.log(resp);
+    if (resp.success === true) {
+      setLogin(true);
+      setLoading(false);
+    }
   };
   const onError = () => {
     console.log("Error");
@@ -104,8 +116,17 @@ export const Register = () => {
                   {errors.confirmPassword?.message}
                 </p>
               </Form.Group> */}
-              <Button variant="primary" type="submit" className="reg-button">
-                Register
+              <Button variant="primary" type="submit" className="login-button">
+                {loading ? (
+                  <div class="lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                ) : (
+                  "Register"
+                )}
               </Button>
               <p className="reg-bottom-login">
                 Already have an account?

@@ -50,7 +50,7 @@ export const Login = () => {
     );
     const resp = await res.json();
     console.log(resp);
-    if (resp.message === "Logged in successfuy") {
+    if (resp.success === true) {
       setLogin(true);
       setLoading(false);
     }
