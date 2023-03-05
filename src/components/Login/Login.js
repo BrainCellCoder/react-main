@@ -8,6 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const schema = yup.object().shape({
     email: yup
@@ -49,6 +51,11 @@ export const Login = () => {
     console.log(resp);
     if (resp.success === true) {
       setLoading(false);
+    } else if (resp.success === false) {
+      setError(true);
+      setLoading(false);
+      console.log(resp.message);
+      setErrorMsg(resp.message);
     }
   };
   const onError = () => {
@@ -85,6 +92,7 @@ export const Login = () => {
                 />
                 <p className="error-message">{errors.password?.message}</p>
               </Form.Group>
+              {error && <p className="error-message">{errorMsg}</p>}
               <Button variant="primary" type="submit" className="login-button">
                 {loading ? (
                   <div class="lds-ellipsis">
