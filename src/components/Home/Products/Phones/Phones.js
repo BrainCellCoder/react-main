@@ -1,9 +1,9 @@
 import React from "react";
-import "./Headphone.css";
+import "./Phones.css";
 import { useEffect, useState } from "react";
 import { Card } from "./Card";
 
-export const Headphones = () => {
+export const Phones = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export const Headphones = () => {
   return (
     <>
       <div className="products container">
-        <h3>Headphones For You!</h3>
+        <h3>Phones For You!</h3>
         <div className="row gy-4">
           {products.map((product, key) => {
             return <Card key={key} data={product} />;

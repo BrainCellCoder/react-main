@@ -1,13 +1,13 @@
 import React from "react";
 import { Hero } from "./Hero/Hero";
 import { Filter } from "./Filters/Filter";
-import { Headphones } from "./Products/Headphones/Headphones";
+import { Phones } from "./Products/Phones/Phones";
 export const Home = () => {
   return (
     <>
       <Hero />
       <Filter />
-      <Headphones />
+      <Phones />
     </>
   );
 };

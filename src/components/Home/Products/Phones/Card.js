@@ -1,7 +1,6 @@
 import React from "react";
 
 export const Card = (props) => {
-  console.log(props.data.image);
   const imgURL = props.data.image[0].url;
   return (
     <div className="col-lg-3 col-md-6">

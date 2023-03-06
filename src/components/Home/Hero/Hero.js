@@ -3,7 +3,7 @@ import "./Hero.css";
 export const Hero = () => {
   return (
     <>
-      <div class="hero container">
+      <div className="hero container">
         <h1>
           Grab Upto 50% Off On <br />
           Selected Headphone
