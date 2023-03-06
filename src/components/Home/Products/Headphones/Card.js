@@ -1,12 +1,14 @@
 import React from "react";
 
 export const Card = (props) => {
+  console.log(props.data.image);
+  const imgURL = props.data.image[0].url;
   return (
     <div className="col-lg-3 col-md-6">
       <div className="product">
         <div
           className="image"
-          // style={{ backgroundImage: "url('././Products/Headphones/airpodmax.png')" }}
+          style={{ backgroundImage: `url(${imgURL})` }}
         ></div>
         <div className="title">
           <h5 className="name">{props.data.name}</h5>

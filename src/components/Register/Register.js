@@ -59,8 +59,6 @@ export const Register = () => {
     console.log("Error");
   };
 
-  <form />;
-
   return (
     <>
       <Container id="register">

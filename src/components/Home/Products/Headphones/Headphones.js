@@ -9,7 +9,7 @@ export const Headphones = () => {
   useEffect(() => {
     async function headphone() {
       const res = await fetch(
-        "https://rose-doubtful-moth.cyclic.app/products?limit=8"
+        "https://rose-doubtful-moth.cyclic.app/products?category=headphone"
       );
       const product = await res.json();
       setProducts(product.products);
@@ -21,8 +21,8 @@ export const Headphones = () => {
       <div className="products container">
         <h3>Headphones For You!</h3>
         <div className="row gy-4">
-          {products.map((product) => {
-            return <Card data={product} />;
+          {products.map((product, key) => {
+            return <Card key={key} data={product} />;
           })}
         </div>
       </div>
