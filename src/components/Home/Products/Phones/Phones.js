@@ -5,14 +5,16 @@ import { Card } from "./Card";
 
 export const Phones = () => {
   const [products, setProducts] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function headphone() {
+      setLoading(true);
       const res = await fetch(
-        "https://rose-doubtful-moth.cyclic.app/products?category=headphone"
+        "https://rose-doubtful-moth.cyclic.app/products?category=phone"
       );
       const product = await res.json();
       setProducts(product.products);
+      setLoading(false);
     }
     headphone();
   }, []);
@@ -20,11 +22,14 @@ export const Phones = () => {
     <>
       <div className="products container">
         <h3>Phones For You!</h3>
-        <div className="row gy-4">
-          {products.map((product, key) => {
-            return <Card key={key} data={product} />;
-          })}
-        </div>
+        {loading && <p>Loading...</p>}
+        {!loading && (
+          <div className="row gy-4">
+            {products.map((product, key) => {
+              return <Card key={key} data={product} />;
+            })}
+          </div>
+        )}
       </div>
     </>
   );

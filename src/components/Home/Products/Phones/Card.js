@@ -11,9 +11,9 @@ export const Card = (props) => {
         ></div>
         <div className="title">
           <h5 className="name">{props.data.name}</h5>
-          <h5 className="price">${props.data.price}</h5>
+          <h5 className="price">₹{props.data.price}</h5>
         </div>
-        <div className="description text-muted">{props.data.description}</div>
+        {/* <div className="description text-muted">{props.data.description}</div> */}
         <div className="ratings">
           <p className="stars">
             <i className="fa-solid fa-star"></i>

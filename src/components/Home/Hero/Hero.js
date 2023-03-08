@@ -1,5 +1,7 @@
 import React from "react";
 import "./Hero.css";
+import { Link } from "react-router-dom";
+import { Headphones } from "../Products/Headphones/Headphones";
 export const Hero = () => {
   return (
     <>
@@ -8,7 +10,7 @@ export const Hero = () => {
           Grab Upto 50% Off On <br />
           Selected Headphone
         </h1>
-        <button>Buy Now</button>
+        <button>Buy now</button>
       </div>
     </>
   );
