@@ -8,7 +8,6 @@
 .product .image {
   width: 100%;
   height: 300px;
-  /* background-image: url("airpodmax.png"); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -17,7 +16,7 @@
 }
 
 .product .image {
-  background-color: #f2f2f2;
+  background-color: #edf2fb;
 }
 
 .product .title {
