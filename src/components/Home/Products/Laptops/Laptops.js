@@ -1,16 +1,15 @@
 import React from "react";
-import "./Phones.css";
 import { useEffect, useState } from "react";
 import { Card } from "../Card";
 
-export const Phones = () => {
+export const Laptops = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function headphone() {
       setLoading(true);
       const res = await fetch(
-        "https://rose-doubtful-moth.cyclic.app/products?category=phone"
+        "https://rose-doubtful-moth.cyclic.app/products?category=laptop"
       );
       const product = await res.json();
       setProducts(product.products);
@@ -21,7 +20,7 @@ export const Phones = () => {
   return (
     <>
       <div className="products container">
-        <h3>Phones For You!</h3>
+        <h3>Best Laptops of 2022: Top Picks</h3>
         {loading && <p>Loading...</p>}
         {!loading && (
           <div className="row gy-4">
