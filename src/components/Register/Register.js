@@ -34,21 +34,18 @@ export const Register = () => {
   const onSubmit = async (data) => {
     console.log(data);
     setLoading(true);
-    const res = await fetch(
-      "https://rose-doubtful-moth.cyclic.app/user/register",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          password: data.password,
-        }),
-      }
-    );
+    const res = await fetch("http://localhost:8000/user/register", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      }),
+    });
     const resp = await res.json();
     console.log(resp);
     if (resp.success === true) {

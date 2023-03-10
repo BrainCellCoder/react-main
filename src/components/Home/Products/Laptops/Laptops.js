@@ -20,7 +20,7 @@ export const Laptops = () => {
   return (
     <>
       <div className="products container">
-        <h3>Best Laptops of 2022: Top Picks</h3>
+        <h3>Best Laptops of 2023: Top Picks</h3>
         {loading && <p>Loading...</p>}
         {!loading && (
           <div className="row gy-4">

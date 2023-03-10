@@ -16,19 +16,21 @@
   color: #10002b;
 }
 
-.hero button {
+.hero .headphones-buy-now {
   width: 150px;
   padding: 1rem;
   border: none;
   outline: none;
   border-radius: 40px;
   margin-top: 1rem;
+  text-decoration: none;
+  text-align: center;
   color: #fff;
   background-color: #7b2cbf;
   transition: 0.3s ease-in-out;
 }
 
-.hero button:hover {
+.hero .headphones-buy-now:hover {
   background-color: #10002b;
   transform: translateY(-5px);
 }
