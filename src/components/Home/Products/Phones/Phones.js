@@ -10,7 +10,7 @@ export const Phones = () => {
     async function headphone() {
       setLoading(true);
       const res = await fetch(
-        "https://rose-doubtful-moth.cyclic.app/products?category=phone"
+        "https://rose-doubtful-moth.cyclic.app/products?category=mobile"
       );
       const product = await res.json();
       setProducts(product.products);

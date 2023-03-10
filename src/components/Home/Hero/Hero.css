@@ -2,6 +2,7 @@
   display: flex;
   border-radius: 20px;
   height: 41vh;
+  margin-top: 66px;
   flex-direction: column;
   background-color: #e5b3fe;
   padding: 4rem 6rem !important;
