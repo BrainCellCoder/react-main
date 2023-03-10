@@ -8,7 +8,7 @@ export const Hero = () => {
         <h1>
           {/* Grab Upto 50% Off On <br />
           Selected Headphone */}
-          Find your perfect sound <br /> with our headphones.
+          Find your perfect sound <br /> with our Headphones.
         </h1>
         <Link className="headphones-buy-now" to="/headphones">
           Buy now
