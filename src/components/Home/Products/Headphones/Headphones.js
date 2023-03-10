@@ -2,6 +2,7 @@ import React from "react";
 import "./Headphones.css";
 import { useEffect, useState } from "react";
 import { Card } from "../Card";
+import { baseUrl } from "../../../../Utils/baseUrl";
 
 export const Headphones = () => {
   const [products, setProducts] = useState([]);
@@ -9,9 +10,7 @@ export const Headphones = () => {
   useEffect(() => {
     async function headphone() {
       setLoading(true);
-      const res = await fetch(
-        "https://rose-doubtful-moth.cyclic.app/products?category=headphone"
-      );
+      const res = await fetch(`${baseUrl}/products?category=headphone`);
       const product = await res.json();
       setProducts(product.products);
       setLoading(false);
@@ -20,7 +19,7 @@ export const Headphones = () => {
   }, []);
   return (
     <>
-      <div className="products container">
+      <div id="headphone" className="products container">
         <h3>Headphones</h3>
         {loading && <p>Loading...</p>}
         {!loading && (

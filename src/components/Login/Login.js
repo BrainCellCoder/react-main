@@ -47,6 +47,7 @@ export const Login = () => {
     });
     const resp = await res.json();
     console.log(resp);
+    localStorage.setItem("techkart_token", resp.token);
     if (resp.success === true) {
       setLoading(false);
     } else if (resp.success === false) {
@@ -67,7 +68,7 @@ export const Login = () => {
           <Col className="left-login"></Col>
           <Col className="right-login">
             <h1>
-              Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
+              Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
             </h1>
             <Form onSubmit={handleSubmit(onSubmit, onError)} method="POST">
               <Form.Group className="mb-3">
@@ -93,7 +94,7 @@ export const Login = () => {
               {error && <p className="error-message">{errorMsg}</p>}
               <Button variant="primary" type="submit" className="login-button">
                 {loading ? (
-                  <div class="lds-ellipsis">
+                  <div className="lds-ellipsis">
                     <div></div>
                     <div></div>
                     <div></div>
@@ -107,14 +108,14 @@ export const Login = () => {
 
             <div className="signup-with">
               <p>
-                {/* <i class="fa-solid fa-minus"></i> */}
+                {/* <i className="fa-solid fa-minus"></i> */}
                 Or SignUp With
-                {/* <i class="fa-solid fa-minus"></i> */}
+                {/* <i className="fa-solid fa-minus"></i> */}
               </p>
             </div>
 
             <div className="sign-up-logos">
-              {/* <i class="fa-brands fa-facebook"></i> */}
+              {/* <i className="fa-brands fa-facebook"></i> */}
               <img src={require("./../Login/facebook.png")} alt="" />
               <img src={require("./../Login/twitter.png")} alt="" />
               <img src={require("./../Login/linkedin.png")} alt="" />

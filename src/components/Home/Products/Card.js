@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Card = (props) => {
   const imgURL = props.data.image[0].url;
@@ -25,6 +26,7 @@ export const Card = (props) => {
           <p className="number-of-reviews text-muted">(69)</p>
         </div>
         <div className="add-to-cart">Add to cart</div>
+        <Link to={`products/${props.data._id}`}>View</Link>
         <div className="wish">
           <i className="fa-regular fa-heart"></i>
         </div>

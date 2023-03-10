@@ -6,6 +6,7 @@ import { Home } from "./components/Home/Home";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Admin } from "./components/Admin Panel/Admin";
 import { Headphones } from "./components/Home/Products/Headphones/Headphones";
+import { ProductDetails } from "./components/ProductDetails/ProductDetails";
 
 function App() {
   return (
@@ -13,11 +14,12 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/headphones" element={<Headphones />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
         </Routes>
       </Router>
     </>

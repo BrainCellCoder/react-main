@@ -63,7 +63,7 @@ export const Register = () => {
           <Col className="left-reg"></Col>
           <Col className="right-reg">
             <h1>
-              Register <i class="fa-regular fa-pen-to-square"></i>
+              Register <i className="fa-regular fa-pen-to-square"></i>
             </h1>
             <Form onSubmit={handleSubmit(onSubmit, onError)} method="POST">
               <Form.Group className="mb-3">
@@ -109,7 +109,7 @@ export const Register = () => {
               </Form.Group> */}
               <Button variant="primary" type="submit" className="login-button">
                 {loading ? (
-                  <div class="lds-ellipsis">
+                  <div className="lds-ellipsis">
                     <div></div>
                     <div></div>
                     <div></div>

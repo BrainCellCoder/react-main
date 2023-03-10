@@ -31,7 +31,7 @@ export const Navbar = () => {
             <span>Account</span>
           </div>
           {/* <Link to="/login">
-              Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
+              Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
             </Link> */}
           <div className="cart">
             <img id="cart" src={require("./../Navbar/cart.png")} alt="" />
