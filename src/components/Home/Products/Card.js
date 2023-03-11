@@ -25,8 +25,12 @@ export const Card = (props) => {
           </p>
           <p className="number-of-reviews text-muted">(69)</p>
         </div>
-        <div className="add-to-cart">Add to cart</div>
-        <Link to={`products/${props.data._id}`}>View</Link>
+        <div className="add-view">
+          <div className="add-to-cart">Add to cart</div>
+          <Link className="view" to={`products/${props.data._id}`}>
+            View
+          </Link>
+        </div>
         <div className="wish">
           <i className="fa-regular fa-heart"></i>
         </div>

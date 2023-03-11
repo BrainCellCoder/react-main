@@ -67,3 +67,13 @@
 .product .wish:hover {
   color: #f21b3f;
 }
+
+.product .add-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product .view {
+  text-decoration: none;
+}
