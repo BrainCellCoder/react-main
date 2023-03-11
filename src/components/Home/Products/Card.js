@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 export const Card = (props) => {
   const imgURL = props.data.image[0].url;
+  const price = new Intl.NumberFormat("en-IN", {
+    maximumSignificantDigits: 3,
+  }).format(props.data.price);
   return (
     <div className="col-lg-3 col-md-6">
       <div className="product">
@@ -12,9 +15,8 @@ export const Card = (props) => {
         ></div>
         <div className="title">
           <h6 className="name">{props.data.name}</h6>
-          <h6 className="price">₹{props.data.price}</h6>
+          <h6 className="price">₹{price}</h6>
         </div>
-        {/* <div className="description text-muted">{props.data.description}</div> */}
         <div className="ratings">
           <p className="stars">
             <i className="fa-solid fa-star"></i>

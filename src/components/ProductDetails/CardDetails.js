@@ -3,7 +3,9 @@ import "./CardDetails.css";
 
 export const CardDetails = (props) => {
   const imageUrl = props.data.image ? props.data.image[0].url : null;
-
+  const price = new Intl.NumberFormat("en-IN", {
+    maximumSignificantDigits: 3,
+  }).format(props.data.price);
   return (
     <>
       <div id="product-details">
@@ -29,7 +31,7 @@ export const CardDetails = (props) => {
             </div>
             <div className="product-price">
               Price
-              <h1>₹{props.data.price}</h1>
+              <h1>₹{price}</h1>
             </div>
             <div className="product-control-form">
               <div className="product-quantity">

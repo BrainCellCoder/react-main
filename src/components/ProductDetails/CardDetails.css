@@ -72,9 +72,11 @@
 .product-buy {
   background-color: #b333e9;
   color: #fff;
-  padding: 1rem 4rem;
+  padding: 1rem 0;
   border-radius: 30px;
   transition: 0.3s ease-in-out;
+  flex-grow: 1;
+  text-align: center;
 }
 
 .product-buy:hover {
@@ -85,8 +87,10 @@
 .product-cart {
   color: #b333e9;
   border: 1px solid #b333e9;
-  padding: 1rem 3rem;
+  padding: 1rem 0;
   border-radius: 30px;
+  text-align: center;
+  flex-grow: 1;
   margin-left: 15px;
   transition: 0.3s ease-in-out;
 }
