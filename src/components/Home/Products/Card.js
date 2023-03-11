@@ -11,8 +11,8 @@ export const Card = (props) => {
           style={{ backgroundImage: `url(${imgURL})` }}
         ></div>
         <div className="title">
-          <h5 className="name">{props.data.name}</h5>
-          <h5 className="price">₹{props.data.price}</h5>
+          <h6 className="name">{props.data.name}</h6>
+          <h6 className="price">₹{props.data.price}</h6>
         </div>
         {/* <div className="description text-muted">{props.data.description}</div> */}
         <div className="ratings">

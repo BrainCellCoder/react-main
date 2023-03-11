@@ -25,8 +25,12 @@
   margin-top: 5px;
 }
 
-.product .description {
-  font-size: 0.9rem;
+.product .title .name {
+  font-size: 1.2rem;
+}
+
+.product .title .price {
+  font-size: 1.2rem;
 }
 
 .product .ratings {
@@ -40,17 +44,18 @@
 
 .product .add-to-cart {
   display: inline-block;
-  color: #f21b3f;
-  padding: 0.5rem 1.5rem;
+  color: #b333e9;
+  padding: 0.3rem 1.3rem;
+  font-size: 0.9rem;
   border-radius: 20px;
   cursor: pointer;
   transition: 0.3s;
-  border: 1px solid #f21b3f;
+  border: 1px solid #b333e9;
 }
 
 .product .add-to-cart:hover {
   color: #fff;
-  background-color: #f21b3f;
+  background-color: #b333e9;
 }
 
 .product .wish {

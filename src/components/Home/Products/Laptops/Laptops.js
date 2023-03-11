@@ -22,7 +22,7 @@ export const Laptops = () => {
         <h3>Best Laptops of 2023: Top Picks</h3>
         {loading && <p>Loading...</p>}
         {!loading && (
-          <div className="row gy-4">
+          <div className="row gy-5">
             {products.map((product, key) => {
               return <Card key={key} data={product} />;
             })}

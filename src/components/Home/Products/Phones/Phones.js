@@ -23,7 +23,7 @@ export const Phones = () => {
         <h3>Phones For You!</h3>
         {loading && <p>Loading...</p>}
         {!loading && (
-          <div className="row gy-4">
+          <div className="row gy-5">
             {products.map((product, key) => {
               return <Card key={key} data={product} />;
             })}
