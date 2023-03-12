@@ -7,6 +7,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Admin } from "./components/Admin Panel/Admin";
 import { Headphones } from "./components/Home/Products/Headphones/Headphones";
 import { ProductDetails } from "./components/ProductDetails/ProductDetails";
+import { Footer } from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/headphones/products/:id" element={<ProductDetails />} />
         </Routes>
+        <Footer />
       </Router>
     </>
   );

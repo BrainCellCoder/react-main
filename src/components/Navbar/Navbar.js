@@ -14,8 +14,8 @@ export const Navbar = () => {
           <div className="category">
             Categories <i className="fa-solid fa-caret-down"></i>
           </div>
-          <a href="deals">Deals</a>
-          <a href="whats-new">What's New</a>
+          {/* <a href="deals">Deals</a> */}
+          {/* <a href="whats-new">What's New</a> */}
           <a href="/wishlist">
             <img id="wishlist" src={require("./../Navbar/love.png")} alt="" />
             Wishlist
