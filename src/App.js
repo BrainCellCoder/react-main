@@ -8,6 +8,7 @@ import { Admin } from "./components/Admin Panel/Admin";
 import { Headphones } from "./components/Home/Products/Headphones/Headphones";
 import { ProductDetails } from "./components/ProductDetails/ProductDetails";
 import { Footer } from "./components/Footer/Footer";
+// import { Protected } from "./Protected";
 function App() {
   return (
     <>
@@ -19,8 +20,18 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/headphones" element={<Headphones />} />
+
           <Route path="/products/:id" element={<ProductDetails />} />
+          {/* <Route
+            path="/products/:id"
+            element={<Protected Component={ProductDetails} />}
+          /> */}
+
           <Route path="/headphones/products/:id" element={<ProductDetails />} />
+          {/* <Route
+            path="/headphones/products/:id"
+            element={<Protected Component={ProductDetails} />}
+          /> */}
         </Routes>
         <Footer />
       </Router>

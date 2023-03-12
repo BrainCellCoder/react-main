@@ -11,7 +11,7 @@ export const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const schema = yup.object().shape({
     email: yup
@@ -52,10 +52,10 @@ export const Login = () => {
     if (resp.success === true) {
       setLoading(false);
       localStorage.setItem("techkart_token", resp.token);
-      history("/");
+      navigate("/");
     } else if (resp.success === false) {
       setError(true);
-      history("/login");
+      navigate("/login");
       setLoading(false);
       console.log(resp.message);
       setErrorMsg(resp.message);
