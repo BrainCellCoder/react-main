@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { baseUrl } from "../../Utils/baseUrl";
-// import isAuthenticated from "../../Utils/isAuth";
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);
