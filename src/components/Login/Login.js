@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { baseUrl } from "../../Utils/baseUrl";
+// import isAuthenticated from "../../Utils/isAuth";
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const history = useNavigate();
 
   const schema = yup.object().shape({
     email: yup
@@ -34,7 +37,7 @@ export const Login = () => {
     console.log(data);
     setLoading(true);
     // https://rose-doubtful-moth.cyclic.app/user/login
-    const res = await fetch("http://localhost:8000/user/login", {
+    const res = await fetch(`${baseUrl}/user/login`, {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -47,11 +50,13 @@ export const Login = () => {
     });
     const resp = await res.json();
     console.log(resp);
-    localStorage.setItem("techkart_token", resp.token);
     if (resp.success === true) {
       setLoading(false);
+      localStorage.setItem("techkart_token", resp.token);
+      history("/");
     } else if (resp.success === false) {
       setError(true);
+      history("/login");
       setLoading(false);
       console.log(resp.message);
       setErrorMsg(resp.message);

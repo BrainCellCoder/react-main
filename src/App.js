@@ -8,7 +8,6 @@ import { Admin } from "./components/Admin Panel/Admin";
 import { Headphones } from "./components/Home/Products/Headphones/Headphones";
 import { ProductDetails } from "./components/ProductDetails/ProductDetails";
 import { Footer } from "./components/Footer/Footer";
-
 function App() {
   return (
     <>

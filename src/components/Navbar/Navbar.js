@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import isAuthenticated from "../../Utils/isAuth";
 
 export const Navbar = () => {
+  const location = useLocation();
+  const isAuth = isAuthenticated();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    isAuth ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  }, [location]);
   return (
     <>
       <div className="navbar fixed-top">
@@ -26,17 +34,23 @@ export const Navbar = () => {
             <input type="text" placeholder="Search Product" />
             <i className="fa-solid fa-magnifying-glass"></i>
           </div>
-          <div className="account">
-            <i className="fa-regular fa-user"></i>
-            <span>Account</span>
-          </div>
+          {isLoggedIn ? (
+            <div className="account">
+              <i className="fa-regular fa-user"></i>
+              <span>Account</span>
+            </div>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
           {/* <Link to="/login">
               Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
             </Link> */}
-          <div className="cart">
-            <img id="cart" src={require("./../Navbar/cart.png")} alt="" />
-            <span className="cart-number">0</span>
-          </div>
+          {isLoggedIn && (
+            <div className="cart">
+              <img id="cart" src={require("./../Navbar/cart.png")} alt="" />
+              <span className="cart-number">0</span>
+            </div>
+          )}
         </div>
       </div>
     </>
