@@ -5,7 +5,7 @@ import "./Login.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { baseUrl } from "../../Utils/baseUrl";
+// import { baseUrl } from "../../Utils/baseUrl";
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -36,7 +36,7 @@ export const Login = () => {
     console.log(data);
     setLoading(true);
     // https://rose-doubtful-moth.cyclic.app/user/login
-    const res = await fetch(`${baseUrl}/user/login`, {
+    const res = await fetch(`http://localhost:8000/user/login`, {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -51,7 +51,9 @@ export const Login = () => {
     console.log(resp);
     if (resp.success === true) {
       setLoading(false);
-      localStorage.setItem("techkart_token", resp.token);
+      localStorage.setItem("token", resp.token);
+      // document.cookie = `token=${resp.token}; path=/`;
+
       navigate("/");
     } else if (resp.success === false) {
       setError(true);

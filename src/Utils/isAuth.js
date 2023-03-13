@@ -1,7 +1,7 @@
 import jwt_decode from "jwt-decode";
 
 function isAuthenticated() {
-  const token = localStorage.getItem("techkart_token");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     return false;
