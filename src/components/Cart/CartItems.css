@@ -1,0 +1,32 @@
+.product-image {
+  width: 300px;
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cart-item {
+  display: flex;
+  border-bottom: 1px solid grey;
+}
+
+.product-information {
+  width: 100%;
+  margin-left: 20px;
+  padding-top: 1rem;
+}
+
+.product-name-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-wishlist-remove {
+  display: flex;
+  align-items: center;
+}
+
+.product-wishlist-remove {
+}

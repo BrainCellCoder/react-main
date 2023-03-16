@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 // import { baseUrl } from "./../../../Utils/baseUrl";
 
 export const Card = (props) => {
+  const [message, setMessage] = useState("");
+
   const imgURL = props.data.image[0].url;
   const price = new Intl.NumberFormat("en-IN", {
     maximumSignificantDigits: 3,
@@ -22,6 +25,7 @@ export const Card = (props) => {
     console.log(res);
     const data = await res.json();
     console.log(data);
+    setMessage(data.message);
     if (!data.success) {
       navigate("/login");
     }
@@ -64,6 +68,27 @@ export const Card = (props) => {
         <div className="wish">
           <i className="fa-regular fa-heart"></i>
         </div>
+        {message && (
+          <Alert
+            style={{
+              padding: "5px",
+              margin: "5px 0 0 0",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+            variant="success"
+            onClose={() => setMessage("")}
+          >
+            <p style={{ margin: "0" }}>{message}</p>
+            <p
+              id="message-close-btn"
+              style={{ margin: "0", marginRight: "5px", cursor: "pointer" }}
+              onClick={() => setMessage("")}
+            >
+              <i class="fa-solid fa-circle-xmark"></i>
+            </p>
+          </Alert>
+        )}
       </div>
     </div>
   );

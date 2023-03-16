@@ -1,0 +1,8 @@
+#cartItems {
+  margin-top: 100px;
+}
+
+.cart-items {
+  height: 90vh;
+  overflow-y: scroll;
+}

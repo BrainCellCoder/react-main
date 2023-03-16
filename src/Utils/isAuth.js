@@ -9,7 +9,6 @@ function isAuthenticated() {
 
   const decoded = jwt_decode(token);
   localStorage.setItem("user_id", decoded.id);
-  console.log(decoded);
   return true;
 
   // verify token

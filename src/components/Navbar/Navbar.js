@@ -46,10 +46,10 @@ export const Navbar = () => {
               Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
             </Link> */}
           {isLoggedIn && (
-            <div className="cart">
+            <Link to="/user/cart" className="cart">
               <img id="cart" src={require("./../Navbar/cart.png")} alt="" />
               <span className="cart-number">0</span>
-            </div>
+            </Link>
           )}
         </div>
       </div>
