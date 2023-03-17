@@ -3,7 +3,6 @@ import "./CartItems.css";
 
 export const CartItems = (props) => {
   const imgURL = props.data.image[0].url;
-  console.log(props.data.image);
   const price = new Intl.NumberFormat("en-IN", {
     maximumSignificantDigits: 3,
   }).format(props.data.price);
@@ -16,8 +15,8 @@ export const CartItems = (props) => {
         ></div>
         <div className="product-information">
           <div className="product-name-price">
-            <h4>{props.data.name}</h4>
-            <h4>$ {price}</h4>
+            <h4 className="product-name">{props.data.name}</h4>
+            <h4 className="product-price">$ {price}</h4>
           </div>
           <p className="stock">In Stock</p>
           <div className="product-control">

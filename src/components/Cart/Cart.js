@@ -4,6 +4,7 @@ import { CartItems } from "./CartItems";
 
 export const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [cartItemstotalPrice, setcartItemsTotalPrice] = useState(0);
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -13,10 +14,12 @@ export const Cart = () => {
         },
       });
       const data = await res.json();
-      console.log(data);
       setCartItems(data.user.cart);
     };
     fetchCart();
+
+    const totalPrice = cartItems.reduce((acc, obj) => acc + obj.price, 0);
+    setcartItemsTotalPrice(totalPrice);
   });
 
   return (
@@ -31,7 +34,12 @@ export const Cart = () => {
             </div>
           </div>
           <div className="col-md-5">
-            <div className="cart-items-checkout">Checkout</div>
+            <div className="cart-items-checkout">
+              Checkout totalPrice:{" "}
+              {new Intl.NumberFormat("en-IN", {
+                maximumSignificantDigits: 3,
+              }).format(cartItemstotalPrice)}
+            </div>
           </div>
         </div>
       </div>

@@ -14,13 +14,13 @@
 .product-information {
   width: 100%;
   margin-left: 20px;
-  padding-top: 1rem;
 }
 
 .product-name-price {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 40px;
 }
 
 .product-wishlist-remove {
@@ -28,5 +28,6 @@
   align-items: center;
 }
 
-.product-wishlist-remove {
+.product-name-price .product-price {
+  border: 0;
 }
