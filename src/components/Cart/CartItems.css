@@ -17,16 +17,20 @@
   border-bottom: 1px solid #e9ecef;
 }
 
-.product-information {
+.cart-item .product-information {
   width: 100%;
   margin-left: 20px;
 }
 
-.product-name-price {
+.cart-item .product-name-price {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 40px;
+}
+
+.cart-item .product-price {
+  color: #38b000;
 }
 
 .product-wishlist-remove {
@@ -42,11 +46,14 @@
   color: #38b000;
 }
 
+.product-wishlist-remove {
+  margin-top: 1rem;
+}
+
 .product-remove {
   cursor: pointer;
   margin-left: 20px;
   color: red;
-  background-color: #ffccd5;
   border-radius: 20px;
   padding: 0 10px;
   transition: 0.3s ease-in-out;
@@ -64,6 +71,6 @@
 }
 
 .product-quantity i {
-  padding: 10px;
+  padding: 5px 10px;
   cursor: pointer;
 }

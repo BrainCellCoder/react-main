@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import isAuthenticated from "../../Utils/isAuth";
+import { AppContext } from "../../App";
 
 export const Navbar = () => {
+  const { cartNumber } = useContext(AppContext);
   const location = useLocation();
   const isAuth = isAuthenticated();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,7 +50,7 @@ export const Navbar = () => {
           {isLoggedIn && (
             <Link to="/user/cart" className="cart">
               <img id="cart" src={require("./../Navbar/cart.png")} alt="" />
-              <span className="cart-number">0</span>
+              <span className="cart-number">{cartNumber}</span>
             </Link>
           )}
         </div>

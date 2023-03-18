@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, createContext } from "react";
 import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register";
 import { Home } from "./components/Home/Home";
@@ -10,27 +11,36 @@ import { ProductDetails } from "./components/ProductDetails/ProductDetails";
 import { Footer } from "./components/Footer/Footer";
 import { Cart } from "./components/Cart/Cart";
 // import { Protected } from "./Protected";
+
+export const AppContext = createContext();
+
 function App() {
+  const [cartNumber, setCartNumber] = useState(0);
   return (
     <>
-      <Router id="router">
-        <Navbar />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/headphones" element={<Headphones />} />
-          <Route path="/products/:id" element={<ProductDetails />} />
-          {/* <Route
+      <AppContext.Provider value={{ cartNumber, setCartNumber }}>
+        <Router id="router">
+          <Navbar />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/headphones" element={<Headphones />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+            {/* <Route
             path="/products/:id"
             element={<Protected Component={ProductDetails} />}
           /> */}
-          <Route path="/headphones/products/:id" element={<ProductDetails />} />
-          <Route path="/user/cart" element={<Cart />} />
-        </Routes>
-        <Footer />
-      </Router>
+            <Route
+              path="/headphones/products/:id"
+              element={<ProductDetails />}
+            />
+            <Route path="/user/cart" element={<Cart />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </AppContext.Provider>
     </>
   );
 }

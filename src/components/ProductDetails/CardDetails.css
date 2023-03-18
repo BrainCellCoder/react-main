@@ -36,24 +36,11 @@
 
 .product-control-form {
   padding: 2rem 0;
+  width: 100%;
 }
 
-.product-quantity {
+.product-control-form .product-quantity {
   display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.choose-quantity {
-  background-color: #f7ebfd;
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-  justify-content: space-between;
-  width: 7rem;
-  padding: 5px 20px;
-  border-radius: 20px;
-  margin-right: 20px;
 }
 
 .choose-quantity button {

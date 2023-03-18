@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import "./CardDetails.css";
+import { Alert } from "react-bootstrap";
 
 export const CardDetails = (props) => {
+  const [message, setMessage] = useState("");
+
   const imageUrl = props.data.image ? props.data.image[0].url : null;
   const price = new Intl.NumberFormat("en-IN", {
     maximumSignificantDigits: 3,
   }).format(props.data.price);
+
+  const addToCart = async (id) => {
+    const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
+      method: "POST",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token")}`,
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(res);
+    const data = await res.json();
+    console.log(data);
+    setMessage(data.message);
+
+    if (!data.success) {
+      Navigate("/login");
+    }
+  };
+
   return (
     <>
       <div id="product-details">
@@ -35,19 +59,46 @@ export const CardDetails = (props) => {
             </div>
             <div className="product-control-form">
               <div className="product-quantity">
-                <div className="choose-quantity">
-                  <button>-</button>1<button>+</button>
-                </div>
-                <div className="product-stock">
-                  Only 25 left!
-                  <br /> Don't miss it
-                </div>
+                <i className="fa-solid fa-minus"></i>1
+                <i className="fa-solid fa-plus"></i>
               </div>
               <div className="product-buy-cart">
                 <div className="product-buy">Buy Now</div>
-                <div className="product-cart">Add to Cart</div>
+                <div
+                  className="product-cart"
+                  onClick={() => {
+                    addToCart(props.data._id);
+                  }}
+                >
+                  Add to Cart
+                </div>
               </div>
             </div>
+            {message && (
+              <Alert
+                style={{
+                  padding: "5px",
+                  margin: "5px 0 0 0",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+                variant="success"
+                onClose={() => setMessage("")}
+              >
+                <p style={{ margin: "0" }}>{message}</p>
+                <p
+                  id="message-close-btn"
+                  style={{
+                    margin: "0",
+                    marginRight: "5px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setMessage("")}
+                >
+                  <i className="fa-solid fa-circle-xmark"></i>
+                </p>
+              </Alert>
+            )}
           </div>
         </div>
       </div>
