@@ -85,7 +85,7 @@ export const Card = (props) => {
               style={{ margin: "0", marginRight: "5px", cursor: "pointer" }}
               onClick={() => setMessage("")}
             >
-              <i class="fa-solid fa-circle-xmark"></i>
+              <i className="fa-solid fa-circle-xmark"></i>
             </p>
           </Alert>
         )}

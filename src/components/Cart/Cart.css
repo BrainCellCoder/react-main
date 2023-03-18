@@ -1,8 +1,20 @@
 #cartItems {
-  margin-top: 100px;
+  background-color: #f4f4f8;
+  margin-top: 65px;
+  color: #10002b;
 }
 
 .cart-items {
-  height: 90vh;
+  min-height: 300px;
+  max-height: 600px;
   overflow-y: scroll;
+  background-color: #fff;
+  box-shadow: 0 0 24px -17px #000;
+}
+
+.heading-my-cart {
+  background-color: #fff;
+  margin-top: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 24px -17px #000;
 }
