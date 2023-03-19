@@ -10,6 +10,7 @@ import { Headphones } from "./components/Home/Products/Headphones/Headphones";
 import { ProductDetails } from "./components/ProductDetails/ProductDetails";
 import { Footer } from "./components/Footer/Footer";
 import { Cart } from "./components/Cart/Cart";
+import { Wishlist } from "./components/Wishlist/Wishlist";
 // import { Protected } from "./Protected";
 
 export const AppContext = createContext();
@@ -37,6 +38,7 @@ function App() {
               element={<ProductDetails />}
             />
             <Route path="/user/cart" element={<Cart />} />
+            <Route path="/user/wishlist" element={<Wishlist />} />
           </Routes>
           <Footer />
         </Router>
