@@ -26,7 +26,7 @@ export const Navbar = () => {
           </div>
           {/* <a href="deals">Deals</a> */}
           {/* <a href="whats-new">What's New</a> */}
-          <a href="/wishlist">
+          <a href="/user/wishlist">
             <img id="wishlist" src={require("./../Navbar/love.png")} alt="" />
             Wishlist
           </a>

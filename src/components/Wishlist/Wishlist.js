@@ -17,8 +17,8 @@ export const Wishlist = () => {
       setWishItems(data.user.wishList);
     };
     fetchWishlist();
-  }, []);
-
+  }, [wishItems]);
+  console.log(wishItems);
   return (
     <>
       {wishItems.map((item, key) => (

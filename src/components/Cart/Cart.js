@@ -27,7 +27,7 @@ export const Cart = () => {
     }).format(totalPrice);
     setcartItemsTotalPrice(formatedTotalPrice);
     setCartNumber(cartItems.length);
-  });
+  }, [cartItems]);
   return (
     <>
       <div id="cartItems">
