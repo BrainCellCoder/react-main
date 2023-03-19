@@ -22,9 +22,7 @@ export const Card = (props) => {
         "Content-Type": "application/json",
       },
     });
-    console.log(res);
     const data = await res.json();
-    console.log(data);
     setMessage(data.message);
     if (!data.success) {
       navigate("/login");
@@ -40,9 +38,7 @@ export const Card = (props) => {
         "Content-Type": "application/json",
       },
     });
-    console.log(res);
     const data = await res.json();
-    console.log(data);
     setMessage(data.message);
     if (!data.success) {
       navigate("/login");

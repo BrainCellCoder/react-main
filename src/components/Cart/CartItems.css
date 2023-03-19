@@ -50,6 +50,10 @@
   margin-top: 1rem;
 }
 
+.product-wishlist {
+  cursor: pointer;
+}
+
 .product-remove {
   cursor: pointer;
   margin-left: 20px;

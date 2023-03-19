@@ -14,7 +14,17 @@ export const CartItems = (props) => {
         authorization: `Abhi ${localStorage.getItem("token")}`,
       },
     });
-    // const resp = await res.json();
+  };
+
+  const addToWishList = async (id) => {
+    await fetch(`http://localhost:8000/user/wishlist/${id}`, {
+      method: "POST",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token")}`,
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    });
   };
   return (
     <>
@@ -35,7 +45,12 @@ export const CartItems = (props) => {
                 <i className="fa-solid fa-plus"></i>
               </div>
               <div className="product-wishlist-remove">
-                <div className="product-wishlist">
+                <div
+                  className="product-wishlist"
+                  onClick={() => {
+                    addToWishList(props.data._id);
+                  }}
+                >
                   <i className="fa-regular fa-heart"></i> Wishlist
                 </div>
                 <div
