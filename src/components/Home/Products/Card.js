@@ -31,6 +31,24 @@ export const Card = (props) => {
     }
   };
 
+  const addToWishList = async (id) => {
+    const res = await fetch(`http://localhost:8000/user/wishlist/${id}`, {
+      method: "POST",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token")}`,
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(res);
+    const data = await res.json();
+    console.log(data);
+    setMessage(data.message);
+    if (!data.success) {
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="col-lg-3 col-md-6">
       <div className="product">
@@ -65,7 +83,12 @@ export const Card = (props) => {
             View
           </Link>
         </div>
-        <div className="wish">
+        <div
+          className="wish"
+          onClick={() => {
+            addToWishList(props.data._id);
+          }}
+        >
           <i className="fa-regular fa-heart"></i>
         </div>
         {message && (

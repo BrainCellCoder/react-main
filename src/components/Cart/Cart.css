@@ -6,7 +6,6 @@
 }
 
 .cart-items {
-  /* min-height: 300px; */
   max-height: 600px;
   overflow-y: scroll;
   background-color: #fff;
@@ -125,10 +124,22 @@
   background-color: #b333e9;
   color: #fff;
   padding: 1rem;
+  transition: 0.3s ease-in-out;
+}
+
+.checkout-shopping .checkout:hover {
+  background-color: #6910a8;
+  cursor: pointer;
 }
 
 .checkout-shopping .shopping {
   color: #b333e9;
   padding: 1rem;
   border: 1px solid #b333e9;
+  transition: 0.3s ease-in-out;
+}
+
+.checkout-shopping .shopping:hover {
+  background-color: #b333e9;
+  color: #fff;
 }
