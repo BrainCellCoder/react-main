@@ -35,7 +35,7 @@ export const CartItems = (props) => {
           </div>
           <div className="product-information">
             <div className="product-name-price">
-              <h4 className="product-name">{props.data.name}</h4>
+              <h5 className="product-name">{props.data.name}</h5>
               <h5 className="product-price">₹ {price}</h5>
             </div>
             <p className="cart-item-stock">In Stock</p>
