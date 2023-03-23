@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Cart.css";
 import { CartItems } from "./CartItems";
 import { AppContext } from "../../App";
+import { Link } from "react-router-dom";
 
 export const Cart = () => {
   const { cartNumber, setCartNumber } = useContext(AppContext);
@@ -27,7 +28,8 @@ export const Cart = () => {
     }).format(totalPrice);
     setcartItemsTotalPrice(formatedTotalPrice);
     setCartNumber(cartItems.length);
-  }, [cartItems]);
+  }, []);
+
   return (
     <>
       <div id="cartItems">
@@ -80,7 +82,9 @@ export const Cart = () => {
                   </div>
 
                   <div className="checkout-shopping">
-                    <div className="checkout">Proceed to Checkout</div>
+                    <Link to="/checkout" className="checkout">
+                      Proceed to Checkout
+                    </Link>
                     <div className="shopping">Continue Shopping</div>
                   </div>
                 </div>

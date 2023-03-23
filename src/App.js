@@ -11,6 +11,7 @@ import { ProductDetails } from "./components/ProductDetails/ProductDetails";
 import { Footer } from "./components/Footer/Footer";
 import { Cart } from "./components/Cart/Cart";
 import { Wishlist } from "./components/Wishlist/Wishlist";
+import { CheckOut } from "./components/CheckOut/CheckOut";
 // import { Protected } from "./Protected";
 
 export const AppContext = createContext();
@@ -39,6 +40,7 @@ function App() {
             />
             <Route path="/user/cart" element={<Cart />} />
             <Route path="/user/wishlist" element={<Wishlist />} />
+            <Route path="/checkout" element={<CheckOut />} />
           </Routes>
           <Footer />
         </Router>
