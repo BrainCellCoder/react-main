@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./CheckOut.css";
 
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
 
@@ -13,9 +12,20 @@ export const CheckOut = () => {
   const [userData, setUserData] = useState({});
   const [showForm, setShowForm] = useState(false);
   const [isNewAddress, setIsNewAddress] = useState(false);
+  const [selectedOption, setSelectedOption] = useState({});
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(JSON.parse(event.target.value));
+  };
+
+  const inputAddressRef = useRef(null);
+  const inputCityRef = useRef(null);
+  const inputCountryRef = useRef(null);
+  const inputStateRef = useRef(null);
+  const inputPinCodeRef = useRef(null);
+  const inputPhoneNoRef = useRef(null);
 
   useEffect(() => {
-    console.log({ isNewAddress });
     const fetchUser = async () => {
       const user = await fetch("http://localhost:8000/user/me", {
         headers: {
@@ -24,7 +34,6 @@ export const CheckOut = () => {
       });
       const data = await user.json();
       setUserData(data);
-      console.log(data);
     };
     fetchUser();
   }, [isNewAddress]);
@@ -66,7 +75,6 @@ export const CheckOut = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     // setLoading(true);
     const res = await fetch("http://localhost:8000/user/me", {
       method: "POST",
@@ -85,13 +93,12 @@ export const CheckOut = () => {
       }),
     });
     const resp = await res.json();
-    console.log(resp);
     if (resp.success === true) {
       //   setLoading(false);
     }
     setIsNewAddress(!isNewAddress);
   };
-  console.log(userData);
+  console.log(selectedOption);
   const onError = () => {
     console.log("Error");
   };
@@ -114,11 +121,32 @@ export const CheckOut = () => {
                   <p className="checkout-number">2</p>
                   <p className="checkout-address-head">DELIVERY ADDRESS</p>
                 </div>
-                <div></div>
                 <div className="address-list">
                   {userData.user?.shippingAddress.map((address, key) => (
-                    <p key={key}>{address.address}</p>
+                    <div key={key} className="address-list-radio">
+                      <label className="address-list-label mb-3">
+                        <input
+                          className="input-type"
+                          type="radio"
+                          name="option"
+                          value={JSON.stringify({
+                            address: address.address,
+                            city: address.city,
+                            state: address.state,
+                            country: address.country,
+                            pinCode: address.pinCode,
+                            phoneNo: address.phoneNo,
+                          })}
+                          onChange={handleOptionChange}
+                        />
+                        <div className="address-info">
+                          <p>{address.address} </p>
+                          <i className="fa-solid fa-trash"></i>
+                        </div>
+                      </label>
+                    </div>
                   ))}
+                  {/* <p>{selectedOption}</p> */}
                   <div className="add-address mb-3" onClick={toggleAddressForm}>
                     {showForm ? "Cancel" : "+ Add a new address"}
                   </div>
@@ -227,6 +255,18 @@ export const CheckOut = () => {
                       <button className="address-submit-btn">Submit</button>
                     </Form>
                   )}
+                </div>
+              </div>
+              <div className="orderSummary">
+                <div className="orderSummary-head">
+                  <p className="checkout-number">3</p>
+                  <p>ORDER SUMMARY</p>
+                </div>
+
+                <div className="orderSummary-list">
+                  {userData.user?.cart.map((item) => (
+                    <p>{item.name}</p>
+                  ))}
                 </div>
               </div>
             </div>
