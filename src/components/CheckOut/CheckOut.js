@@ -7,6 +7,7 @@ import { FloatingLabel } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Link } from "react-router-dom";
 
 export const CheckOut = () => {
   const [userData, setUserData] = useState({});
@@ -99,6 +100,7 @@ export const CheckOut = () => {
     setIsNewAddress(!isNewAddress);
   };
   console.log(selectedOption);
+  console.log("userdatau", userData);
   const onError = () => {
     console.log("Error");
   };
@@ -260,13 +262,23 @@ export const CheckOut = () => {
               <div className="orderSummary">
                 <div className="orderSummary-head">
                   <p className="checkout-number">3</p>
-                  <p>ORDER SUMMARY</p>
+                  <p className="orderSummary-text">ORDER SUMMARY</p>
                 </div>
 
                 <div className="orderSummary-list">
-                  {userData.user?.cart.map((item) => (
-                    <p>{item.name}</p>
-                  ))}
+                  <div className="row">
+                    {userData.user?.cart.map((item) => (
+                      <div className="col-md-6 orderSummary-products">
+                        <img src={item.image[0].url} />
+                        <Link
+                          to={`products/${item._id}`}
+                          className="orderSummary-item-name"
+                        >
+                          {item.name}
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

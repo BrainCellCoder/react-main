@@ -22,6 +22,7 @@ p {
   padding: 0.3rem 1rem;
   margin: 0;
   margin-right: 1rem;
+  color: #000;
 }
 
 .checkout-user-name-email {
@@ -49,9 +50,7 @@ p {
 
 .checkout-address-head {
   margin-left: 1rem !important;
-  font-weight: 700;
   color: #fff;
-  font-size: 1.3rem;
 }
 
 .address-list {
@@ -111,14 +110,39 @@ p {
   color: red;
 }
 
+.orderSummary {
+  background-color: #fff;
+}
+
 .orderSummary-head {
   display: flex;
-  background-color: #fff;
+  background-color: #7b2cbf;
   padding: 1rem;
   align-items: center;
   margin-top: 1rem;
+  color: #fff;
 }
 
 .orderSummary-head p {
+  margin: 0;
   margin-right: 1rem;
+}
+
+.orderSummary-list p {
+  margin: 0;
+}
+
+.orderSummary-list img {
+  width: 100px;
+}
+
+.orderSummary-list div {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.orderSummary-item-name {
+  text-decoration: none;
+  color: #000;
 }
