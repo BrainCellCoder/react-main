@@ -1,0 +1,39 @@
+.hero2 {
+  display: flex;
+  height: 41vh;
+  margin-top: 66px;
+  flex-direction: column;
+  /* background-color: #e5b3fe; */
+  padding: 4rem 6rem !important;
+  /* background-image: url("modern-stationary-collection-arrangement.jpg"); */
+  background-image: url("smartphone-with-headphones.jpg");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+  align-items: flex-end;
+}
+
+.hero2 h1 {
+  font-weight: 700;
+  font-size: 3rem;
+  color: #10002b;
+  text-align: right;
+}
+
+.hero2 .headphones-buy-now {
+  width: 150px;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  margin-top: 1rem;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  background-color: #7b2cbf;
+  transition: 0.3s ease-in-out;
+}
+
+.hero2 .headphones-buy-now:hover {
+  background-color: #10002b;
+  transform: translateY(-5px);
+}
