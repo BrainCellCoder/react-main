@@ -10,7 +10,7 @@ export const Hero2 = () => {
           Selected Headphone */}
           Add the perfect finishing touch <br /> with our Accessories
         </h1>
-        <Link className="headphones-buy-now" to="/headphones">
+        <Link className="accessories-explore" to="/accessories">
           Explore
         </Link>
       </div>

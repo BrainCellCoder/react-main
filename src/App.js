@@ -12,6 +12,7 @@ import { Footer } from "./components/Footer/Footer";
 import { Cart } from "./components/Cart/Cart";
 import { Wishlist } from "./components/Wishlist/Wishlist";
 import { CheckOut } from "./components/CheckOut/CheckOut";
+import { Accessories } from "./components/Home/Products/Accessories/Accessories";
 // import { Protected } from "./Protected";
 
 export const AppContext = createContext();
@@ -29,6 +30,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/headphones" element={<Headphones />} />
+            <Route path="/accessories" element={<Accessories />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             {/* <Route
             path="/products/:id"
@@ -36,6 +38,10 @@ function App() {
           /> */}
             <Route
               path="/headphones/products/:id"
+              element={<ProductDetails />}
+            />
+            <Route
+              path="/accessories/products/:id"
               element={<ProductDetails />}
             />
             <Route path="/user/cart" element={<Cart />} />

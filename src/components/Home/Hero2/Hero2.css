@@ -3,9 +3,7 @@
   height: 41vh;
   margin-top: 66px;
   flex-direction: column;
-  /* background-color: #e5b3fe; */
   padding: 4rem 6rem !important;
-  /* background-image: url("modern-stationary-collection-arrangement.jpg"); */
   background-image: url("smartphone-with-headphones.jpg");
   background-repeat: no-repeat;
   background-position: right;
@@ -20,7 +18,7 @@
   text-align: right;
 }
 
-.hero2 .headphones-buy-now {
+.hero2 .accessories-explore {
   width: 150px;
   padding: 1rem;
   border: none;
@@ -33,7 +31,7 @@
   transition: 0.3s ease-in-out;
 }
 
-.hero2 .headphones-buy-now:hover {
+.hero2 .accessories-explore:hover {
   background-color: #10002b;
   transform: translateY(-5px);
 }
