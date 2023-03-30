@@ -10,7 +10,7 @@ export const Hero = (props) => {
         </h1>
         <Link
           className="headphones-buy-now"
-          to={"/accessories"}
+          to={"/headphones"}
           state={{ product: props.data }}
         >
           Buy now

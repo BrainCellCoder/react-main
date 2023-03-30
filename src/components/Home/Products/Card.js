@@ -75,7 +75,11 @@ export const Card = (props) => {
           >
             Add to cart
           </div>
-          <Link className="view" to={`products/${props.data._id}`}>
+          <Link
+            className="view"
+            to={`products/${props.data._id}`}
+            state={{ product: props.data }}
+          >
             View
           </Link>
         </div>
