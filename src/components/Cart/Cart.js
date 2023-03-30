@@ -28,7 +28,7 @@ export const Cart = () => {
     }).format(totalPrice);
     setcartItemsTotalPrice(formatedTotalPrice);
     setCartNumber(cartItems.length);
-  }, []);
+  });
 
   return (
     <>

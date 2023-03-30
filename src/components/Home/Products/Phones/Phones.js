@@ -4,31 +4,16 @@ import { useEffect, useState } from "react";
 import { Card } from "../Card";
 // import { baseUrl } from "../../../../Utils/baseUrl";
 
-export const Phones = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    async function headphone() {
-      setLoading(true);
-      const res = await fetch("http://localhost:8000/products?category=mobile");
-      const product = await res.json();
-      setProducts(product.products);
-      setLoading(false);
-    }
-    headphone();
-  }, []);
+export const Phones = (props) => {
   return (
     <>
       <div className="products container">
         <h3>Phones For You!</h3>
-        {loading && <p>Loading...</p>}
-        {!loading && (
-          <div className="row gy-5">
-            {products.map((product, key) => {
-              return <Card key={key} data={product} />;
-            })}
-          </div>
-        )}
+        <div className="row gy-5">
+          {props.data.map((product, key) => {
+            return <Card key={key} data={product} />;
+          })}
+        </div>
       </div>
     </>
   );

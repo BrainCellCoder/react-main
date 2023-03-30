@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Filter.css";
 export const Filter = (props) => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function allProducts() {
+      const res = await fetch("http://localhost:8000/products");
+      const product = await res.json();
+      setProducts(product.products);
+    }
+    allProducts();
+  }, []);
+
   const onChange = (event) => {
     props.cat(event.target.value);
   };
+
+  const lowToHigh = () => {};
+  const highToLow = () => {};
+
   return (
     <>
       <div className="filters container">

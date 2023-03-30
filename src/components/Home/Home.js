@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Hero } from "./Hero/Hero";
 import { Filter } from "./Filters/Filter";
 import { Phones } from "./Products/Phones/Phones";
@@ -9,20 +9,41 @@ import { Accessories } from "./Products/Accessories/Accessories";
 
 export const Home = () => {
   const [cat, setCat] = useState("");
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function allProducts() {
+      const res = await fetch("http://localhost:8000/products");
+      const product = await res.json();
+      setProducts(product.products);
+    }
+    allProducts();
+  }, []);
+
+  const laptops = products.filter((product) => product.category === "Laptop");
+  const phones = products.filter((product) => product.category === "Mobile");
+  const headPhones = products.filter(
+    (product) => product.category === "Headphone"
+  );
+  const accessories = products.filter(
+    (product) => product.category === "Accessories"
+  );
+
   return (
     <>
       <Hero />
       <Filter cat={setCat} />
-      {cat === "phones" && <Phones />}
-      {cat === "laptops" && <Laptops />}
-      {cat === "headphones" && <Headphones />}
-      {cat === "accessories" && <Accessories />}
+      {cat === "phones" && <Phones data={phones} />}
+      {cat === "laptops" && <Laptops data={laptops} />}
+      {cat === "headphones" && <Headphones data={headPhones} />}
+      {cat === "accessories" && <Accessories data={accessories} />}
       {cat === "" && (
         <>
-          <Phones /> <Laptops />
+          <Phones data={phones} /> <Laptops data={laptops} />
         </>
       )}
-      <Hero2 />
+      <Hero2 data={accessories} />
     </>
   );
 };
