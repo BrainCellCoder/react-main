@@ -1,31 +1,19 @@
-import React, { useEffect, useState } from "react";
 import "./Filter.css";
 export const Filter = (props) => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    async function allProducts() {
-      const res = await fetch("http://localhost:8000/products");
-      const product = await res.json();
-      setProducts(product.products);
-    }
-    allProducts();
-  }, []);
-
-  const onChange = (event) => {
+  const onChangeCategory = (event) => {
     props.cat(event.target.value);
   };
 
-  const lowToHigh = () => {};
-  const highToLow = () => {};
+  const onChangePrice = (event) => {
+    props.price(event.target.value);
+  };
 
   return (
     <>
       <div className="filters container">
         <div className="category">
-          <select onChange={onChange}>
-            <option>Category Type</option>
-            <option value="">All</option>
+          <select onChange={onChangeCategory}>
+            <option value="all">All Products</option>
             <option value="laptops">Laptop</option>
             <option value="phones">Phone</option>
             <option value="headphones">Headphone</option>
@@ -33,11 +21,11 @@ export const Filter = (props) => {
           </select>
         </div>
         <div className="price">
-          <select>
+          <select onChange={onChangePrice}>
             <option>Price</option>
-            <option value="">All</option>
-            <option value="Laptop">High-Low</option>
-            <option value="Mobile">Low-High</option>
+            <option value="default">All</option>
+            <option value="high-low">High-Low</option>
+            <option value="low-high">Low-High</option>
           </select>
         </div>
         {/* <div className="reviews">

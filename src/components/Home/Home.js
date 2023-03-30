@@ -4,8 +4,10 @@ import { Filter } from "./Filters/Filter";
 import { Phones } from "./Products/Phones/Phones";
 import { Laptops } from "./Products/Laptops/Laptops";
 import { Hero2 } from "./Hero2/Hero2";
-
+import { FilteredCategory } from "./FilteredCategory/FilteredCategory";
 export const Home = () => {
+  const [cat, setCat] = useState("");
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -29,10 +31,18 @@ export const Home = () => {
   return (
     <>
       <Hero data={headPhones} />
-      <Filter />
-      <Phones data={phones} />
-      <Laptops data={laptops} />
-      <Hero2 data={accessories} />
+      <Filter cat={setCat} />
+      {cat === "all" && (
+        <>
+          <Phones data={phones} />
+          <Laptops data={laptops} />
+          <Hero2 data={accessories} />
+        </>
+      )}
+      {cat === "laptops" && <FilteredCategory data={laptops} />}
+      {cat === "phones" && <FilteredCategory data={phones} />}
+      {cat === "headphones" && <FilteredCategory data={headPhones} />}
+      {cat === "accessories" && <FilteredCategory data={accessories} />}
     </>
   );
 };
