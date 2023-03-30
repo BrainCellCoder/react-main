@@ -1,6 +1,5 @@
 import React from "react";
 import "./Accessories.css";
-import { useEffect, useState } from "react";
 import { Card } from "../Card";
 import { useLocation } from "react-router-dom";
 

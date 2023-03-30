@@ -1,36 +1,20 @@
 import React from "react";
 import "./Headphones.css";
-import { useEffect, useState } from "react";
 import { Card } from "../Card";
-// import { baseUrl } from "../../../../Utils/baseUrl";
+import { useLocation } from "react-router-dom";
 
 export const Headphones = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    async function headphone() {
-      setLoading(true);
-      const res = await fetch(
-        "http://localhost:8000/products?category=headphone"
-      );
-      const product = await res.json();
-      setProducts(product.products);
-      setLoading(false);
-    }
-    headphone();
-  }, []);
+  const location = useLocation();
+
   return (
     <>
       <div id="headphone" className="products container">
         <h3>Headphones</h3>
-        {loading && <p>Loading...</p>}
-        {!loading && (
-          <div className="row gy-5">
-            {products.map((product, key) => {
-              return <Card key={key} data={product} />;
-            })}
-          </div>
-        )}
+        <div className="row gy-5">
+          {location.state.product.map((product, key) => {
+            return <Card key={key} data={product} />;
+          })}
+        </div>
       </div>
     </>
   );

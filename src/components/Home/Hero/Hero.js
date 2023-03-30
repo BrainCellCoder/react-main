@@ -1,16 +1,18 @@
 import React from "react";
 import "./Hero.css";
 import { Link } from "react-router-dom";
-export const Hero = () => {
+export const Hero = (props) => {
   return (
     <>
       <div className="hero container">
         <h1>
-          {/* Grab Upto 50% Off On <br />
-          Selected Headphone */}
           Find your perfect sound <br /> with our Headphones.
         </h1>
-        <Link className="headphones-buy-now" to="/headphones">
+        <Link
+          className="headphones-buy-now"
+          to={"/accessories"}
+          state={{ product: props.data }}
+        >
           Buy now
         </Link>
       </div>

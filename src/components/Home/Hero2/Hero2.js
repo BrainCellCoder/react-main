@@ -2,7 +2,6 @@ import React from "react";
 import "./Hero2.css";
 import { Link } from "react-router-dom";
 export const Hero2 = (props) => {
-  console.log(props.data);
   return (
     <>
       <div className="hero2 container">
