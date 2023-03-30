@@ -6,7 +6,7 @@ import { Laptops } from "./Products/Laptops/Laptops";
 import { Hero2 } from "./Hero2/Hero2";
 import { FilteredCategory } from "./FilteredCategory/FilteredCategory";
 export const Home = () => {
-  const [cat, setCat] = useState("");
+  const [cat, setCat] = useState("all");
 
   const [products, setProducts] = useState([]);
 
@@ -17,7 +17,13 @@ export const Home = () => {
       setProducts(product.products);
     }
     allProducts();
-  }, []);
+  }, [setProducts]);
+
+  const lowToHigh = () => {
+    const sortProducts = products.sort((a, b) => a.price - b.price);
+    setProducts(sortProducts);
+    console.log("ooo");
+  };
 
   const laptops = products.filter((product) => product.category === "Laptop");
   const phones = products.filter((product) => product.category === "Mobile");
@@ -31,7 +37,7 @@ export const Home = () => {
   return (
     <>
       <Hero data={headPhones} />
-      <Filter cat={setCat} />
+      <Filter cat={setCat} lowToHigh={lowToHigh} />
       {cat === "all" && (
         <>
           <Phones data={phones} />

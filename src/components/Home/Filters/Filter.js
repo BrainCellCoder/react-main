@@ -4,9 +4,7 @@ export const Filter = (props) => {
     props.cat(event.target.value);
   };
 
-  const onChangePrice = (event) => {
-    props.price(event.target.value);
-  };
+  const onChangePrice = (event) => {};
 
   return (
     <>
@@ -20,6 +18,13 @@ export const Filter = (props) => {
             <option value="accessories">Accessories</option>
           </select>
         </div>
+        <button
+          onClick={() => {
+            props.lowToHigh();
+          }}
+        >
+          l-h
+        </button>
         <div className="price">
           <select onChange={onChangePrice}>
             <option>Price</option>
