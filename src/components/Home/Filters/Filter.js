@@ -3,9 +3,19 @@ export const Filter = (props) => {
   const onChangeCategory = (event) => {
     props.cat(event.target.value);
   };
-
-  const onChangePrice = (event) => {};
-
+  const onChangePrice = (event) => {
+    console.log("event", event.target.value);
+    switch (event.target.value) {
+      case "high-low":
+        return props.highToLow();
+      case "low-high":
+        return props.lowToHigh();
+      case "default":
+        return props.products;
+      default:
+        return null;
+    }
+  };
   return (
     <>
       <div className="filters container">

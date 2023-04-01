@@ -7,18 +7,29 @@ import { Hero2 } from "./Hero2/Hero2";
 import { FilteredCategory } from "./FilteredCategory/FilteredCategory";
 export const Home = () => {
   const [cat, setCat] = useState("all");
-
   const [products, setProducts] = useState([]);
-
+  const [filterDep, setFilterDep] = useState(false);
   useEffect(() => {
     async function allProducts() {
-      const res = await fetch("http://localhost:8000/products");
+      const res = await fetch("https://rose-doubtful-moth.cyclic.app/products");
       const product = await res.json();
       setProducts(product.products);
     }
     allProducts();
-  }, [setProducts]);
-
+    console.log("use effect render");
+  }, []);
+  const lowToHigh = () => {
+    const sortProducts = products.sort((a, b) => a.price - b.price);
+    setProducts(sortProducts);
+    setFilterDep(!filterDep);
+    console.log("ooo");
+  };
+  const highToLow = () => {
+    const sortProducts = products.sort((a, b) => b.price - a.price);
+    setProducts(sortProducts);
+    setFilterDep(!filterDep);
+    console.log("ooo");
+  };
   const laptops = products.filter((product) => product.category === "Laptop");
   const phones = products.filter((product) => product.category === "Mobile");
   const headPhones = products.filter(
@@ -27,18 +38,16 @@ export const Home = () => {
   const accessories = products.filter(
     (product) => product.category === "Accessories"
   );
-  console.log(products);
-
-  const lowToHigh = () => {
-    const sortProducts = products.sort((a, b) => a.price - b.price);
-    setProducts(sortProducts);
-    console.log("ooo");
-  };
-
+  console.log({ phones });
   return (
     <>
       <Hero data={headPhones} />
-      <Filter cat={setCat} lowToHigh={lowToHigh} />
+      <Filter
+        cat={setCat}
+        products={products}
+        lowToHigh={lowToHigh}
+        highToLow={highToLow}
+      />
       {cat === "all" && (
         <>
           <Phones data={phones} />
