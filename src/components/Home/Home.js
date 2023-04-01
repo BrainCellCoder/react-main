@@ -19,12 +19,6 @@ export const Home = () => {
     allProducts();
   }, [setProducts]);
 
-  const lowToHigh = () => {
-    const sortProducts = products.sort((a, b) => a.price - b.price);
-    setProducts(sortProducts);
-    console.log("ooo");
-  };
-
   const laptops = products.filter((product) => product.category === "Laptop");
   const phones = products.filter((product) => product.category === "Mobile");
   const headPhones = products.filter(
@@ -33,6 +27,13 @@ export const Home = () => {
   const accessories = products.filter(
     (product) => product.category === "Accessories"
   );
+  console.log(products);
+
+  const lowToHigh = () => {
+    const sortProducts = products.sort((a, b) => a.price - b.price);
+    setProducts(sortProducts);
+    console.log("ooo");
+  };
 
   return (
     <>

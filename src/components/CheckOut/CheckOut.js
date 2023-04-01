@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./CheckOut.css";
 
 import Form from "react-bootstrap/Form";
@@ -18,13 +18,6 @@ export const CheckOut = () => {
   const handleOptionChange = (event) => {
     setSelectedOption(JSON.parse(event.target.value));
   };
-
-  const inputAddressRef = useRef(null);
-  const inputCityRef = useRef(null);
-  const inputCountryRef = useRef(null);
-  const inputStateRef = useRef(null);
-  const inputPinCodeRef = useRef(null);
-  const inputPhoneNoRef = useRef(null);
 
   useEffect(() => {
     const fetchUser = async () => {

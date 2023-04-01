@@ -1,8 +1,7 @@
 #product-details {
   margin-top: 90px;
   padding: 1rem 7rem;
-  height: 70vh;
-  margin-bottom: 5rem;
+  min-height: 70vh;
 }
 
 .row {
@@ -87,4 +86,34 @@
 .product-cart:hover {
   background-color: #b333e9;
   color: #fff;
+}
+
+.product-reviews h3 {
+  text-align: center;
+}
+
+.review {
+  background-color: red;
+}
+
+.leave-review form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.leave-review form textarea {
+  width: 50%;
+  height: 100px;
+  padding: 1rem;
+  margin: 20px;
+}
+
+.leave-review button {
+  background-color: #25a244;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  outline: none;
 }

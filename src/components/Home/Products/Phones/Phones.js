@@ -1,8 +1,6 @@
 import React from "react";
 import "./Phones.css";
-import { useEffect, useState } from "react";
 import { Card } from "../Card";
-// import { baseUrl } from "../../../../Utils/baseUrl";
 
 export const Phones = (props) => {
   return (

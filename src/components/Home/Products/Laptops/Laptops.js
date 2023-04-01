@@ -1,18 +1,7 @@
 import React from "react";
-import { useEffect, useState } from "react";
-// import { baseUrl } from "../../../../Utils/baseUrl";
 import { Card } from "../Card";
 
 export const Laptops = (props) => {
-  // const [products, setProducts] = useState([]);
-
-  // const lowToHigh = () => {
-  //   const copyProducts = [...products];
-  //   const sortProducts = copyProducts.sort((a, b) => a.price - b.price);
-  //   setProducts(sortProducts);
-  // };
-  // const highToLow = () => {};
-
   return (
     <>
       <div className="products container">
