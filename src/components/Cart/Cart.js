@@ -10,6 +10,31 @@ export const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [cartItemstotalPrice, setcartItemsTotalPrice] = useState(0);
 
+  let currentDate = new Date();
+  let futureDate = new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000);
+  let monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  // Format the future date to display as Month DD, YYYY
+  let formattedDate =
+    monthNames[futureDate.getMonth()] +
+    " " +
+    futureDate.getDate() +
+    ", " +
+    futureDate.getFullYear();
+
   useEffect(() => {
     const fetchCart = async () => {
       const res = await fetch("http://localhost:8000/user/me", {
@@ -53,32 +78,29 @@ export const Cart = () => {
             <div className="col-md-5">
               {cartItems.length >= 1 ? (
                 <div className="cart-items-checkout">
-                  <p className="delivery-date">Delivery date: April 24, 2023</p>
-                  <div className="promocode">
+                  <p className="delivery-date">
+                    Delivery date: {formattedDate}
+                  </p>
+                  {/* <div className="promocode">
                     <p>Apply Promocode and get 20% off</p>
                     <div className="promocode-input">
                       <input type="text" placeholder="Promocode" />
                       <button> Apply </button>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="subtotal">
-                    <p>Subtotal</p>
                     <div className="discount">
-                      <p>Discount</p>
-                      <p>₹ 3497 - (20%)</p>
+                      <p>Price ({cartItems.length} items)</p>
+                      <p>₹ {cartItemstotalPrice}</p>
                     </div>
                     <div className="delivery">
-                      <p>Delivery</p>
-                      <p>₹ 99</p>
-                    </div>
-                    <div className="tax">
-                      <p>Tax</p>
-                      <p>₹ 150</p>
+                      <p>Delivery Charge</p>
+                      <p style={{ color: "green" }}>free</p>
                     </div>
                   </div>
                   <div className="total">
                     <p>Total</p>
-                    <p>₹ 2345</p>
+                    <p>₹ {cartItemstotalPrice}</p>
                   </div>
 
                   <div className="checkout-shopping">

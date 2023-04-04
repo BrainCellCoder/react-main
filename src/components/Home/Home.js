@@ -11,7 +11,7 @@ export const Home = () => {
   const [filterDep, setFilterDep] = useState(false);
   useEffect(() => {
     async function allProducts() {
-      const res = await fetch("https://rose-doubtful-moth.cyclic.app/products");
+      const res = await fetch("http://localhost:8000/products");
       const product = await res.json();
       setProducts(product.products);
     }

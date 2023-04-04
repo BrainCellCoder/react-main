@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Card } from "../Home/Products/Card";
 import "./Wishlist.css";
-import { WishlistItems } from "./WishlistItems";
 
 export const Wishlist = () => {
   const [wishItems, setWishItems] = useState([]);
@@ -13,17 +13,20 @@ export const Wishlist = () => {
         },
       });
       const data = await res.json();
-      console.log(data);
       setWishItems(data.user.wishList);
     };
     fetchWishlist();
-  }, [wishItems]);
-  console.log(wishItems);
+  }, []);
   return (
-    <>
-      {wishItems.map((item, key) => (
-        <WishlistItems key={key} data={item} />
-      ))}
-    </>
+    <section style={{ minHeight: "100vh", marginTop: "100px" }}>
+      <div className="container">
+        <h3>My Wishlist ({wishItems.length})</h3>
+        <div className="row gy-5">
+          {wishItems.map((item, key) => (
+            <Card key={key} data={item} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
