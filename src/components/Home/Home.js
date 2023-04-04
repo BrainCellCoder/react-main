@@ -22,13 +22,11 @@ export const Home = () => {
     const sortProducts = products.sort((a, b) => a.price - b.price);
     setProducts(sortProducts);
     setFilterDep(!filterDep);
-    console.log("ooo");
   };
   const highToLow = () => {
     const sortProducts = products.sort((a, b) => b.price - a.price);
     setProducts(sortProducts);
     setFilterDep(!filterDep);
-    console.log("ooo");
   };
   const laptops = products.filter((product) => product.category === "Laptop");
   const phones = products.filter((product) => product.category === "Mobile");
