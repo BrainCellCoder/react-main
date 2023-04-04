@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 // import { baseUrl } from "./../../../Utils/baseUrl";
 
 export const Card = (props) => {
-  console.log(props);
   const [message, setMessage] = useState("");
   const [cart, setCart] = useState(false);
 
@@ -86,28 +85,15 @@ export const Card = (props) => {
             View
           </Link>
         </div>
-        {
-          <>
-            <div
-              className="wish"
-              onClick={() => {
-                addToWishList(props.data._id);
-              }}
-            >
-              <i className="fa-regular fa-heart"></i>
-            </div>
-
-            <div
-              className="wish"
-              onClick={() => {
-                addToWishList(props.data._id);
-              }}
-            >
-              <i class="fa-solid fa-heart"></i>
-            </div>
-          </>
-        }
-
+        {/* const isProductPresent = products.some(product => product.id === productIdToFind); */}
+        <div
+          className="wish"
+          onClick={() => {
+            addToWishList(props.data._id);
+          }}
+        >
+          <i className="fa-regular fa-heart"></i>
+        </div>
         {message && (
           <Alert
             style={{
