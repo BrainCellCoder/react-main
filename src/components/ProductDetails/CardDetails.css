@@ -115,5 +115,22 @@
 }
 
 .review {
-  background-color: red;
+  background-color: #e9ecef;
+  padding: 1rem;
+  border-radius: 20px;
+  margin-bottom: 1.4rem;
+}
+
+.review-star {
+  color: #38b000;
+  display: flex;
+}
+
+.review span {
+  color: #000;
+  font-weight: 700;
+}
+
+.review-comment {
+  font-style: italic;
 }

@@ -183,11 +183,18 @@ export const CardDetails = (props) => {
           {reviews?.map((review, key) => (
             <div key={key} className="col-md-4">
               <div className="review">
-                <p>{review.author?.name}</p>
-                <p>{review?.comment}</p>
-                <p style={{ color: "#38b000" }}>
+                <div className="review-name">
+                  <span>User: </span>
+                  {review.author?.name}
+                </div>
+                <div className="review-star">
+                  <span>Stars: </span>
                   <StarRating rating={review?.rating} />
-                </p>
+                </div>
+                <div className="review-comment text-muted">
+                  <span>Comment: </span>
+                  {review?.comment}
+                </div>
               </div>
             </div>
           ))}
