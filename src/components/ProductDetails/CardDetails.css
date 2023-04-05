@@ -88,14 +88,6 @@
   color: #fff;
 }
 
-.product-reviews h3 {
-  text-align: center;
-}
-
-.review {
-  background-color: red;
-}
-
 .leave-review form {
   display: flex;
   flex-direction: column;
@@ -116,4 +108,12 @@
   padding: 1rem 2rem;
   border: none;
   outline: none;
+}
+
+.product-reviews h3 {
+  text-align: center;
+}
+
+.review {
+  background-color: red;
 }

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import "./CardDetails.css";
 import { Alert } from "react-bootstrap";
 import Rating from "react-rating-stars-component";
+import StarRating from "./StarRating";
 
 import "../../Utils/star.css";
 
@@ -10,9 +11,22 @@ export const CardDetails = (props) => {
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const [submit, setSubmit] = useState(false);
+  const [reviews, setReviews] = useState([]);
+  const { id } = useParams();
 
-  const reviews = props.data.reviews;
-  console.log(reviews);
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const res = await fetch(`http://localhost:8000/products/${id}`, {
+        headers: {
+          authorization: `Abhi ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await res.json();
+      setReviews(data.product.reviews);
+    };
+    fetchReviews();
+  }, [submit]);
 
   const imageUrl = props.data.image ? props.data.image[0].url : null;
   const price = new Intl.NumberFormat("en-IN", {
@@ -46,7 +60,7 @@ export const CardDetails = (props) => {
     setComment(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     fetch(`http://localhost:8000/review/${props.data._id}/new`, {
@@ -68,9 +82,9 @@ export const CardDetails = (props) => {
       .catch((error) => {
         console.error(error);
       });
-    console.log(rating);
     setRating(0);
     setComment("");
+    setSubmit(!submit);
   };
 
   return (
@@ -166,21 +180,17 @@ export const CardDetails = (props) => {
         <h3>Product Reviews</h3>
         <hr />
         <div className="row gutter-20">
-          <div className="col-md-4 review">
-            Apple 2022 MacBook Air Laptop with M2 chip: 34.46 cm (13.6-inch)
-            Liquid Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard,
-            1080p FaceTime HD Camera. Works with iPhone/iPad; Space Grey{" "}
-          </div>
-          <div className="col-md-4 review">
-            2Apple 2022 MacBook Air Laptop with M2 chip: 34.46 cm (13.6-inch)
-            Liquid Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard,
-            1080p FaceTime HD Camera. Works with iPhone/iPad; Space Grey
-          </div>
-          <div className="col-md-4 review">
-            3Apple 2022 MacBook Air Laptop with M2 chip: 34.46 cm (13.6-inch)
-            Liquid Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard,
-            1080p FaceTime HD Camera. Works with iPhone/iPad; Space Grey
-          </div>
+          {reviews?.map((review, key) => (
+            <div key={key} className="col-md-4">
+              <div className="review">
+                <p>{review.author?.name}</p>
+                <p>{review?.comment}</p>
+                <p style={{ color: "#38b000" }}>
+                  <StarRating rating={review?.rating} />
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
