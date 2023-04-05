@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { type } from "@testing-library/user-event/dist/type";
+import React, { useEffect, useState } from "react";
 import { Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import StarRating from "../../ProductDetails/StarRating";
 // import { baseUrl } from "./../../../Utils/baseUrl";
 
 export const Card = (props) => {
@@ -59,15 +61,11 @@ export const Card = (props) => {
           <h6 className="price">₹{price}</h6>
         </div>
         <div className="ratings">
-          <p className="stars">
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-          </p>
+          {/* <p className="stars"> */}
+          <StarRating rating={props.data.rating} />
+          {/* </p> */}
           <p className="number-of-reviews text-muted">
-            ({props.data.reviews.length} reviews)
+            ({props.data.numOfReviews} reviews)
           </p>
         </div>
         <div className="add-view">

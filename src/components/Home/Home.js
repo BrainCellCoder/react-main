@@ -16,7 +16,6 @@ export const Home = () => {
       setProducts(product.products);
     }
     allProducts();
-    console.log("use effect render");
   }, []);
   const lowToHigh = () => {
     const sortProducts = products.sort((a, b) => a.price - b.price);
@@ -36,7 +35,6 @@ export const Home = () => {
   const accessories = products.filter(
     (product) => product.category === "Accessories"
   );
-  console.log({ phones });
   return (
     <>
       <Hero data={headPhones} />

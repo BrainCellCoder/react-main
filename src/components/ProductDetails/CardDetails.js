@@ -101,14 +101,10 @@ export const CardDetails = (props) => {
               <p className="text-muted">{props.data.description}</p>
               <div className="ratings">
                 <p className="stars">
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
+                  <StarRating rating={props.data.rating} />
                 </p>
                 <p className="number-of-reviews text-muted">
-                  ({reviews?.length} reviews)
+                  ({props.data.numOfReviews} reviews)
                 </p>
               </div>
             </div>

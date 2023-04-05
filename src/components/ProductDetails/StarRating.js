@@ -18,7 +18,7 @@ const StarRating = ({ rating }) => {
     stars.push(<FaRegStar key={i} />);
   }
 
-  return <div>{stars}</div>;
+  return <div style={{ color: "#38b000" }}>{stars}</div>;
 };
 
 export default StarRating;
