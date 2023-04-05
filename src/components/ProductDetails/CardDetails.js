@@ -11,22 +11,11 @@ export const CardDetails = (props) => {
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
-  const [submit, setSubmit] = useState(false);
+  const [toggle, setToggle] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const [avgRating, setAvgRating] = useState(0);
+  const [numReviews, setNumReviews] = useState(0);
   const { id } = useParams();
-
-  useEffect(() => {
-    const fetchReviews = async () => {
-      const res = await fetch(`http://localhost:8000/products/${id}`, {
-        headers: {
-          authorization: `Abhi ${localStorage.getItem("token")}`,
-        },
-      });
-      const data = await res.json();
-      setReviews(data.product.reviews);
-    };
-    fetchReviews();
-  }, [submit]);
 
   const imageUrl = props.data.image ? props.data.image[0].url : null;
   const price = new Intl.NumberFormat("en-IN", {
@@ -42,9 +31,7 @@ export const CardDetails = (props) => {
         "Content-Type": "application/json",
       },
     });
-    console.log(res);
     const data = await res.json();
-    console.log(data);
     setMessage(data.message);
 
     if (!data.success) {
@@ -78,14 +65,29 @@ export const CardDetails = (props) => {
         if (!response.ok) {
           throw new Error("Failed to send rating and comment");
         }
+        setToggle(!toggle);
       })
       .catch((error) => {
         console.error(error);
       });
     setRating(0);
     setComment("");
-    setSubmit(!submit);
   };
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const res = await fetch(`http://localhost:8000/products/${id}`, {
+        headers: {
+          authorization: `Abhi ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await res.json();
+      setReviews(data.product.reviews);
+      setAvgRating(data.product.rating);
+      setNumReviews(data.product.numOfReviews);
+    };
+    fetchReviews();
+  }, [toggle]);
 
   return (
     <>
@@ -101,10 +103,10 @@ export const CardDetails = (props) => {
               <p className="text-muted">{props.data.description}</p>
               <div className="ratings">
                 <p className="stars">
-                  <StarRating rating={props.data.rating} />
+                  <StarRating rating={avgRating} />
                 </p>
                 <p className="number-of-reviews text-muted">
-                  ({props.data.numOfReviews} reviews)
+                  ({numReviews} reviews)
                 </p>
               </div>
             </div>
@@ -157,45 +159,52 @@ export const CardDetails = (props) => {
           </div>
         </div>
       </div>
-
       <div className="container product-reviews">
-        <div className="leave-review">
-          <h3>Leave a Review</h3>
-          <form onSubmit={handleSubmit}>
-            <Rating
-              count={5}
-              value={rating}
-              onChange={handleRatingChange}
-              size={24}
-              activeColor="#ffd700"
-            />
-            <textarea value={comment} onChange={handleCommentChange} />
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-
         <hr />
-        <h3>Product Reviews</h3>
-        <hr />
-        <div className="row gutter-20">
-          {reviews?.map((review, key) => (
-            <div key={key} className="col-md-4">
-              <div className="review">
-                <div className="review-name">
-                  <span>User: </span>
-                  {review.author?.name}
+        <div className="row">
+          <div className="col-md-6 leave-review">
+            <h3>Leave a Review</h3>
+            <form onSubmit={handleSubmit} className="border border-3">
+              <Rating
+                count={5}
+                value={rating}
+                onChange={handleRatingChange}
+                size={24}
+                activeColor="#ffd700"
+              />
+              <textarea
+                className="border border-3"
+                value={comment}
+                onChange={handleCommentChange}
+              />
+              <button className="btn btn-success" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+          <div className="col-md-6">
+            <h3>Product Reviews</h3>
+            <div className="reviews">
+              {reviews?.map((review, key) => (
+                <div key={key}>
+                  <div className="review">
+                    <div className="review-name">
+                      <span>User: </span>
+                      {review.author?.name}
+                    </div>
+                    <div className="review-star">
+                      <span>Stars: </span>
+                      <StarRating rating={review?.rating} />
+                    </div>
+                    <div className="review-comment text-muted">
+                      <span>Comment: </span>
+                      {review?.comment}
+                    </div>
+                  </div>
                 </div>
-                <div className="review-star">
-                  <span>Stars: </span>
-                  <StarRating rating={review?.rating} />
-                </div>
-                <div className="review-comment text-muted">
-                  <span>Comment: </span>
-                  {review?.comment}
-                </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </>
