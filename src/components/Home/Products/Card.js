@@ -66,7 +66,9 @@ export const Card = (props) => {
             <i className="fa-solid fa-star"></i>
             <i className="fa-solid fa-star"></i>
           </p>
-          <p className="number-of-reviews text-muted">(69)</p>
+          <p className="number-of-reviews text-muted">
+            ({props.data.reviews.length} reviews)
+          </p>
         </div>
         <div className="add-view">
           <div

@@ -107,7 +107,9 @@ export const CardDetails = (props) => {
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
                 </p>
-                <p className="number-of-reviews text-muted">(69 reviews)</p>
+                <p className="number-of-reviews text-muted">
+                  ({reviews?.length} reviews)
+                </p>
               </div>
             </div>
             <div className="product-price">
