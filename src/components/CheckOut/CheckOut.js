@@ -264,7 +264,7 @@ export const CheckOut = () => {
                       <div className="col-md-6 orderSummary-products">
                         <img src={item.image[0].url} />
                         <Link
-                          to={`products/${item._id}`}
+                          // to={`products/${item._id}`}
                           className="orderSummary-item-name"
                         >
                           {item.name}

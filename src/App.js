@@ -48,6 +48,10 @@ function App() {
             <Route path="/user/wishlist" element={<Wishlist />} />
             <Route path="/checkout" element={<CheckOut />} />
             <Route path="/checkout/products/:id" element={<ProductDetails />} />
+            <Route
+              path="user/wishlist/products/:id"
+              element={<ProductDetails />}
+            />
           </Routes>
           <Footer />
         </Router>
