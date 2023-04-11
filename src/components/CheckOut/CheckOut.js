@@ -92,8 +92,6 @@ export const CheckOut = () => {
     }
     setIsNewAddress(!isNewAddress);
   };
-  console.log(selectedOption);
-  console.log("userdatau", userData);
   const onError = () => {
     console.log("Error");
   };
@@ -260,14 +258,14 @@ export const CheckOut = () => {
 
                 <div className="orderSummary-list">
                   <div className="row">
-                    {userData.user?.cart.map((item) => (
-                      <div className="col-md-6 orderSummary-products">
-                        <img src={item.image[0].url} />
+                    {userData.user?.cart.map((item, key) => (
+                      <div key={key} className="col-md-6 orderSummary-products">
+                        <img src={item.productId.image[0].url} />
                         <Link
                           // to={`products/${item._id}`}
                           className="orderSummary-item-name"
                         >
-                          {item.name}
+                          {item.productId.name}
                         </Link>
                       </div>
                     ))}

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CartItems.css";
 
 export const CartItems = (props) => {
   // console.log(props.data.quantity);
   const [quantity, setQuantity] = useState(props.data.quantity);
+
   const imgURL = props.data.productId.image[0].url;
   const price = new Intl.NumberFormat("en-IN", {
     maximumSignificantDigits: 3,
@@ -33,6 +34,7 @@ export const CartItems = (props) => {
   const handleQuantityChange = (event) => {
     setQuantity(parseInt(event.target.value));
   };
+
   return (
     <>
       {props.cartLength ? (
