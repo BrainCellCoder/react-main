@@ -50,14 +50,12 @@ export const Cart = () => {
       (acc, obj) => acc + obj.productId.price,
       0
     );
-    console.log(totalPrice);
     const formatedTotalPrice = new Intl.NumberFormat("en-IN", {
       maximumSignificantDigits: 3,
     }).format(totalPrice);
     setcartItemsTotalPrice(formatedTotalPrice);
     setCartNumber(cartItems.length);
-  }, []);
-  console.log(cartItems);
+  }, [cartItems]);
 
   return (
     <>

@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CartItems.css";
 
 export const CartItems = (props) => {
+  // console.log(props.data.quantity);
+  const [quantity, setQuantity] = useState(props.data.quantity);
   const imgURL = props.data.productId.image[0].url;
   const price = new Intl.NumberFormat("en-IN", {
     maximumSignificantDigits: 3,
   }).format(props.data.productId.price);
 
   const cartRemoveHandler = async (id) => {
-    await fetch(`http://localhost:8000/user/cart/${id}`, {
+    const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Abhi ${localStorage.getItem("token")}`,
       },
     });
+    console.log(res);
   };
 
   const addToWishList = async (id) => {
@@ -25,6 +28,10 @@ export const CartItems = (props) => {
         "Content-Type": "application/json",
       },
     });
+  };
+
+  const handleQuantityChange = (event) => {
+    setQuantity(parseInt(event.target.value));
   };
   return (
     <>
@@ -41,8 +48,19 @@ export const CartItems = (props) => {
             <p className="cart-item-stock">In Stock</p>
             <div className="product-control">
               <div className="product-quantity">
-                <i className="fa-solid fa-minus"></i>1
-                <i className="fa-solid fa-plus"></i>
+                <label for="quantity">Quantity:</label>
+                <select
+                  id="quantity"
+                  name="quantity"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
               </div>
               <div className="product-wishlist-remove">
                 <div

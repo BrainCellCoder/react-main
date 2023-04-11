@@ -66,15 +66,20 @@
 .product-remove:hover {
   transform: translateY(-5px);
 }
+
 .product-quantity {
   background-color: #f7ebfd;
   display: inline-block;
   border-radius: 20px;
-  width: 80px;
-  text-align: center;
+  padding: 0 0 0 10px;
+  border: 1px solid #b333e9;
+  overflow: hidden;
 }
 
-.product-quantity i {
-  padding: 5px 10px;
-  cursor: pointer;
+.product-quantity select {
+  background-color: #b333e9;
+  color: #fff;
+  padding: 5px;
+  height: 100%;
+  margin-left: 10px;
 }
