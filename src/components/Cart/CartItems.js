@@ -2,10 +2,10 @@ import React from "react";
 import "./CartItems.css";
 
 export const CartItems = (props) => {
-  const imgURL = props.data.image[0].url;
+  const imgURL = props.data.productId.image[0].url;
   const price = new Intl.NumberFormat("en-IN", {
     maximumSignificantDigits: 3,
-  }).format(props.data.price);
+  }).format(props.data.productId.price);
 
   const cartRemoveHandler = async (id) => {
     await fetch(`http://localhost:8000/user/cart/${id}`, {
@@ -35,7 +35,7 @@ export const CartItems = (props) => {
           </div>
           <div className="product-information">
             <div className="product-name-price">
-              <h5 className="product-name">{props.data.name}</h5>
+              <h5 className="product-name">{props.data.productId.name}</h5>
               <h5 className="product-price">₹ {price}</h5>
             </div>
             <p className="cart-item-stock">In Stock</p>
@@ -48,7 +48,7 @@ export const CartItems = (props) => {
                 <div
                   className="product-wishlist"
                   onClick={() => {
-                    addToWishList(props.data._id);
+                    addToWishList(props.data.productId._id);
                   }}
                 >
                   <i className="fa-regular fa-heart"></i> Wishlist
@@ -56,7 +56,7 @@ export const CartItems = (props) => {
                 <div
                   className="product-remove"
                   onClick={() => {
-                    cartRemoveHandler(props.data._id);
+                    cartRemoveHandler(props.data.productId._id);
                   }}
                 >
                   <i className="fa-solid fa-x"></i> Remove
