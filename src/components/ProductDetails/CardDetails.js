@@ -15,12 +15,17 @@ export const CardDetails = (props) => {
   const [reviews, setReviews] = useState([]);
   const [avgRating, setAvgRating] = useState(0);
   const [numReviews, setNumReviews] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
 
   const imageUrl = props.data.image ? props.data.image[0].url : null;
   const price = new Intl.NumberFormat("en-IN", {
     maximumSignificantDigits: 3,
   }).format(props.data.price);
+
+  const handleQuantityChange = (event) => {
+    setQuantity(parseInt(event.target.value));
+  };
 
   const addToCart = async (id) => {
     const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
@@ -30,8 +35,14 @@ export const CardDetails = (props) => {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        productId: id,
+        quantity: quantity,
+      }),
     });
+    console.log({ id, quantity });
     const data = await res.json();
+    console.log(data);
     setMessage(data.message);
 
     if (!data.success) {
@@ -113,9 +124,20 @@ export const CardDetails = (props) => {
               <h1>₹{price}</h1>
             </div>
             <div className="product-control-form">
-              <div className="product-quantity">
-                <i className="fa-solid fa-minus"></i>1
-                <i className="fa-solid fa-plus"></i>
+              <div className="pro-quantity">
+                <label for="quantity">Quantity:</label>
+                <select
+                  id="quantity"
+                  name="quantity"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
               </div>
               <div className="product-buy-cart">
                 <div className="product-buy">Buy Now</div>

@@ -24,8 +24,14 @@ export const Card = (props) => {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        productId: id,
+        quantity: 1,
+      }),
     });
+    console.log(res);
     const data = await res.json();
+    console.log(data);
     setMessage(data.message);
     setCart(!cart);
     if (!data.success) {

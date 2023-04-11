@@ -34,20 +34,13 @@
   padding: 2rem 0;
 }
 
-.product-control-form {
-  padding: 2rem 0;
-  width: 100%;
-}
-
-.product-control-form .product-quantity {
-  display: flex;
-}
-
-.choose-quantity button {
-  background-color: transparent;
-  border: none;
+.pro-quantity {
+  margin-top: 20px;
+  background-color: #f4dbff;
+  display: inline-block;
   font-size: 1.2rem;
-  outline: none;
+  padding: 5px 15px;
+  border-radius: 20px;
 }
 
 .product-buy-cart {
