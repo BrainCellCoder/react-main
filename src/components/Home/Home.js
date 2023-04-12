@@ -5,6 +5,7 @@ import { Phones } from "./Products/Phones/Phones";
 import { Laptops } from "./Products/Laptops/Laptops";
 import { Hero2 } from "./Hero2/Hero2";
 import { FilteredCategory } from "./FilteredCategory/FilteredCategory";
+import { PopularCategory } from "./PopularCategory/PopularCategory";
 export const Home = () => {
   const [cat, setCat] = useState("all");
   const [products, setProducts] = useState([]);
@@ -38,6 +39,7 @@ export const Home = () => {
   return (
     <>
       <Hero data={headPhones} />
+      <PopularCategory />
       <Filter
         cat={setCat}
         products={products}
@@ -47,8 +49,8 @@ export const Home = () => {
       {cat === "all" && (
         <>
           <Phones data={phones} />
-          <Laptops data={laptops} />
           <Hero2 data={accessories} />
+          <Laptops data={laptops} />
         </>
       )}
       {cat === "laptops" && <FilteredCategory data={laptops} />}
