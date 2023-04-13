@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./CartItems.css";
+import { ProgressBar } from "react-bootstrap";
 
 export const CartItems = (props) => {
   // console.log(props.data.quantity);
   const [quantity, setQuantity] = useState(props.data.quantity);
+  const [isLoading, setIsLoading] = useState(false);
 
   const imgURL = props.data.productId.image[0].url;
   const price = new Intl.NumberFormat("en-IN", {
@@ -11,6 +13,7 @@ export const CartItems = (props) => {
   }).format(props.data.productId.price);
 
   const cartRemoveHandler = async (id) => {
+    setIsLoading(true);
     const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
       method: "DELETE",
       headers: {
@@ -18,6 +21,7 @@ export const CartItems = (props) => {
       },
     });
     console.log(res);
+    setIsLoading(false);
   };
 
   const addToWishList = async (id) => {
@@ -37,6 +41,9 @@ export const CartItems = (props) => {
 
   return (
     <>
+      {isLoading && (
+        <ProgressBar now={100} label="Removing..." variant="danger" />
+      )}
       {props.cartLength ? (
         <div className="cart-item">
           <div className="product-image">

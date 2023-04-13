@@ -1,6 +1,4 @@
-import { type } from "@testing-library/user-event/dist/type";
-import React, { useEffect, useState } from "react";
-import { Alert } from "react-bootstrap";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import StarRating from "../../ProductDetails/StarRating";
 // import { baseUrl } from "./../../../Utils/baseUrl";
@@ -8,7 +6,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const Card = (props) => {
-  const [message, setMessage] = useState("");
   const [cart, setCart] = useState(false);
 
   const imgURL = props.data.image[0].url;
@@ -32,9 +29,8 @@ export const Card = (props) => {
       }),
     });
     const data = await res.json();
-    setMessage(data.message);
     toast.success(data.message, {
-      position: "top-center",
+      position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -120,7 +116,7 @@ export const Card = (props) => {
           <i className="fa-regular fa-heart"></i>
         </div>
         <ToastContainer
-          position="top-center"
+          position="bottom-center"
           autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
@@ -131,27 +127,6 @@ export const Card = (props) => {
           pauseOnHover
           theme="light"
         />
-        {/* {message && (
-          <Alert
-            style={{
-              padding: "5px",
-              margin: "5px 0 0 0",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-            variant="success"
-            onClose={() => setMessage("")}
-          >
-            <p style={{ margin: "0" }}>{message}</p>
-            <p
-              id="message-close-btn"
-              style={{ margin: "0", marginRight: "5px", cursor: "pointer" }}
-              onClick={() => setMessage("")}
-            >
-              <i className="fa-solid fa-circle-xmark"></i>
-            </p>
-          </Alert>
-        )} */}
       </div>
     </div>
   );

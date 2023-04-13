@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import "./CardDetails.css";
-import { Alert } from "react-bootstrap";
 import Rating from "react-rating-stars-component";
 import StarRating from "./StarRating";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "../../Utils/star.css";
 
 export const CardDetails = (props) => {
-  const [message, setMessage] = useState("");
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [toggle, setToggle] = useState(false);
@@ -43,7 +43,16 @@ export const CardDetails = (props) => {
     console.log({ id, quantity });
     const data = await res.json();
     console.log(data);
-    setMessage(data.message);
+    toast.success(data.message, {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
     if (!data.success) {
       Navigate("/login");
@@ -151,31 +160,18 @@ export const CardDetails = (props) => {
                 </div>
               </div>
             </div>
-            {message && (
-              <Alert
-                style={{
-                  padding: "5px",
-                  margin: "5px 0 0 0",
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-                variant="success"
-                onClose={() => setMessage("")}
-              >
-                <p style={{ margin: "0" }}>{message}</p>
-                <p
-                  id="message-close-btn"
-                  style={{
-                    margin: "0",
-                    marginRight: "5px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => setMessage("")}
-                >
-                  <i className="fa-solid fa-circle-xmark"></i>
-                </p>
-              </Alert>
-            )}
+            <ToastContainer
+              position="bottom-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              // closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
           </div>
         </div>
       </div>
