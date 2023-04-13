@@ -35,8 +35,21 @@ export const CartItems = (props) => {
     });
   };
 
-  const handleQuantityChange = (event) => {
+  const handleQuantityChange = async (id, event) => {
     setQuantity(parseInt(event.target.value));
+    const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
+      method: "PATCH",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token")}`,
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        quantity: parseInt(event.target.value),
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
   };
 
   return (
@@ -62,7 +75,9 @@ export const CartItems = (props) => {
                   id="quantity"
                   name="quantity"
                   value={quantity}
-                  onChange={handleQuantityChange}
+                  onChange={(event) => {
+                    handleQuantityChange(props.data.productId._id, event);
+                  }}
                 >
                   <option value="1">1</option>
                   <option value="2">2</option>
