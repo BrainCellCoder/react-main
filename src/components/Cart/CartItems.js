@@ -20,7 +20,6 @@ export const CartItems = (props) => {
         authorization: `Abhi ${localStorage.getItem("token")}`,
       },
     });
-    console.log(res);
     setIsLoading(false);
   };
 

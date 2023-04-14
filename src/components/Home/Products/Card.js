@@ -6,9 +6,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const Card = (props) => {
-  const [cart, setCart] = useState(false);
   const [addWishlist, setAddWishlist] = useState(false);
+  const [addCart, setAddCart] = useState(false);
   const [productInWishlist, setProductInWishlist] = useState(false);
+  const [productInCart, setProductInCart] = useState(false);
 
   const imgURL = props.data.image[0].url;
   const price = new Intl.NumberFormat("en-IN", {
@@ -41,7 +42,7 @@ export const Card = (props) => {
       progress: undefined,
       theme: "light",
     });
-    setCart(!cart);
+    setAddCart(!addCart);
     if (!data.success) {
       navigate("/login");
     }
@@ -83,7 +84,6 @@ export const Card = (props) => {
       },
     });
     const data = await res.json();
-    console.log(data);
     toast.success(data.message, {
       position: "bottom-center",
       autoClose: 3000,
@@ -95,6 +95,32 @@ export const Card = (props) => {
       theme: "light",
     });
     setAddWishlist(!addWishlist);
+    if (!data.success) {
+      navigate("/login");
+    }
+  };
+
+  const removeFromCart = async (id) => {
+    const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token")}`,
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    toast.success(data.message, {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    setAddCart(!addCart);
     if (!data.success) {
       navigate("/login");
     }
@@ -113,9 +139,15 @@ export const Card = (props) => {
       setProductInWishlist(
         data.user.wishList.some((item) => item._id === props.data._id)
       );
+      const inCart = data.user.cart.some(
+        (item) => item.productId._id == props.data._id
+      );
+      setProductInCart(
+        data.user.cart.some((item) => item.productId._id === props.data._id)
+      );
     };
     fetchUser();
-  }, [addWishlist]);
+  }, [addWishlist, addCart]);
 
   return (
     <div className="col-lg-3 col-md-6">
@@ -137,14 +169,26 @@ export const Card = (props) => {
           </p>
         </div>
         <div className="add-view">
-          <div
-            className="add-to-cart"
-            onClick={() => {
-              addToCart(props.data._id);
-            }}
-          >
-            Add to cart
-          </div>
+          {!productInCart && (
+            <div
+              className="add-to-cart"
+              onClick={() => {
+                addToCart(props.data._id);
+              }}
+            >
+              Add to cart
+            </div>
+          )}
+          {productInCart && (
+            <div
+              className="remove-from-cart"
+              onClick={() => {
+                removeFromCart(props.data._id);
+              }}
+            >
+              Remove from Cart
+            </div>
+          )}
           <Link
             className="view"
             to={`products/${props.data._id}`}
@@ -153,7 +197,6 @@ export const Card = (props) => {
             View
           </Link>
         </div>
-        {/* const isProductPresent = products.some(product => product.id === productIdToFind); */}
         {!productInWishlist && (
           <div
             className="wish"
@@ -171,7 +214,7 @@ export const Card = (props) => {
               removeFromWishList(props.data._id);
             }}
           >
-            <i class="fa-solid fa-heart"></i>
+            <i className="fa-solid fa-heart"></i>
           </div>
         )}
         <ToastContainer

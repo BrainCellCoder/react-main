@@ -58,6 +58,21 @@
   background-color: #b333e9;
 }
 
+.product .remove-from-cart {
+  color: #f21b3f;
+  border: 1px solid #f21b3f;
+  padding: 0.3rem 1.3rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.product .remove-from-cart:hover {
+  background-color: #f21b3f;
+  color: #fff;
+}
+
 .product .wish {
   position: absolute;
   top: 15px;
