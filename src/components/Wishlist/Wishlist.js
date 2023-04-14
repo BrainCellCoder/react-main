@@ -16,7 +16,7 @@ export const Wishlist = () => {
       setWishItems(data.user.wishList);
     };
     fetchWishlist();
-  }, []);
+  });
   return (
     <section style={{ minHeight: "100vh", marginTop: "100px" }}>
       <div className="container">

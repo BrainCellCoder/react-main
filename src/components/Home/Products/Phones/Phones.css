@@ -73,6 +73,10 @@
   color: #f21b3f;
 }
 
+.product .wished {
+  color: #f21b3f;
+}
+
 .product .add-view {
   display: flex;
   align-items: center;

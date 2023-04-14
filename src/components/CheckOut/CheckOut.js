@@ -101,7 +101,7 @@ export const CheckOut = () => {
       <div id="checkout">
         <div className="container">
           <div className="row">
-            <div className="col-md-7">
+            <div className="col-md-8">
               <div className="checkout-user">
                 <p className="checkout-number">1</p>
                 <div className="checkout-user-name-email">
@@ -261,19 +261,21 @@ export const CheckOut = () => {
                     {userData.user?.cart.map((item, key) => (
                       <div key={key} className="col-md-6 orderSummary-products">
                         <img src={item.productId.image[0].url} />
-                        <Link
-                          // to={`products/${item._id}`}
-                          className="orderSummary-item-name"
-                        >
-                          {item.productId.name}
-                        </Link>
+                        <div>
+                          <p className="orderSummary-product-name">
+                            {item.productId.name}
+                          </p>
+                          <p className="orderSummary-product-quantity">
+                            x{item.quantity}
+                          </p>
+                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-md-5"></div>
+            <div className="col-md-4"></div>
           </div>
         </div>
       </div>

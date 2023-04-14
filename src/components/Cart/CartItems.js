@@ -70,7 +70,7 @@ export const CartItems = (props) => {
             <p className="cart-item-stock">In Stock</p>
             <div className="product-control">
               <div className="product-quantity">
-                <label for="quantity">Quantity:</label>
+                <label htmlFor="quantity">Quantity:</label>
                 <select
                   id="quantity"
                   name="quantity"

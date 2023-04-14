@@ -134,15 +134,31 @@ p {
 
 .orderSummary-list img {
   width: 100px;
+  height: 100px;
 }
 
 .orderSummary-list div {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .orderSummary-item-name {
   text-decoration: none;
   color: #000;
+}
+
+.orderSummary-products {
+  display: flex;
+}
+
+.orderSummary-product-name {
+  font-size: 1.2rem;
+}
+
+.orderSummary-product-quantity {
+  background-color: #b333e9;
+  color: #fff;
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 50%;
+  font-size: 13px;
 }
