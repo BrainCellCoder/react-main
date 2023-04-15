@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register";
 import { Home } from "./components/Home/Home";
@@ -13,6 +13,7 @@ import { Cart } from "./components/Cart/Cart";
 import { Wishlist } from "./components/Wishlist/Wishlist";
 import { CheckOut } from "./components/CheckOut/CheckOut";
 import { Accessories } from "./components/Home/Products/Accessories/Accessories";
+import { PaymentSuccess } from "./components/PaymentSuccess";
 // import { Protected } from "./Protected";
 
 export const AppContext = createContext();
@@ -52,6 +53,7 @@ function App() {
               path="user/wishlist/products/:id"
               element={<ProductDetails />}
             />
+            <Route path="/paymentsuccess" element={<PaymentSuccess />} />
           </Routes>
           <Footer />
         </Router>

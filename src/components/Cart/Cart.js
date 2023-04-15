@@ -43,10 +43,10 @@ export const Cart = () => {
         },
       });
       const data = await res.json();
+      // console.log(data);
       setCartItems(data.user.cart);
     };
     fetchCart();
-    // console.log(cartItems);
     const totalPrice = cartItems.reduce(
       (acc, obj) => acc + obj.productId.price * obj.quantity,
       0

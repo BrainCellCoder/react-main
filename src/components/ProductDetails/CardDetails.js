@@ -5,6 +5,7 @@ import Rating from "react-rating-stars-component";
 import StarRating from "./StarRating";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// import Razorpay from "razor";
 
 import "../../Utils/star.css";
 
@@ -109,6 +110,57 @@ export const CardDetails = (props) => {
     fetchReviews();
   }, [toggle]);
 
+  const checkoutHandler = async () => {
+    const price = props.data.price;
+    const keyRes = await fetch("http://localhost:8000/getkey");
+    const keyResp = await keyRes.json();
+
+    const res = await fetch("http://localhost:8000/payment/checkout", {
+      method: "POST",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: price,
+      }),
+    });
+    const resp = await res.json();
+
+    const user = await fetch("http://localhost:8000/user/me", {
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const userData = await user.json();
+
+    const options = {
+      key: keyResp.key, // Enter the Key ID generated from the Dashboard
+      amount: resp.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "INR",
+      name: userData.user.name,
+      description: "RazorPay Transaction",
+      image: "https://example.com/your_logo",
+      order_id: resp.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      callback_url: "http://localhost:8000/payment/paymentverification",
+      prefill: {
+        //logged in user details
+        name: userData.user.name,
+        email: userData.user.email,
+        contact: "9000090000",
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#7b2cbf",
+      },
+    };
+    const razor = new window.Razorpay(options);
+    razor.open();
+  };
+
   return (
     <>
       <div id="product-details">
@@ -149,7 +201,9 @@ export const CardDetails = (props) => {
                 </select>
               </div>
               <div className="product-buy-cart">
-                <div className="product-buy">Buy Now</div>
+                <div className="product-buy" onClick={checkoutHandler}>
+                  Buy Now
+                </div>
                 <div
                   className="product-cart"
                   onClick={() => {
