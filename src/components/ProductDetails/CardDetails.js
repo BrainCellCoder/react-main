@@ -123,6 +123,7 @@ export const CardDetails = (props) => {
       },
       body: JSON.stringify({
         amount: price,
+        quantity: quantity,
       }),
     });
     const resp = await res.json();
@@ -139,9 +140,10 @@ export const CardDetails = (props) => {
       key: keyResp.key, // Enter the Key ID generated from the Dashboard
       amount: resp.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
-      name: userData.user.name,
+      name: "TechKart",
       description: "RazorPay Transaction",
-      image: "https://example.com/your_logo",
+      image:
+        "https://res.cloudinary.com/dywjchq8q/image/upload/v1681550262/logo1_hrtppt.png",
       order_id: resp.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       callback_url: "http://localhost:8000/payment/paymentverification",
       prefill: {
@@ -149,6 +151,14 @@ export const CardDetails = (props) => {
         name: userData.user.name,
         email: userData.user.email,
         contact: "9000090000",
+        shipping_address: {
+          address_line1: "123, ABC Street",
+          address_line2: "XYZ Society",
+          city: "Mumbai",
+          state: "Maharashtra",
+          postal_code: "400001",
+          country: "India",
+        },
       },
       notes: {
         address: "Razorpay Corporate Office",
