@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./CartItems.css";
 import { ProgressBar } from "react-bootstrap";
+import { useCookies } from "react-cookie";
 
 export const CartItems = (props) => {
   // console.log(props.data.quantity);
   const [quantity, setQuantity] = useState(props.data.quantity);
   const [isLoading, setIsLoading] = useState(false);
+  const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const imgURL = props.data.productId.image[0].url;
   const price = new Intl.NumberFormat("en-IN", {
@@ -17,7 +19,7 @@ export const CartItems = (props) => {
     const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
       method: "DELETE",
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
       },
     });
     setIsLoading(false);
@@ -27,7 +29,7 @@ export const CartItems = (props) => {
     await fetch(`http://localhost:8000/user/wishlist/${id}`, {
       method: "POST",
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
@@ -39,7 +41,7 @@ export const CartItems = (props) => {
     const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
       method: "PATCH",
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },

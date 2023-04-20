@@ -8,12 +8,14 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export const CheckOut = () => {
   const [userData, setUserData] = useState({});
   const [showForm, setShowForm] = useState(false);
   const [isNewAddress, setIsNewAddress] = useState(false);
   const [selectedOption, setSelectedOption] = useState({});
+  const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const handleOptionChange = (event) => {
     setSelectedOption(JSON.parse(event.target.value));
@@ -23,7 +25,9 @@ export const CheckOut = () => {
     const fetchUser = async () => {
       const user = await fetch("http://localhost:8000/user/me", {
         headers: {
-          authorization: `Abhi ${localStorage.getItem("token")}`,
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
         },
       });
       const data = await user.json();
@@ -73,7 +77,7 @@ export const CheckOut = () => {
     const res = await fetch("http://localhost:8000/user/me", {
       method: "POST",
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },

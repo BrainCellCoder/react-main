@@ -3,9 +3,11 @@ import "./Cart.css";
 import { CartItems } from "./CartItems";
 import { AppContext } from "../../App";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export const Cart = () => {
   const { cartNumber, setCartNumber } = useContext(AppContext);
+  const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const [cartItems, setCartItems] = useState([]);
   const [cartItemstotalPrice, setcartItemsTotalPrice] = useState(0);
@@ -39,7 +41,9 @@ export const Cart = () => {
     const fetchCart = async () => {
       const res = await fetch("http://localhost:8000/user/me", {
         headers: {
-          authorization: `Abhi ${localStorage.getItem("token")}`,
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
         },
       });
       const data = await res.json();

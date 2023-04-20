@@ -4,12 +4,14 @@ import StarRating from "../../ProductDetails/StarRating";
 // import { baseUrl } from "./../../../Utils/baseUrl";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useCookies } from "react-cookie";
 
 export const Card = (props) => {
   const [addWishlist, setAddWishlist] = useState(false);
   const [addCart, setAddCart] = useState(false);
   const [productInWishlist, setProductInWishlist] = useState(false);
   const [productInCart, setProductInCart] = useState(false);
+  const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const imgURL = props.data.image[0].url;
   const price = new Intl.NumberFormat("en-IN", {
@@ -22,7 +24,7 @@ export const Card = (props) => {
     const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
       method: "POST",
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
@@ -52,7 +54,7 @@ export const Card = (props) => {
     const res = await fetch(`http://localhost:8000/user/wishlist/${id}`, {
       method: "POST",
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
@@ -78,7 +80,7 @@ export const Card = (props) => {
     const res = await fetch(`http://localhost:8000/user/wishlist/${id}`, {
       method: "DELETE",
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
@@ -104,7 +106,7 @@ export const Card = (props) => {
     const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
       method: "DELETE",
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
@@ -130,7 +132,9 @@ export const Card = (props) => {
     const fetchUser = async () => {
       const res = await fetch("http://localhost:8000/user/me", {
         headers: {
-          authorization: `Abhi ${localStorage.getItem("token")}`,
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
         },

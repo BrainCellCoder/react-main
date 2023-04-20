@@ -14,6 +14,7 @@ import { Wishlist } from "./components/Wishlist/Wishlist";
 import { CheckOut } from "./components/CheckOut/CheckOut";
 import { Accessories } from "./components/Home/Products/Accessories/Accessories";
 import { PaymentSuccess } from "./components/PaymentSuccess";
+import { Protected } from "./Protected";
 // import { Protected } from "./Protected";
 
 export const AppContext = createContext();
@@ -34,9 +35,9 @@ function App() {
             <Route path="/accessories" element={<Accessories />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             {/* <Route
-            path="/products/:id"
-            element={<Protected Component={ProductDetails} />}
-          /> */}
+              path="/products/:id"
+              element={<Protected Component={ProductDetails} />}
+            /> */}
             <Route
               path="/headphones/products/:id"
               element={<ProductDetails />}

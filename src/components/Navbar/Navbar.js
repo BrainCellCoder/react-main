@@ -3,8 +3,11 @@ import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import isAuthenticated from "../../Utils/isAuth";
 import { AppContext } from "../../App";
+import { useCookies } from "react-cookie";
 
 export const Navbar = () => {
+  const [cookies, setCookie] = useCookies(["userId", "token"]);
+
   const { cartNumber } = useContext(AppContext);
   const location = useLocation();
   const isAuth = isAuthenticated();
@@ -36,7 +39,7 @@ export const Navbar = () => {
             <input type="text" placeholder="Search Product" />
             <i className="fa-solid fa-magnifying-glass"></i>
           </div>
-          {isLoggedIn ? (
+          {isLoggedIn || cookies.userId ? (
             <div className="account">
               <i className="fa-regular fa-user"></i>
               <span>Account</span>
@@ -47,11 +50,13 @@ export const Navbar = () => {
           {/* <Link to="/login">
               Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
             </Link> */}
-          {isLoggedIn && (
+          {isLoggedIn || cookies.userId ? (
             <Link to="/user/cart" className="cart">
               <img id="cart" src={require("./../Navbar/cart.png")} alt="" />
               <span className="cart-number">{cartNumber}</span>
             </Link>
+          ) : (
+            ""
           )}
         </div>
       </div>

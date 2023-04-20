@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { Card } from "../Home/Products/Card";
 import "./Wishlist.css";
 
 export const Wishlist = () => {
   const [wishItems, setWishItems] = useState([]);
+  const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   useEffect(() => {
     const fetchWishlist = async () => {
       const res = await fetch("http://localhost:8000/user/me", {
         headers: {
-          authorization: `Abhi ${localStorage.getItem("token")}`,
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
         },
       });
       const data = await res.json();

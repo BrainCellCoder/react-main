@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./Login.css";
 import { useForm } from "react-hook-form";
@@ -52,6 +52,7 @@ export const Login = () => {
     if (resp.success === true) {
       setLoading(false);
       localStorage.setItem("token", resp.token);
+      localStorage.setItem("user_id", resp.user._id);
       // document.cookie = `token=${resp.token}; path=/`;
 
       navigate("/");
@@ -65,6 +66,10 @@ export const Login = () => {
   };
   const onError = () => {
     console.log("Error");
+  };
+
+  const google = () => {
+    window.open("http://localhost:8000/auth/google", "_self");
   };
 
   return (
@@ -125,7 +130,11 @@ export const Login = () => {
               <img src={require("./../Login/facebook.png")} alt="" />
               <img src={require("./../Login/twitter.png")} alt="" />
               <img src={require("./../Login/linkedin.png")} alt="" />
-              <img src={require("./../Login/google.png")} alt="" />
+              <img
+                src={require("./../Login/google.png")}
+                alt=""
+                onClick={google}
+              />
               <img src={require("./../Login/instagram.png")} alt="" />
             </div>
             <p className="login-bottom-reg">

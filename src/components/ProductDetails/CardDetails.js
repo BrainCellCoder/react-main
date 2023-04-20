@@ -5,6 +5,7 @@ import Rating from "react-rating-stars-component";
 import StarRating from "./StarRating";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useCookies } from "react-cookie";
 // import Razorpay from "razor";
 
 import "../../Utils/star.css";
@@ -18,6 +19,7 @@ export const CardDetails = (props) => {
   const [numReviews, setNumReviews] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
+  const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const imageUrl = props.data.image ? props.data.image[0].url : null;
   const price = new Intl.NumberFormat("en-IN", {
@@ -32,7 +34,7 @@ export const CardDetails = (props) => {
     const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
       method: "POST",
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
@@ -74,7 +76,7 @@ export const CardDetails = (props) => {
     fetch(`http://localhost:8000/review/${props.data._id}/new`, {
       method: "POST",
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -99,7 +101,9 @@ export const CardDetails = (props) => {
     const fetchReviews = async () => {
       const res = await fetch(`http://localhost:8000/products/${id}`, {
         headers: {
-          authorization: `Abhi ${localStorage.getItem("token")}`,
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
         },
       });
       const data = await res.json();
@@ -111,26 +115,30 @@ export const CardDetails = (props) => {
   }, [toggle]);
 
   const checkoutHandler = async () => {
+    console.log(props.data);
     const price = props.data.price;
+    const productId = props.data._id;
     const keyRes = await fetch("http://localhost:8000/getkey");
     const keyResp = await keyRes.json();
 
     const res = await fetch("http://localhost:8000/payment/checkout", {
       method: "POST",
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         amount: price,
         quantity: quantity,
+        productId,
+        user: localStorage.getItem("user_id") || cookies.userId,
       }),
     });
     const resp = await res.json();
 
     const user = await fetch("http://localhost:8000/user/me", {
       headers: {
-        authorization: `Abhi ${localStorage.getItem("token")}`,
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         "Content-Type": "application/json",
       },
     });
@@ -151,14 +159,6 @@ export const CardDetails = (props) => {
         name: userData.user.name,
         email: userData.user.email,
         contact: "9000090000",
-        shipping_address: {
-          address_line1: "123, ABC Street",
-          address_line2: "XYZ Society",
-          city: "Mumbai",
-          state: "Maharashtra",
-          postal_code: "400001",
-          country: "India",
-        },
       },
       notes: {
         address: "Razorpay Corporate Office",
