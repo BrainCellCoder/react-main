@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useCookies } from "react-cookie";
 import { Modal } from "react-bootstrap";
+import { Dropdown, Form } from "react-bootstrap";
 // import Razorpay from "razor";
 
 import "../../Utils/star.css";
@@ -246,35 +247,7 @@ export const CardDetails = (props) => {
         </div>
       </div>
       <div className="container product-reviews">
-        <hr />
         <div className="row">
-          <div className="col-md-6 leave-review">
-            <button onClick={handleOpenModal}>Open Modal</button>
-            <Modal show={showModal} onHide={handleCloseModal}>
-              <Modal.Header closeButton>
-                <Modal.Title>Fill out this form</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <form onSubmit={handleSubmit} className="border border-3">
-                  <Rating
-                    count={5}
-                    value={rating}
-                    onChange={handleRatingChange}
-                    size={24}
-                    activeColor="#ffd700"
-                  />
-                  <textarea
-                    className="border border-3"
-                    value={comment}
-                    onChange={handleCommentChange}
-                  />
-                  <button className="btn btn-success" type="submit">
-                    Submit
-                  </button>
-                </form>
-              </Modal.Body>
-            </Modal>
-          </div>
           <div className="col-md-6">
             <h3>Product Reviews</h3>
             <div className="reviews">
@@ -297,6 +270,35 @@ export const CardDetails = (props) => {
                 </div>
               ))}
             </div>
+          </div>
+          <div className="col-md-6 leave-review">
+            <button className="rate-btn" onClick={handleOpenModal}>
+              Rate this product
+            </button>
+            <Modal show={showModal} onHide={handleCloseModal}>
+              <Modal.Header closeButton>
+                <Modal.Title>Rate this Product</Modal.Title>
+              </Modal.Header>
+              <Modal.Body className="review-modal">
+                <form onSubmit={handleSubmit}>
+                  <Rating
+                    count={5}
+                    value={rating}
+                    onChange={handleRatingChange}
+                    size={24}
+                    activeColor="#ffd700"
+                  />
+                  <textarea
+                    className="border border-3"
+                    value={comment}
+                    onChange={handleCommentChange}
+                  />
+                  <button className="btn" type="submit">
+                    Submit
+                  </button>
+                </form>
+              </Modal.Body>
+            </Modal>
           </div>
         </div>
       </div>
