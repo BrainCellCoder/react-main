@@ -6,6 +6,7 @@ import StarRating from "./StarRating";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useCookies } from "react-cookie";
+import { Modal } from "react-bootstrap";
 // import Razorpay from "razor";
 
 import "../../Utils/star.css";
@@ -19,6 +20,7 @@ export const CardDetails = (props) => {
   const [numReviews, setNumReviews] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
+  const [showModal, setShowModal] = useState(false);
   const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const imageUrl = props.data.image ? props.data.image[0].url : null;
@@ -62,6 +64,9 @@ export const CardDetails = (props) => {
     }
   };
 
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
   const handleRatingChange = (value) => {
     setRating(value);
   };
@@ -89,6 +94,7 @@ export const CardDetails = (props) => {
           throw new Error("Failed to send rating and comment");
         }
         setToggle(!toggle);
+        handleCloseModal();
       })
       .catch((error) => {
         console.error(error);
@@ -243,24 +249,31 @@ export const CardDetails = (props) => {
         <hr />
         <div className="row">
           <div className="col-md-6 leave-review">
-            <h3>Leave a Review</h3>
-            <form onSubmit={handleSubmit} className="border border-3">
-              <Rating
-                count={5}
-                value={rating}
-                onChange={handleRatingChange}
-                size={24}
-                activeColor="#ffd700"
-              />
-              <textarea
-                className="border border-3"
-                value={comment}
-                onChange={handleCommentChange}
-              />
-              <button className="btn btn-success" type="submit">
-                Submit
-              </button>
-            </form>
+            <button onClick={handleOpenModal}>Open Modal</button>
+            <Modal show={showModal} onHide={handleCloseModal}>
+              <Modal.Header closeButton>
+                <Modal.Title>Fill out this form</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <form onSubmit={handleSubmit} className="border border-3">
+                  <Rating
+                    count={5}
+                    value={rating}
+                    onChange={handleRatingChange}
+                    size={24}
+                    activeColor="#ffd700"
+                  />
+                  <textarea
+                    className="border border-3"
+                    value={comment}
+                    onChange={handleCommentChange}
+                  />
+                  <button className="btn btn-success" type="submit">
+                    Submit
+                  </button>
+                </form>
+              </Modal.Body>
+            </Modal>
           </div>
           <div className="col-md-6">
             <h3>Product Reviews</h3>
