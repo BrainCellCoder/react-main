@@ -23,6 +23,8 @@ export const CardDetails = (props) => {
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
   const [cookies, setCookie] = useCookies(["userId", "token"]);
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
 
   const imageUrl = props.data.image ? props.data.image[0].url : null;
   const price = new Intl.NumberFormat("en-IN", {
@@ -121,9 +123,8 @@ export const CardDetails = (props) => {
     fetchReviews();
   }, [toggle]);
 
-  const checkoutHandler = async () => {
-    console.log(props.data);
-    const price = props.data.price;
+  const checkoutHandler = async (e) => {
+    e.preventDefault();
     console.log(price * quantity);
     const productId = props.data._id;
     const cartItems = [{ productId: productId, quantity: quantity }];
@@ -148,8 +149,8 @@ export const CardDetails = (props) => {
         amount: price * quantity,
         cart: cartItems,
         buyer: localStorage.getItem("user_id") || cookies.userId,
-        // address,
-        // phone,
+        address,
+        phone,
         email: userData.user.email,
       }),
     });
@@ -222,7 +223,7 @@ export const CardDetails = (props) => {
                 </select>
               </div>
               <div className="product-buy-cart">
-                <div className="product-buy" onClick={checkoutHandler}>
+                <div className="product-buy" onClick={handleOpenModal}>
                   Buy Now
                 </div>
                 <div
@@ -233,6 +234,32 @@ export const CardDetails = (props) => {
                 >
                   Add to Cart
                 </div>
+                <Modal show={showModal} onHide={handleCloseModal}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Fill out this form</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <form className="address-form" onSubmit={checkoutHandler}>
+                      <textarea
+                        type="text"
+                        id="address"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        placeholder="Enter Full Address"
+                        required={true}
+                      />
+                      <input
+                        type="number"
+                        id="phone"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="Enter Phone Number"
+                        required={true}
+                      />
+                      <button type="submit">Proceed</button>
+                    </form>
+                  </Modal.Body>
+                </Modal>
               </div>
             </div>
             <ToastContainer
