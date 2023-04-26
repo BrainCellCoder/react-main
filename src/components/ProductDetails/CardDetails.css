@@ -110,36 +110,49 @@
 .leave-review .rate-btn {
   padding: 0.5rem 1rem;
   width: 100%;
-  height: 50px;
+  /* height: 50px; */
   background-color: #ff0a54;
   border: none;
   outline: none;
   color: #ffff;
+  font-size: 1.5rem;
 }
 
 .leave-review .rate-btn:hover {
   background-color: #c9184a;
 }
 
-.review-modal form {
+.accordion-item {
+  text-align: center !important;
+  background-color: red;
+}
+
+.accordion form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.review-modal form textarea {
+.accordion form textarea {
   width: 100%;
   height: 100px;
   padding: 1rem;
   margin: 20px 0;
 }
 
-.review-modal .btn {
+.accordion .btn {
   background-color: #b333e9;
   color: #fff;
 }
 
-.review-modal .btn:hover {
+.accordion-item:last-of-type .accordion-button.collapsed,
+.accordion-item:first-of-type .accordion-button {
+  background-color: #ff0a54;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.accordion .btn:hover {
   background-color: #6910a8;
   color: #fff;
 }
@@ -147,6 +160,11 @@
 .reviews {
   max-height: 500px;
   overflow: scroll;
+  background-color: #fff0f3;
+}
+
+.accordion {
+  width: 100%;
 }
 
 .product-reviews h3 {
@@ -154,9 +172,8 @@
 }
 
 .review {
-  background-color: #e9ecef;
   padding: 1rem;
-  border-radius: 20px;
+  border-bottom: 1px solid #ffccd5;
   margin-bottom: 1.4rem;
 }
 

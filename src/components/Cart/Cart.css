@@ -144,3 +144,29 @@
   background-color: #b333e9;
   color: #fff;
 }
+
+.address-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.address-form textarea {
+  height: 100px;
+  padding: 0.5rem;
+  margin-bottom: 10px;
+}
+
+.address-form #phone {
+  padding: 0.5rem;
+  margin-bottom: 10px;
+}
+
+.address-form button {
+  border: none;
+  outline: none;
+  background-color: #b333e9;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+}

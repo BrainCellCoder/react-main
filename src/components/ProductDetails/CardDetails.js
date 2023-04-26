@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useCookies } from "react-cookie";
 import { Modal } from "react-bootstrap";
-import { Dropdown, Form } from "react-bootstrap";
+import Accordion from "react-bootstrap/Accordion";
 // import Razorpay from "razor";
 
 import "../../Utils/star.css";
@@ -124,24 +124,11 @@ export const CardDetails = (props) => {
   const checkoutHandler = async () => {
     console.log(props.data);
     const price = props.data.price;
+    console.log(price * quantity);
     const productId = props.data._id;
+    const cartItems = [{ productId: productId, quantity: quantity }];
     const keyRes = await fetch("http://localhost:8000/getkey");
     const keyResp = await keyRes.json();
-
-    const res = await fetch("http://localhost:8000/payment/checkout", {
-      method: "POST",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        amount: price,
-        quantity: quantity,
-        productId,
-        user: localStorage.getItem("user_id") || cookies.userId,
-      }),
-    });
-    const resp = await res.json();
 
     const user = await fetch("http://localhost:8000/user/me", {
       headers: {
@@ -150,6 +137,23 @@ export const CardDetails = (props) => {
       },
     });
     const userData = await user.json();
+
+    const res = await fetch("http://localhost:8000/payment/checkout", {
+      method: "POST",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: price * quantity,
+        cart: cartItems,
+        buyer: localStorage.getItem("user_id") || cookies.userId,
+        // address,
+        // phone,
+        email: userData.user.email,
+      }),
+    });
+    const resp = await res.json();
 
     const options = {
       key: keyResp.key, // Enter the Key ID generated from the Dashboard
@@ -248,31 +252,8 @@ export const CardDetails = (props) => {
       </div>
       <div className="container product-reviews">
         <div className="row">
-          <div className="col-md-6">
-            <h3>Product Reviews</h3>
-            <div className="reviews">
-              {reviews?.map((review, key) => (
-                <div key={key}>
-                  <div className="review">
-                    <div className="review-name">
-                      <span>User: </span>
-                      {review.author?.name}
-                    </div>
-                    <div className="review-star">
-                      <span>Stars: </span>
-                      <StarRating rating={review?.rating} />
-                    </div>
-                    <div className="review-comment text-muted">
-                      <span>Comment: </span>
-                      {review?.comment}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
           <div className="col-md-6 leave-review">
-            <button className="rate-btn" onClick={handleOpenModal}>
+            {/* <button className="rate-btn" onClick={handleOpenModal}>
               Rate this product
             </button>
             <Modal show={showModal} onHide={handleCloseModal}>
@@ -298,7 +279,56 @@ export const CardDetails = (props) => {
                   </button>
                 </form>
               </Modal.Body>
-            </Modal>
+            </Modal> */}
+            <Accordion className="accordion" defaultActiveKey="0">
+              <Accordion.Item className="accordion-item" eventKey="0">
+                <Accordion.Header className="accordion-header">
+                  Rate this product
+                </Accordion.Header>
+                <Accordion.Body>
+                  <form onSubmit={handleSubmit}>
+                    <Rating
+                      count={5}
+                      value={rating}
+                      onChange={handleRatingChange}
+                      size={24}
+                      activeColor="#ffd700"
+                    />
+                    <textarea
+                      className="border border-3"
+                      value={comment}
+                      onChange={handleCommentChange}
+                    />
+                    <button className="btn" type="submit">
+                      Submit
+                    </button>
+                  </form>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </div>
+          <div className="col-md-6">
+            <h3>Product Reviews</h3>
+            <div className="reviews">
+              {reviews?.map((review, key) => (
+                <div key={key}>
+                  <div className="review">
+                    <div className="review-name">
+                      <span>User: </span>
+                      {review.author?.name}
+                    </div>
+                    <div className="review-star">
+                      <span>Stars: </span>
+                      <StarRating rating={review?.rating} />
+                    </div>
+                    <div className="review-comment text-muted">
+                      <span>Comment: </span>
+                      {review?.comment}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
