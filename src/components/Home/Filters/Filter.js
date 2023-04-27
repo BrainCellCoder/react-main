@@ -18,7 +18,7 @@ export const Filter = (props) => {
   };
   return (
     <>
-      <div className="filters container">
+      <div className="filters ">
         <div className="category">
           <select onChange={onChangeCategory}>
             <option value="all">All Products</option>

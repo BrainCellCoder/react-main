@@ -1,5 +1,4 @@
 #popular-category {
-  margin-top: 2rem;
   align-items: center;
   background-color: #fff0f3;
   padding: 1rem;
@@ -7,6 +6,9 @@
   color: #9c6644;
   font-weight: 600;
   font-size: 1rem;
+  width: 91%;
+  margin: auto;
+  margin-top: 2rem;
 }
 
 .popular-category-heading {

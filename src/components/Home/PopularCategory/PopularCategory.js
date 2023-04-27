@@ -11,7 +11,7 @@ export const PopularCategory = () => {
   return (
     <>
       {/* <h3 className="popular-category-heading">Popular Categories</h3> */}
-      <div className="container" id="popular-category">
+      <div id="popular-category">
         <div className="popular-category-list">
           <div>
             <div

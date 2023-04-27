@@ -2,19 +2,27 @@
   display: flex;
   border-radius: 20px;
   height: 41vh;
+  margin: auto;
   margin-top: 66px;
+  width: 91%;
   flex-direction: column;
   background-color: #e5b3fe;
   padding: 4rem 6rem !important;
   background-image: url("heroGB.png");
   background-repeat: no-repeat;
   background-position: right;
+  transition: 0.3s ease-in-out;
 }
 
 .hero h1 {
   font-weight: 700;
   font-size: 3rem;
   color: #10002b;
+  transition: 0.3s ease-in-out;
+}
+
+.hero h1 .sound {
+  color: #f72585;
 }
 
 .hero .headphones-buy-now {
@@ -34,4 +42,43 @@
 .hero .headphones-buy-now:hover {
   background-color: #10002b;
   transform: translateY(-5px);
+}
+
+@media (max-width: 991px) {
+  .hero {
+    width: 100%;
+    padding: 2rem 3rem !important;
+    height: 35vh;
+  }
+  .hero h1 {
+    font-size: 2.7rem;
+  }
+}
+
+@media (max-width: 864px) {
+  .hero {
+    /* background-image: none; */
+    background-size: contain;
+    height: 30vh !important;
+    padding: 2rem 3rem !important;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero .headphones-buy-now {
+    /* margin: auto; */
+  }
+}
+
+@media (max-width: 533px) {
+  .hero {
+    height: 25vh !important;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero .headphones-buy-now {
+    width: 120px;
+    font-size: 0.8rem;
+  }
 }

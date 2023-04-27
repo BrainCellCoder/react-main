@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 export const Hero = (props) => {
   return (
     <>
-      <div className="hero container">
+      <div className="hero">
         <h1>
-          Find your perfect sound <br /> with our Headphones.
+          Find your perfect <span className="sound">Sound</span> <br /> with our
+          Headphones.
         </h1>
         <Link
           className="headphones-buy-now"

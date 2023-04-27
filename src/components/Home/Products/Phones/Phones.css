@@ -1,3 +1,8 @@
+.products {
+  width: 91%;
+  margin: auto;
+}
+
 .products > h3 {
   margin: 50px 0 30px 0;
 }
