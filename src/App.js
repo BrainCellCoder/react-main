@@ -4,7 +4,7 @@ import { useState, createContext, useEffect } from "react";
 import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register";
 import { Home } from "./components/Home/Home";
-import { Navbar } from "./components/Navbar/Navbar";
+import { Navbars } from "./components/Navbar/Navbar";
 import { Admin } from "./components/Admin Panel/Admin";
 import { Headphones } from "./components/Home/Products/Headphones/Headphones";
 import { ProductDetails } from "./components/ProductDetails/ProductDetails";
@@ -25,7 +25,7 @@ function App() {
     <>
       <AppContext.Provider value={{ cartNumber, setCartNumber }}>
         <Router id="router">
-          <Navbar />
+          <Navbars />
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

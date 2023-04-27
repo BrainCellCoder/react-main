@@ -11,6 +11,7 @@ import Accordion from "react-bootstrap/Accordion";
 // import Razorpay from "razor";
 
 import "../../Utils/star.css";
+import { type } from "@testing-library/user-event/dist/type";
 
 export const CardDetails = (props) => {
   const [rating, setRating] = useState(0);
@@ -125,7 +126,7 @@ export const CardDetails = (props) => {
 
   const checkoutHandler = async (e) => {
     e.preventDefault();
-    console.log(price * quantity);
+    const intPrice = parseInt(price.replace(",", ""));
     const productId = props.data._id;
     const cartItems = [{ productId: productId, quantity: quantity }];
     const keyRes = await fetch("http://localhost:8000/getkey");
@@ -146,7 +147,7 @@ export const CardDetails = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        amount: price * quantity,
+        amount: intPrice * quantity,
         cart: cartItems,
         buyer: localStorage.getItem("user_id") || cookies.userId,
         address,

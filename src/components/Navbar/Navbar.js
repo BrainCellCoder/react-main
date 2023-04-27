@@ -4,8 +4,12 @@ import { Link, useLocation } from "react-router-dom";
 import isAuthenticated from "../../Utils/isAuth";
 import { AppContext } from "../../App";
 import { useCookies } from "react-cookie";
+import { Checkbox } from "@chakra-ui/react";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import { Nav } from "react-bootstrap";
 
-export const Navbar = () => {
+export const Navbars = () => {
   const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const { cartNumber } = useContext(AppContext);
@@ -18,27 +22,62 @@ export const Navbar = () => {
   }, [location]);
   return (
     <>
-      <div className="navbar fixed-top">
+      <Navbar bg="light" expand="lg" fixed="top">
+        <Container>
+          <Navbar.Brand href="/">
+            <Link to="/" className="logo">
+              <img id="logo" src={require("./../Navbar/logo1.png")} alt="" />
+              <span id="T">T</span>ech<span id="K">K</span>art
+            </Link>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto nav-right">
+              {isLoggedIn || cookies.userId ? (
+                <div className="account">
+                  <i className="fa-regular fa-user"></i>
+                  <span>Account</span>
+                </div>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
+              {isLoggedIn || cookies.userId ? (
+                <div className="wish-cart">
+                  <a href="/user/wishlist">
+                    <img
+                      id="wishlist"
+                      src={require("./../Navbar/love.png")}
+                      alt=""
+                    />
+                    Wishlist
+                  </a>
+                  <Link to="/user/cart" className="cart">
+                    <img
+                      id="cart"
+                      src={require("./../Navbar/cart.png")}
+                      alt=""
+                    />
+                    <span className="cart-number">{cartNumber}</span>
+                  </Link>
+                </div>
+              ) : (
+                ""
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      {/* <div className="navbar fixed-top">
         <div className="nav-left">
           <Link to="/" className="logo">
             <img id="logo" src={require("./../Navbar/logo1.png")} alt="" />
             <span id="T">T</span>ech<span id="K">K</span>art
           </Link>
-          <div className="category">
-            Categories <i className="fa-solid fa-caret-down"></i>
-          </div>
-          {/* <a href="deals">Deals</a> */}
-          {/* <a href="whats-new">What's New</a> */}
-          <a href="/user/wishlist">
-            <img id="wishlist" src={require("./../Navbar/love.png")} alt="" />
-            Wishlist
-          </a>
+          
         </div>
         <div className="nav-right">
-          <div className="search-bar">
-            <input type="text" placeholder="Search Product" />
-            <i className="fa-solid fa-magnifying-glass"></i>
-          </div>
+          
           {isLoggedIn || cookies.userId ? (
             <div className="account">
               <i className="fa-regular fa-user"></i>
@@ -47,19 +86,32 @@ export const Navbar = () => {
           ) : (
             <Link to="/login">Login</Link>
           )}
-          {/* <Link to="/login">
-              Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
-            </Link> */}
           {isLoggedIn || cookies.userId ? (
-            <Link to="/user/cart" className="cart">
-              <img id="cart" src={require("./../Navbar/cart.png")} alt="" />
-              <span className="cart-number">{cartNumber}</span>
-            </Link>
+            <div className="wish-cart">
+              <a href="/user/wishlist">
+                <img
+                  id="wishlist"
+                  src={require("./../Navbar/love.png")}
+                  alt=""
+                />
+                Wishlist
+              </a>
+              <Link to="/user/cart" className="cart">
+                <img id="cart" src={require("./../Navbar/cart.png")} alt="" />
+                <span className="cart-number">{cartNumber}</span>
+              </Link>
+            </div>
           ) : (
             ""
           )}
         </div>
-      </div>
+        <div className="burger">
+          <input type="checkbox" id="check" />
+          <label htmlFor="check" className="checkbtn">
+            <i className="fas fa-bars"></i>
+          </label>
+        </div>
+      </div> */}
     </>
   );
 };
