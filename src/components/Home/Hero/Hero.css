@@ -76,6 +76,15 @@
   }
 }
 
+@media (max-width: 573px) {
+  .hero {
+    height: 27vh !important;
+  }
+  .hero h1 {
+    font-size: 1.9rem !important;
+  }
+}
+
 @media (max-width: 533px) {
   .hero {
     height: 25vh !important;
@@ -85,9 +94,9 @@
     font-size: 2rem;
   }
   .hero .headphones-buy-now {
-    width: 120px;
-    font-size: 0.8rem;
-    padding: 0.5rem;
-    width: 100px;
+    width: 120px !important;
+    font-size: 0.8rem !important;
+    padding: 0.5rem !important;
+    width: 100px !important;
   }
 }
