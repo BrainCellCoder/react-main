@@ -9,6 +9,8 @@
   width: 91%;
   margin: auto;
   margin-top: 2rem;
+  overflow-x: scroll;
+  white-space: nowrap;
 }
 
 .popular-category-heading {
@@ -20,7 +22,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .popular-category-list > div {
@@ -38,9 +40,9 @@
 }
 
 .popular-category-image {
-  width: 130px;
-  height: 80px;
-  overflow: hidden;
+  width: 110px;
+  height: 60px;
+  /* overflow: hidden; */
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -49,4 +51,10 @@
 .popular-category-image img {
   width: 100%;
   height: 100%;
+}
+
+@media (max-width: 991px) {
+  #popular-category {
+    width: 100%;
+  }
 }

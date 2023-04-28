@@ -6,7 +6,7 @@ export const Hero = (props) => {
     <>
       <div className="hero">
         <h1>
-          Find your perfect <span className="sound">Sound</span> <br /> with our
+          Find your perfect <span className="sound">𝒮𝑜𝓊𝓃𝒹</span> <br /> with our
           Headphones.
         </h1>
         <Link
