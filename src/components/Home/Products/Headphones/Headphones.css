@@ -4,7 +4,7 @@
   margin-top: 6.5rem;
 }
 
-.clip-path {
+.headphone-clip-path {
   clip-path: polygon(0 0, 100% 0, 100% 51%, 0 70%);
   height: 500px;
   position: absolute;
@@ -14,10 +14,10 @@
 }
 
 .headphones-items {
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
-.clip-path h1 {
+.headphone-clip-path h1 {
   font-family: "Bruno Ace SC", cursive;
   font-weight: 700;
   font-size: 5rem;

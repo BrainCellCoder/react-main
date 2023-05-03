@@ -1,0 +1,25 @@
+.accessories-clip-path {
+  clip-path: polygon(0 0, 100% 0, 100% 51%, 0 70%);
+  height: 500px;
+  position: absolute;
+  margin-top: -39px;
+  width: 100%;
+  background-color: #ffc300;
+  /* background-image: url("smartphone-with-headphones.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
+
+.accessories-items {
+  margin-top: 5rem !important;
+}
+
+.accessories-clip-path h1 {
+  font-family: "Bruno Ace SC", cursive;
+  font-weight: 700;
+  font-size: 5rem;
+  color: #fff;
+  margin-top: 50px;
+  letter-spacing: 5px;
+}

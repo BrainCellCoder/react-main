@@ -8,7 +8,7 @@ export const Headphones = () => {
 
   return (
     <>
-      <div className="clip-path">
+      <div className="headphone-clip-path">
         <h1 className="container">HEADPHONES</h1>
       </div>
       <div id="headphone" className="products container">
