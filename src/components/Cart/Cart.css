@@ -2,7 +2,12 @@
   background-color: #f4f4f8;
   margin-top: 65px;
   color: #10002b;
-  height: 100vh;
+  min-height: 71vh;
+}
+
+#cartItems > div {
+  width: 95% !important;
+  margin: auto;
 }
 
 .cart-items {
@@ -169,4 +174,12 @@
   color: #fff;
   padding: 1rem;
   border-radius: 10px;
+}
+
+@media (max-width: 1148px) {
+  .checkout,
+  .shopping {
+    font-size: 1rem;
+    padding: 1rem 0 !important;
+  }
 }

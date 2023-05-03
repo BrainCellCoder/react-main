@@ -1,3 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap");
+
 #headphone {
   margin-top: 6.5rem;
+}
+
+.clip-path {
+  clip-path: polygon(0 0, 100% 0, 100% 51%, 0 70%);
+  height: 500px;
+  position: absolute;
+  margin-top: -39px;
+  width: 100%;
+  background-color: #7b2cbf;
+}
+
+.headphones-items {
+  margin-top: 10rem;
+}
+
+.clip-path h1 {
+  font-family: "Bruno Ace SC", cursive;
+  font-weight: 700;
+  font-size: 5rem;
+  color: #fff;
+  margin-top: 50px;
+  letter-spacing: 5px;
 }

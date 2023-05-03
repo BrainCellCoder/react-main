@@ -143,7 +143,7 @@ export const Cart = () => {
   return (
     <>
       <div id="cartItems">
-        <div className="container">
+        <div>
           <div className="row">
             <div className="col-md-7">
               <div className="heading-my-cart">
