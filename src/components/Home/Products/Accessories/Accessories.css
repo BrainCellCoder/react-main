@@ -9,6 +9,13 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover; */
+  background: rgb(255, 195, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 195, 0, 1) 11%,
+    rgba(255, 195, 0, 0.5872942927170868) 67%,
+    rgba(255, 195, 0, 0) 100%
+  );
 }
 
 .accessories-items {

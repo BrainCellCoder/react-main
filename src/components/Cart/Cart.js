@@ -189,19 +189,27 @@ export const Cart = () => {
                   </div>
 
                   <div className="checkout-shopping">
-                    {/* <Link to="/checkout" className="checkout">
+                    <Link
+                      to="/checkout"
+                      state={{
+                        cartLength: cartItems.length,
+                        cartItemstotalPrice,
+                        formattedDate,
+                      }}
+                      className="checkout"
+                    >
                       Proceed to Checkout
-                    </Link> */}
-                    <div
+                    </Link>
+                    {/* <div
                       className="checkout"
                       onClick={handleOpenModal}
                       // onClick={checkoutHandler}
                     >
                       Proceed to CheckOut
-                    </div>
+                    </div> */}
                     <div className="shopping">Continue Shopping</div>
                   </div>
-                  <Modal show={showModal} onHide={handleCloseModal}>
+                  {/* <Modal show={showModal} onHide={handleCloseModal}>
                     <Modal.Header closeButton>
                       <Modal.Title>Fill out this form</Modal.Title>
                     </Modal.Header>
@@ -226,7 +234,7 @@ export const Cart = () => {
                         <button type="submit">Proceed</button>
                       </form>
                     </Modal.Body>
-                  </Modal>
+                  </Modal> */}
                 </div>
               ) : (
                 ""

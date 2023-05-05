@@ -7,14 +7,23 @@ import { FloatingLabel } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 export const CheckOut = () => {
+  const location = useLocation();
+  const [data, setData] = useState({});
+  useEffect(() => {
+    setData(location.state);
+  }, []);
+
   const [userData, setUserData] = useState({});
   const [showForm, setShowForm] = useState(false);
   const [isNewAddress, setIsNewAddress] = useState(false);
-  const [selectedOption, setSelectedOption] = useState({});
+  const [addressDelete, setAddressDelete] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(
+    userData.user?.shippingAddress[0]
+  );
   const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const handleOptionChange = (event) => {
@@ -34,7 +43,7 @@ export const CheckOut = () => {
       setUserData(data);
     };
     fetchUser();
-  }, [isNewAddress]);
+  }, [isNewAddress, addressDelete]);
 
   const toggleAddressForm = () => {
     if (showForm) {
@@ -100,12 +109,37 @@ export const CheckOut = () => {
     console.log("Error");
   };
 
+  const deleteAddress = async (id) => {
+    console.log(id);
+    const res = await fetch(
+      `http://localhost:8000/user/me/delete-address/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          addressId: id,
+          userId: localStorage.getItem("user_id") || cookies.user_id,
+        }),
+      }
+    );
+    console.log(res);
+    const resp = await res.json();
+    setAddressDelete(!addressDelete);
+    console.log(resp);
+  };
+
   return (
     <>
       <div id="checkout">
         <div className="container">
           <div className="row">
-            <div className="col-md-8">
+            <div className="col-md-7">
               <div className="checkout-user">
                 <p className="checkout-number">1</p>
                 <div className="checkout-user-name-email">
@@ -123,6 +157,7 @@ export const CheckOut = () => {
                     <div key={key} className="address-list-radio">
                       <label className="address-list-label mb-3">
                         <input
+                          defaultChecked={key === 0}
                           className="input-type"
                           type="radio"
                           name="option"
@@ -138,7 +173,10 @@ export const CheckOut = () => {
                         />
                         <div className="address-info">
                           <p>{address.address} </p>
-                          <i className="fa-solid fa-trash"></i>
+                          <i
+                            className="fa-solid fa-trash"
+                            onClick={() => deleteAddress(address._id)}
+                          ></i>
                         </div>
                       </label>
                     </div>
@@ -279,7 +317,34 @@ export const CheckOut = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-4"></div>
+            <div className="col-md-5">
+              <div className="cart-items-checkout">
+                <p className="delivery-date">
+                  Delivery date: {data.formattedDate}
+                </p>
+                <div className="subtotal">
+                  <div className="discount">
+                    <p>Price ({data.cartLength} items)</p>
+                    <p>₹ {data.cartItemstotalPrice}</p>
+                  </div>
+                  <div className="delivery">
+                    <p>Delivery Charge</p>
+                    <p style={{ color: "green" }}>free</p>
+                  </div>
+                </div>
+                <div className="total">
+                  <p>Total Payable</p>
+                  <p>₹ {data.cartItemstotalPrice}</p>
+                </div>
+
+                <div className="checkout-shopping">
+                  <Link to="/checkout" className="checkout">
+                    Proceed to Checkout
+                  </Link>
+                  <div className="shopping">Continue Shopping</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -11,10 +11,17 @@
   margin-top: -39px;
   width: 100%;
   background-color: #7b2cbf;
+  background: rgb(123, 44, 191);
+  background: linear-gradient(
+    180deg,
+    rgba(123, 44, 191, 1) 11%,
+    rgba(123, 44, 191, 0.5480786064425771) 59%,
+    rgba(44, 140, 191, 0) 100%
+  );
 }
 
 .headphones-items {
-  margin-top: 5rem;
+  margin-top: 5rem !important;
 }
 
 .headphone-clip-path h1 {
