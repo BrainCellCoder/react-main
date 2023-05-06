@@ -16,14 +16,13 @@ export const CheckOut = () => {
   useEffect(() => {
     setData(location.state);
   }, []);
+  console.log(data);
 
   const [userData, setUserData] = useState({});
   const [showForm, setShowForm] = useState(false);
   const [isNewAddress, setIsNewAddress] = useState(false);
   const [addressDelete, setAddressDelete] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(
-    userData.user?.shippingAddress[0]
-  );
+  const [selectedOption, setSelectedOption] = useState(null);
   const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const handleOptionChange = (event) => {
@@ -134,6 +133,70 @@ export const CheckOut = () => {
     console.log(resp);
   };
 
+  const checkoutHandler = async (e) => {
+    e.preventDefault();
+    // const price = totalPrice;
+    // const productId = props.data._id;
+    const keyRes = await fetch("http://localhost:8000/getkey");
+    const keyResp = await keyRes.json();
+    const user = await fetch("http://localhost:8000/user/me", {
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const userData = await user.json();
+    console.log(userData.user.cart);
+    console.log(data.cartItemstotalPrice);
+    const price = Number(data.cartItemstotalPrice.replace(/,/g, ""));
+    console.log(price);
+
+    const res = await fetch("http://localhost:8000/payment/checkout", {
+      method: "POST",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: price,
+        cart: userData.user.cart,
+        buyer: localStorage.getItem("user_id") || cookies.userId,
+        shippingInfo: selectedOption,
+        email: userData.user.email,
+        deliveryDate: data.formattedDate,
+      }),
+    });
+    const resp = await res.json();
+    console.log(resp);
+
+    const options = {
+      key: keyResp.key, // Enter the Key ID generated from the Dashboard
+      amount: resp.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "INR",
+      name: "TechKart",
+      description: "RazorPay Transaction",
+      image:
+        "https://res.cloudinary.com/dywjchq8q/image/upload/v1681550262/logo1_hrtppt.png",
+      order_id: resp.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      callback_url: "http://localhost:8000/payment/paymentverification",
+      prefill: {
+        //logged in user details
+        name: userData.user.name,
+        email: userData.user.email,
+        contact: "9000090000",
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#7b2cbf",
+      },
+    };
+    const razor = new window.Razorpay(options);
+    console.log(razor);
+    razor.open();
+  };
+
   return (
     <>
       <div id="checkout">
@@ -141,7 +204,7 @@ export const CheckOut = () => {
           <div className="row">
             <div className="col-md-7">
               <div className="checkout-user">
-                <p className="checkout-number">1</p>
+                <i className="fa-solid fa-circle"></i>
                 <div className="checkout-user-name-email">
                   <p style={{ margin: "0" }}>User</p>
                   {userData.user?.name} : {userData.user?.email}
@@ -149,7 +212,7 @@ export const CheckOut = () => {
               </div>
               <div className="delivery-address">
                 <div className="delivery-address-head">
-                  <p className="checkout-number">2</p>
+                  <i className="fa-solid fa-circle"></i>
                   <p className="checkout-address-head">DELIVERY ADDRESS</p>
                 </div>
                 <div className="address-list">
@@ -287,14 +350,14 @@ export const CheckOut = () => {
                           </Form.Group>
                         </div>
                       </div>
-                      <button className="address-submit-btn">Submit</button>
+                      <button className="address-submit-btn">Add</button>
                     </Form>
                   )}
                 </div>
               </div>
               <div className="orderSummary">
                 <div className="orderSummary-head">
-                  <p className="checkout-number">3</p>
+                  <i className="fa-solid fa-circle"></i>
                   <p className="orderSummary-text">ORDER SUMMARY</p>
                 </div>
 
@@ -336,12 +399,11 @@ export const CheckOut = () => {
                   <p>Total Payable</p>
                   <p>₹ {data.cartItemstotalPrice}</p>
                 </div>
-
                 <div className="checkout-shopping">
-                  <Link to="/checkout" className="checkout">
-                    Proceed to Checkout
-                  </Link>
-                  <div className="shopping">Continue Shopping</div>
+                  <button onClick={checkoutHandler} className="checkout">
+                    Proceed to Pay
+                  </button>
+                  {/* <div className="shopping">Continue Shopping</div> */}
                 </div>
               </div>
             </div>
