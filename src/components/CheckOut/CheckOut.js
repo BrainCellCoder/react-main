@@ -16,7 +16,6 @@ export const CheckOut = () => {
   useEffect(() => {
     setData(location.state);
   }, []);
-  console.log(data);
 
   const [userData, setUserData] = useState({});
   const [showForm, setShowForm] = useState(false);
@@ -81,7 +80,6 @@ export const CheckOut = () => {
   });
 
   const onSubmit = async (data) => {
-    // setLoading(true);
     const res = await fetch("http://localhost:8000/user/me", {
       method: "POST",
       headers: {
@@ -100,7 +98,6 @@ export const CheckOut = () => {
     });
     const resp = await res.json();
     if (resp.success === true) {
-      //   setLoading(false);
     }
     setIsNewAddress(!isNewAddress);
   };
@@ -127,16 +124,12 @@ export const CheckOut = () => {
         }),
       }
     );
-    console.log(res);
     const resp = await res.json();
     setAddressDelete(!addressDelete);
-    console.log(resp);
   };
 
   const checkoutHandler = async (e) => {
     e.preventDefault();
-    // const price = totalPrice;
-    // const productId = props.data._id;
     const keyRes = await fetch("http://localhost:8000/getkey");
     const keyResp = await keyRes.json();
     const user = await fetch("http://localhost:8000/user/me", {
@@ -146,10 +139,7 @@ export const CheckOut = () => {
       },
     });
     const userData = await user.json();
-    console.log(userData.user.cart);
-    console.log(data.cartItemstotalPrice);
     const price = Number(data.cartItemstotalPrice.replace(/,/g, ""));
-    console.log(price);
 
     const res = await fetch("http://localhost:8000/payment/checkout", {
       method: "POST",
@@ -167,7 +157,6 @@ export const CheckOut = () => {
       }),
     });
     const resp = await res.json();
-    console.log(resp);
 
     const options = {
       key: keyResp.key, // Enter the Key ID generated from the Dashboard
@@ -183,7 +172,7 @@ export const CheckOut = () => {
         //logged in user details
         name: userData.user.name,
         email: userData.user.email,
-        contact: "9000090000",
+        contact: "9706469235",
       },
       notes: {
         address: "Razorpay Corporate Office",
