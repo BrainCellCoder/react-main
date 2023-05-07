@@ -15,6 +15,7 @@ import { CheckOut } from "./components/CheckOut/CheckOut";
 import { Accessories } from "./components/Home/Products/Accessories/Accessories";
 import { PaymentSuccess } from "./components/PaymentSuccess";
 import { Protected } from "./Protected";
+import { UserDashboard } from "./components/UserDashboard/UserDashboard";
 // import { Protected } from "./Protected";
 
 export const AppContext = createContext();
@@ -31,6 +32,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/dashboard/:id" element={<UserDashboard />} />
             <Route path="/headphones" element={<Headphones />} />
             <Route path="/accessories" element={<Accessories />} />
             <Route path="/products/:id" element={<ProductDetails />} />

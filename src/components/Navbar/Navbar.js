@@ -34,10 +34,17 @@ export const Navbars = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto nav-right">
               {isLoggedIn || cookies.userId ? (
-                <div className="account">
+                <Link
+                  to={`/dashboard/${
+                    cookies.userId
+                      ? cookies.userId
+                      : localStorage.getItem("user_id")
+                  }`}
+                  className="account"
+                >
                   <i className="fa-regular fa-user"></i>
                   <span>Account</span>
-                </div>
+                </Link>
               ) : (
                 <Link to="/login">Login</Link>
               )}

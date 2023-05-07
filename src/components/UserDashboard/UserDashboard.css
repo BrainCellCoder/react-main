@@ -1,0 +1,40 @@
+#userdashboard {
+  margin-top: 66px;
+  min-height: 71vh;
+}
+
+.css-11yukd5-MuiTabs-indicator {
+  background-color: #fff !important;
+}
+
+#userdashboard .user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  background-color: #e9ecef;
+  padding: 2rem;
+  justify-content: space-around;
+}
+
+#userdashboard .user h1 {
+  font-size: 4rem;
+}
+
+#userdashboard .user > div {
+  display: flex;
+  align-items: center;
+}
+
+#userdashboard .user .user-details {
+  margin-left: 20px;
+  font-size: 1rem;
+}
+
+#userdashboard .user .edit-profile {
+  color: #0466c8;
+  cursor: pointer;
+}
+
+#userdashboard .user .edit-profile:hover {
+  color: #002855;
+}
