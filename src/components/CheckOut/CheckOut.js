@@ -76,6 +76,7 @@ export const CheckOut = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -100,8 +101,10 @@ export const CheckOut = () => {
     });
     const resp = await res.json();
     if (resp.success === true) {
+      reset();
+      setShowForm(false);
+      setIsNewAddress(!isNewAddress);
     }
-    setIsNewAddress(!isNewAddress);
   };
   const onError = () => {
     console.log("Error");
