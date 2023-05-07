@@ -1,145 +1,3 @@
-// import * as React from "react";
-// import PropTypes from "prop-types";
-// import SwipeableViews from "react-swipeable-views";
-// import { useTheme } from "@mui/material/styles";
-// import AppBar from "@mui/material/AppBar";
-// import Tabs from "@mui/material/Tabs";
-// import Tab from "@mui/material/Tab";
-// import Typography from "@mui/material/Typography";
-// import Box from "@mui/material/Box";
-// import "./UserDashboard.css";
-// import { useEffect } from "react";
-// import { useCookies } from "react-cookie";
-// import { useState } from "react";
-// import Avatar from "@mui/material/Avatar";
-// import Chip from "@mui/material/Chip";
-// import Stack from "@mui/material/Stack";
-// import { red } from "@mui/material/colors";
-
-// function TabPanel(props) {
-//   const { children, value, index, ...other } = props;
-
-//   return (
-//     <div
-//       role="tabpanel"
-//       hidden={value !== index}
-//       id={`full-width-tabpanel-${index}`}
-//       aria-labelledby={`full-width-tab-${index}`}
-//       {...other}
-//     >
-//       {value === index && (
-//         <Box sx={{ p: 3 }}>
-//           <Typography>{children}</Typography>
-//         </Box>
-//       )}
-//     </div>
-//   );
-// }
-
-// TabPanel.propTypes = {
-//   children: PropTypes.node,
-//   index: PropTypes.number.isRequired,
-//   value: PropTypes.number.isRequired,
-// };
-
-// function a11yProps(index) {
-//   return {
-//     id: `full-width-tab-${index}`,
-//     "aria-controls": `full-width-tabpanel-${index}`,
-//   };
-// }
-
-// function UserDashboard() {
-//   const [cookies, setCookie] = useCookies(["userId", "token"]);
-//   const [user, setUser] = useState(null);
-//   const theme = useTheme();
-//   const [value, setValue] = React.useState(0);
-
-//   const handleChange = (event, newValue) => {
-//     setValue(newValue);
-//   };
-
-//   const handleChangeIndex = (index) => {
-//     setValue(index);
-//   };
-
-//   useEffect(() => {
-//     const userFetch = async () => {
-//       const res = await fetch("http://localhost:8000/user/me", {
-//         headers: {
-//           authorization: `Abhi ${
-//             localStorage.getItem("token") || cookies.token
-//           }`,
-//         },
-//       });
-//       const data = await res.json();
-//       setUser(data);
-//     };
-//     userFetch();
-//   }, []);
-
-//   return (
-//     <div id="userdashboard" className="container">
-//       <Stack direction="row" spacing={1}>
-//         <Chip
-//           avatar={<Avatar>{user?.user?.name.charAt(0)}</Avatar>}
-//           variant="outlined"
-//           label={user?.user?.name}
-//         />
-//         <Chip
-//           label={user?.user?.email}
-//           sx={{ bgcolor: "#212529", color: "#dee2e6" }}
-//         />
-//       </Stack>
-//       <Box className="box" sx={{ bgcolor: "background.paper", width: "100%" }}>
-//         <AppBar position="static">
-//           <Tabs
-//             value={value}
-//             onChange={handleChange}
-//             indicatorColor="secondary"
-//             textColor="inherit"
-//             variant="fullWidth"
-//             aria-label="full width tabs example"
-//           >
-//             <Tab
-//               label="Profile"
-//               {...a11yProps(0)}
-//               sx={{ bgcolor: "#343a40" }}
-//             />
-//             <Tab
-//               label="My orders"
-//               sx={{ bgcolor: "#343a40" }}
-//               {...a11yProps(1)}
-//             />
-//             <Tab
-//               label="Item Three"
-//               sx={{ bgcolor: "#343a40" }}
-//               {...a11yProps(2)}
-//             />
-//           </Tabs>
-//         </AppBar>
-//         <SwipeableViews
-//           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-//           index={value}
-//           onChangeIndex={handleChangeIndex}
-//         >
-//           <TabPanel value={value} index={0} dir={theme.direction}>
-//             Item One
-//           </TabPanel>
-//           <TabPanel value={value} index={1} dir={theme.direction}>
-//             Item Two
-//           </TabPanel>
-//           <TabPanel value={value} index={2} dir={theme.direction}>
-//             Item Three
-//           </TabPanel>
-//         </SwipeableViews>
-//       </Box>
-//     </div>
-//   );
-// }
-
-// export default UserDashboard;
-
 import * as React from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
@@ -152,7 +10,46 @@ import { useCookies } from "react-cookie";
 import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
-import { display, textAlign } from "@mui/system";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
+function createData(name, calories, fat, carbs, protein) {
+  return { name, calories, fat, carbs, protein };
+}
+
+const rows = [
+  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+  createData("Eclair", 262, 16.0, 24, 6.0),
+  createData("Cupcake", 305, 3.7, 67, 4.3),
+  createData("Gingerbread", 356, 16.0, 49, 3.9),
+];
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -191,6 +88,7 @@ export const UserDashboard = () => {
   const [value, setValue] = React.useState(0);
   const [cookies, setCookie] = useCookies(["userId", "token"]);
   const [user, setUser] = useState(null);
+  const [orders, setOrders] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -206,9 +104,32 @@ export const UserDashboard = () => {
         },
       });
       const data = await res.json();
+
       setUser(data);
     };
     userFetch();
+
+    const orderFetch = async () => {
+      console.log(localStorage.getItem("user_id"));
+      const res = await fetch("http://localhost:8000/user/me/myorders", {
+        method: "POST",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: localStorage.getItem("user_id") || cookies.userId,
+        }),
+      });
+      console.log(res);
+      const data = await res.json();
+      console.log(data);
+      //   setOrders(data);
+    };
+    orderFetch();
   }, []);
 
   return (
@@ -242,7 +163,7 @@ export const UserDashboard = () => {
           flexGrow: 1,
           bgcolor: "background.paper",
           display: "flex",
-          height: 224,
+          height: 500,
         }}
       >
         <Tabs
@@ -253,7 +174,7 @@ export const UserDashboard = () => {
           aria-label="Vertical tabs example"
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
-          <Tab label="Orders" {...a11yProps(0)} />
+          <Tab label="My Orders" {...a11yProps(0)} />
           <Tab label="Item Two" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />
           <Tab label="Item Four" {...a11yProps(3)} />
@@ -261,8 +182,33 @@ export const UserDashboard = () => {
           <Tab label="Item Six" {...a11yProps(5)} />
           <Tab label="Item Seven" {...a11yProps(6)} />
         </Tabs>
-        <TabPanel value={value} index={0}>
-          Item One
+        <TabPanel className="tabpanel" value={value} index={0}>
+          <TableContainer component={Paper}>
+            <Table sx={{ width: "100%" }} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Image</StyledTableCell>
+                  <StyledTableCell>Name</StyledTableCell>
+                  <StyledTableCell>Quantity</StyledTableCell>
+                  <StyledTableCell>Total Amount</StyledTableCell>
+                  <StyledTableCell>Status</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <StyledTableRow key={row.name}>
+                    <StyledTableCell component="th" scope="row">
+                      {row.name}
+                    </StyledTableCell>
+                    <StyledTableCell>{row.calories}</StyledTableCell>
+                    <StyledTableCell>{row.fat}</StyledTableCell>
+                    <StyledTableCell>{row.carbs}</StyledTableCell>
+                    <StyledTableCell>{row.protein}</StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </TabPanel>
         <TabPanel value={value} index={1}>
           Item Two

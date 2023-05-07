@@ -38,3 +38,7 @@
 #userdashboard .user .edit-profile:hover {
   color: #002855;
 }
+
+.tabpanel {
+  width: 90%;
+}
