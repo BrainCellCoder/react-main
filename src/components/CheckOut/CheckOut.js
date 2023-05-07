@@ -38,7 +38,9 @@ export const CheckOut = () => {
         },
       });
       const data = await user.json();
+      console.log(data.user.shippingAddress[0]);
       setUserData(data);
+      setSelectedOption(data.user.shippingAddress[0]);
     };
     fetchUser();
   }, [isNewAddress, addressDelete]);
@@ -389,12 +391,22 @@ export const CheckOut = () => {
                   <p>₹ {data.cartItemstotalPrice}</p>
                 </div>
                 <div className="checkout-shopping">
-                  <button onClick={checkoutHandler} className="checkout">
+                  <button
+                    onClick={checkoutHandler}
+                    disabled={!userData?.user?.shippingAddress.length}
+                    className="checkout"
+                  >
                     Proceed to Pay
                   </button>
                   {/* <div className="shopping">Continue Shopping</div> */}
                 </div>
               </div>
+              {!userData?.user?.shippingAddress.length && (
+                <p className="address-alert-msg">
+                  <i className="fa-solid fa-circle-exclamation"></i> Select the
+                  Delivery Address
+                </p>
+              )}
             </div>
           </div>
         </div>

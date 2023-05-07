@@ -20,6 +20,11 @@ p {
   margin: 0 !important;
 }
 
+#checkout .checkout:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 #checkout .checkout:hover {
   background-color: #e36414;
 }
@@ -226,4 +231,54 @@ p {
   padding: 0.2rem 0.5rem;
   border-radius: 50%;
   font-size: 0.7rem;
+}
+
+.address-alert-msg {
+  background-color: #ffb3c1;
+  color: #c9184a;
+  display: inline-block;
+  font-weight: 600;
+  margin-top: 20px;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+}
+
+.address-alert-msg {
+  animation: shake 0.7s infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-2px, 0);
+  }
+  20% {
+    transform: translate(2px, 0);
+  }
+  30% {
+    transform: translate(-2px, 0);
+  }
+  40% {
+    transform: translate(2px, 0);
+  }
+  50% {
+    transform: translate(-2px, 0);
+  }
+  60% {
+    transform: translate(2px, 0);
+  }
+  70% {
+    transform: translate(-2px, 0);
+  }
+  80% {
+    transform: translate(2px, 0);
+  }
+  90% {
+    transform: translate(-2px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
