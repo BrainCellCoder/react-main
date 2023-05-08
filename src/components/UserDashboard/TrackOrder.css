@@ -1,0 +1,8 @@
+#track-order {
+  display: flex;
+  align-items: center;
+}
+
+#track-order p {
+  margin-left: 10px;
+}

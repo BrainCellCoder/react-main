@@ -24,6 +24,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import { TrackOrder } from "./TrackOrder";
+import { DeliveryDate } from "./DeliveryDate";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -180,8 +181,8 @@ export const UserDashboard = () => {
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
           <Tab label="My Orders" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="In Cart" {...a11yProps(1)} />
+          <Tab label="In Wish List" {...a11yProps(2)} />
           <Tab label="Item Four" {...a11yProps(3)} />
           <Tab label="Item Five" {...a11yProps(4)} />
           <Tab label="Item Six" {...a11yProps(5)} />
@@ -224,11 +225,13 @@ export const UserDashboard = () => {
                       {/* <StyledTableCell>qqq</StyledTableCell> */}
                     </StyledTableRow>
                   ))}
-                  <TableRow sx={{ bgcolor: "#e4d9ff" }}>
+                  <TableRow sx={{ bgcolor: "#e4d9ff", padding: "1rem" }}>
                     <TableCell sx={{ fontWeight: "600", fontSize: "1rem" }}>
                       <TrackOrder status={order.status} />
                     </TableCell>
-                    <TableCell></TableCell>
+                    <TableCell>
+                      <DeliveryDate deliveryDate={order.deliveryDate} />
+                    </TableCell>
                     <TableCell></TableCell>
                     <TableCell></TableCell>
                   </TableRow>

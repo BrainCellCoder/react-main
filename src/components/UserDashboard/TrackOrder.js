@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import "./TrackOrder.css";
 
 const steps = ["Not Processed", "Processing", "Shipped", "Delivered"];
 const style = {
@@ -27,10 +28,12 @@ export const TrackOrder = (props) => {
   const handleClose = () => setOpen(false);
   return (
     <>
-      {/* <Button onClick={handleOpen}>Track Your Order</Button> */}
-      <Button onClick={handleOpen} variant="contained">
-        Track Your Order
-      </Button>
+      <div id="track-order">
+        <Button onClick={handleOpen} variant="contained">
+          Track Your Order
+        </Button>
+        {/* <p>Expected delivery Dat{outputDate}</p> */}
+      </div>
       <Modal
         open={open}
         onClose={handleClose}
