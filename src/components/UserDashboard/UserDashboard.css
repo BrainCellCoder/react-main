@@ -1,6 +1,7 @@
 #userdashboard {
   margin-top: 66px;
   min-height: 71vh;
+  margin-bottom: 50px;
 }
 
 .css-11yukd5-MuiTabs-indicator {
@@ -41,4 +42,9 @@
 
 .tabpanel {
   width: 90%;
+  overflow: scroll;
+}
+
+.order-product-img {
+  width: 100px;
 }

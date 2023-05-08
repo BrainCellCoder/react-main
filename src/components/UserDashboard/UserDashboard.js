@@ -18,6 +18,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import { TrackOrder } from "./TrackOrder";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -88,7 +94,7 @@ export const UserDashboard = () => {
   const [value, setValue] = React.useState(0);
   const [cookies, setCookie] = useCookies(["userId", "token"]);
   const [user, setUser] = useState(null);
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -110,7 +116,6 @@ export const UserDashboard = () => {
     userFetch();
 
     const orderFetch = async () => {
-      console.log(localStorage.getItem("user_id"));
       const res = await fetch("http://localhost:8000/user/me/myorders", {
         method: "POST",
         headers: {
@@ -124,13 +129,13 @@ export const UserDashboard = () => {
           id: localStorage.getItem("user_id") || cookies.userId,
         }),
       });
-      console.log(res);
       const data = await res.json();
       console.log(data);
-      //   setOrders(data);
+      setOrders(data.orders);
     };
     orderFetch();
   }, []);
+  console.log(orders);
 
   return (
     <div id="userdashboard">
@@ -183,32 +188,54 @@ export const UserDashboard = () => {
           <Tab label="Item Seven" {...a11yProps(6)} />
         </Tabs>
         <TabPanel className="tabpanel" value={value} index={0}>
-          <TableContainer component={Paper}>
-            <Table sx={{ width: "100%" }} aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Image</StyledTableCell>
-                  <StyledTableCell>Name</StyledTableCell>
-                  <StyledTableCell>Quantity</StyledTableCell>
-                  <StyledTableCell>Total Amount</StyledTableCell>
-                  <StyledTableCell>Status</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <StyledTableRow key={row.name}>
-                    <StyledTableCell component="th" scope="row">
-                      {row.name}
-                    </StyledTableCell>
-                    <StyledTableCell>{row.calories}</StyledTableCell>
-                    <StyledTableCell>{row.fat}</StyledTableCell>
-                    <StyledTableCell>{row.carbs}</StyledTableCell>
-                    <StyledTableCell>{row.protein}</StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          {orders?.map((order, key) => (
+            <TableContainer
+              component={Paper}
+              key={key}
+              sx={{ marginTop: "10px" }}
+            >
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Image</StyledTableCell>
+                    <StyledTableCell>Name</StyledTableCell>
+                    <StyledTableCell>Quantity</StyledTableCell>
+                    <StyledTableCell>Amount</StyledTableCell>
+                    {/* <StyledTableCell>Status</StyledTableCell> */}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {order.products.map((product, key) => (
+                    <StyledTableRow key={key}>
+                      <StyledTableCell>
+                        <img
+                          className="order-product-img"
+                          src={product.productId.image[0].url}
+                        ></img>
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        {product.productId.name}
+                      </StyledTableCell>
+                      <StyledTableCell>{product.quantity}</StyledTableCell>
+                      <StyledTableCell>
+                        <i className="fa-solid fa-indian-rupee-sign"></i>{" "}
+                        {product.quantity * product.productId.price}
+                      </StyledTableCell>
+                      {/* <StyledTableCell>qqq</StyledTableCell> */}
+                    </StyledTableRow>
+                  ))}
+                  <TableRow sx={{ bgcolor: "#e4d9ff" }}>
+                    <TableCell sx={{ fontWeight: "600", fontSize: "1rem" }}>
+                      <TrackOrder status={order.status} />
+                    </TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ))}
         </TabPanel>
         <TabPanel value={value} index={1}>
           Item Two
