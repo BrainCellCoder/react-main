@@ -6,9 +6,9 @@ export const DeliveryDate = (props) => {
   const outputDate = format(inputDate, "dd MMM yyyy");
   return (
     <>
-      <p style={{ fontSize: "1rem", fontWeight: "700" }}>
-        Expected On: {outputDate}
-      </p>
+      {/* <p style={{ fontSize: "1rem", fontWeight: "700" }}> */}
+      Expected On: {outputDate}
+      {/* </p> */}
     </>
   );
 };

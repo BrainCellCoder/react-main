@@ -12,9 +12,11 @@
   display: flex;
   align-items: center;
   margin-bottom: 50px;
-  background-color: #e9ecef;
+  background-image: url("bg.jpg");
+  background-size: cover;
   padding: 2rem;
   justify-content: space-around;
+  height: 300px;
 }
 
 #userdashboard .user h1 {
@@ -28,7 +30,7 @@
 
 #userdashboard .user .user-details {
   margin-left: 20px;
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 #userdashboard .user .edit-profile {

@@ -181,12 +181,12 @@ export const UserDashboard = () => {
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
           <Tab label="My Orders" {...a11yProps(0)} />
-          <Tab label="In Cart" {...a11yProps(1)} />
+          {/* <Tab label="In Cart" {...a11yProps(1)} />
           <Tab label="In Wish List" {...a11yProps(2)} />
           <Tab label="Item Four" {...a11yProps(3)} />
           <Tab label="Item Five" {...a11yProps(4)} />
           <Tab label="Item Six" {...a11yProps(5)} />
-          <Tab label="Item Seven" {...a11yProps(6)} />
+          <Tab label="Item Seven" {...a11yProps(6)} /> */}
         </Tabs>
         <TabPanel className="tabpanel" value={value} index={0}>
           {orders?.map((order, key) => (
@@ -202,7 +202,6 @@ export const UserDashboard = () => {
                     <StyledTableCell>Name</StyledTableCell>
                     <StyledTableCell>Quantity</StyledTableCell>
                     <StyledTableCell>Amount</StyledTableCell>
-                    {/* <StyledTableCell>Status</StyledTableCell> */}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -232,7 +231,19 @@ export const UserDashboard = () => {
                     <TableCell>
                       <DeliveryDate deliveryDate={order.deliveryDate} />
                     </TableCell>
-                    <TableCell></TableCell>
+                    <TableCell>
+                      <Chip
+                        avatar={
+                          <Avatar>
+                            <i
+                              style={{ fontSize: "1.3rem", color: "green" }}
+                              class="fa-solid fa-circle-check"
+                            ></i>
+                          </Avatar>
+                        }
+                        label="Payment"
+                      />
+                    </TableCell>
                     <TableCell></TableCell>
                   </TableRow>
                 </TableBody>
@@ -240,7 +251,7 @@ export const UserDashboard = () => {
             </TableContainer>
           ))}
         </TabPanel>
-        <TabPanel value={value} index={1}>
+        {/* <TabPanel value={value} index={1}>
           Item Two
         </TabPanel>
         <TabPanel value={value} index={2}>
@@ -257,7 +268,7 @@ export const UserDashboard = () => {
         </TabPanel>
         <TabPanel value={value} index={6}>
           Item Seven
-        </TabPanel>
+        </TabPanel> */}
       </Box>
     </div>
   );
