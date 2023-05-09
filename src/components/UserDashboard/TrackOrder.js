@@ -9,6 +9,7 @@ import {
 import { Box } from "@mui/system";
 import React from "react";
 import "./TrackOrder.css";
+import ListGroup from "react-bootstrap/ListGroup";
 
 const steps = ["Not Processed", "Processing", "Shipped", "Delivered"];
 const style = {
@@ -41,7 +42,12 @@ export const TrackOrder = (props) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography
+            sx={{ textAlign: "center" }}
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+          >
             Order Status
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -83,6 +89,30 @@ export const TrackOrder = (props) => {
                 </Stepper>
               )}
             </Box>
+            <ListGroup
+              as="ul"
+              className="track-order-address mt-3 m-auto"
+              style={{ width: "40%" }}
+            >
+              <ListGroup.Item as="li" active>
+                Delivery Address
+              </ListGroup.Item>
+              <ListGroup.Item as="li">
+                <span>Full address:</span> {props.shippingInfo.address}
+              </ListGroup.Item>
+              <ListGroup.Item as="li">
+                <span>City:</span> {props.shippingInfo.city}
+              </ListGroup.Item>
+              <ListGroup.Item as="li">
+                <span>Country:</span> {props.shippingInfo.country}
+              </ListGroup.Item>
+              <ListGroup.Item as="li">
+                <span>Phone Number:</span> {props.shippingInfo.phoneNo}
+              </ListGroup.Item>
+              <ListGroup.Item as="li">
+                <span>Pin Code</span> {props.shippingInfo.pinCode}
+              </ListGroup.Item>
+            </ListGroup>
           </Typography>
         </Box>
       </Modal>

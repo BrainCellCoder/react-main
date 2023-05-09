@@ -144,7 +144,7 @@ export const UserDashboard = () => {
         <div>
           <Avatar
             sx={{
-              bgcolor: "#e5b3fe",
+              bgcolor: "#fb8500",
               color: "#10002b",
               width: 150,
               height: 150,
@@ -226,7 +226,10 @@ export const UserDashboard = () => {
                   ))}
                   <TableRow sx={{ bgcolor: "#e4d9ff", padding: "1rem" }}>
                     <TableCell sx={{ fontWeight: "600", fontSize: "1rem" }}>
-                      <TrackOrder status={order.status} />
+                      <TrackOrder
+                        status={order.status}
+                        shippingInfo={order.shippingInfo}
+                      />
                     </TableCell>
                     <TableCell>
                       <DeliveryDate deliveryDate={order.deliveryDate} />
@@ -241,7 +244,7 @@ export const UserDashboard = () => {
                             ></i>
                           </Avatar>
                         }
-                        label="Payment"
+                        label="Paid"
                       />
                     </TableCell>
                     <TableCell></TableCell>
