@@ -15,8 +15,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import "./Admin.css";
-import { Co2Sharp } from "@mui/icons-material";
 import { Customers } from "./Customers";
+import { AddProduct } from "./AddProduct";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -161,6 +161,7 @@ export const Admin = () => {
             </Typography>
           </Paper>
         </Grid>
+        <AddProduct />
         <Box
           sx={{
             bgcolor: "background.paper",
