@@ -10,6 +10,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import { useForm, Controller } from "react-hook-form";
+import Form from "react-bootstrap/Form";
 
 const style = {
   position: "absolute",
@@ -28,10 +29,10 @@ export const AddProduct = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [age, setAge] = React.useState("");
+  const [category, setCategory] = React.useState("");
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setCategory(event.target.value);
   };
 
   const allowedFileTypes = ["image/jpeg", "image/png"];
@@ -41,7 +42,7 @@ export const AddProduct = () => {
   const onSubmit = async (data) => {
     console.log(data);
     const formData = new FormData();
-    formData.append("category", data.category);
+    formData.append("category", category);
     formData.append("name", data.name);
     formData.append("description", data.description);
     formData.append("price", data.price);
@@ -82,36 +83,67 @@ export const AddProduct = () => {
             Add a new product
           </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              name="category"
-              type="text"
-              {...register("category")}
-              placeholder="category"
-            />
+            <FormControl fullWidth sx={{ marginBottom: "10px" }}>
+              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={category}
+                label="Ctegory"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="Laptop">Laptop</MenuItem>
+                <MenuItem value="Mobile">Mobile</MenuItem>
+                <MenuItem value="Headphone">Headphone</MenuItem>
+                <MenuItem value="Accessories">Accessories</MenuItem>
+              </Select>
+            </FormControl>
 
-            <input
+            <TextField
+              sx={{ marginBottom: "10px" }}
+              id="outlined-basic"
+              label="Name"
+              variant="outlined"
               name="name"
-              type="text"
+              fullWidth
               {...register("name")}
-              placeholder="name"
+              required
             />
-            <input
+            <TextField
+              sx={{ marginBottom: "10px" }}
+              id="outlined-basic"
+              label="Description"
+              variant="outlined"
               name="description"
-              type="text"
               {...register("description")}
-              placeholder="description"
+              fullWidth
+              required
             />
-
-            <input
+            <TextField
+              sx={{ marginBottom: "10px" }}
+              id="outlined-basic"
+              label="Price"
+              variant="outlined"
               name="price"
               type="number"
               {...register("price")}
-              placeholder="price"
+              fullWidth
+              required
             />
+            <Form.Group controlId="formFile" className="mb-3">
+              <Form.Label>Choose Image</Form.Label>
+              <Form.Control
+                required
+                name="file"
+                type="file"
+                {...register("file")}
+              />
+            </Form.Group>
 
-            <input name="file" type="file" {...register("file")} />
-
-            <button type="submit">Submit</button>
+            <Button variant="contained" type="submit">
+              Submit
+            </Button>
           </form>
         </Box>
       </Modal>

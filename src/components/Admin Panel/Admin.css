@@ -1,6 +1,7 @@
 #admin-dashboard {
   margin-top: 100px;
-  min-height: 73vh;
+  /* min-height: 73vh; */
+  margin-bottom: 40px;
 }
 
 #orders-count {

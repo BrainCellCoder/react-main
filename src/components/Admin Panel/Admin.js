@@ -166,7 +166,7 @@ export const Admin = () => {
           sx={{
             bgcolor: "background.paper",
             width: "100%",
-            height: "55vh",
+            height: "80vh",
             overflow: "scroll",
           }}
         >
