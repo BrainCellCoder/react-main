@@ -46,12 +46,9 @@
   color: #38b000;
 }
 
-.product-wishlist-remove {
-  margin-top: 1rem;
-}
-
-.product-wishlist {
-  cursor: pointer;
+.product-control {
+  display: flex;
+  align-items: center;
 }
 
 .product-remove {

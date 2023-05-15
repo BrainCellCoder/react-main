@@ -32,6 +32,11 @@
 
 .product-details .ratings {
   display: flex;
+  align-items: center;
+}
+
+.product-details .ratings .rate-product {
+  margin-left: 20px;
 }
 
 .product-price {

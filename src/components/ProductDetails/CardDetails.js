@@ -6,12 +6,27 @@ import StarRating from "./StarRating";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useCookies } from "react-cookie";
-import { Modal } from "react-bootstrap";
-import Accordion from "react-bootstrap/Accordion";
-// import Razorpay from "razor";
-
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 import "../../Utils/star.css";
-import { type } from "@testing-library/user-event/dist/type";
+import { Grid, Paper, TextField } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 export const CardDetails = (props) => {
   const [rating, setRating] = useState(0);
@@ -22,19 +37,16 @@ export const CardDetails = (props) => {
   const [numReviews, setNumReviews] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
-  const [showModal, setShowModal] = useState(false);
   const [cookies, setCookie] = useCookies(["userId", "token"]);
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const imageUrl = props.data.image ? props.data.image[0].url : null;
   const price = new Intl.NumberFormat("en-IN", {
     maximumSignificantDigits: 3,
   }).format(props.data.price);
-
-  const handleQuantityChange = (event) => {
-    setQuantity(parseInt(event.target.value));
-  };
 
   const addToCart = async (id) => {
     const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
@@ -49,7 +61,6 @@ export const CardDetails = (props) => {
         quantity: quantity,
       }),
     });
-    console.log({ id, quantity });
     const data = await res.json();
     console.log(data);
     toast.success(data.message, {
@@ -68,18 +79,42 @@ export const CardDetails = (props) => {
     }
   };
 
-  const handleOpenModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
+  const addToWishlist = async (id) => {
+    const res = await fetch(`http://localhost:8000/user/wishlist/${id}`, {
+      method: "POST",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    toast.success(data.message, {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+    if (!data.success) {
+      Navigate("/login");
+    }
+  };
 
   const handleRatingChange = (value) => {
     setRating(value);
   };
-
   const handleCommentChange = (event) => {
     setComment(event.target.value);
   };
 
   const handleSubmit = async (event) => {
+    console.log("rrrr");
+    console.log(rating, comment);
     event.preventDefault();
 
     fetch(`http://localhost:8000/review/${props.data._id}/new`, {
@@ -98,13 +133,14 @@ export const CardDetails = (props) => {
           throw new Error("Failed to send rating and comment");
         }
         setToggle(!toggle);
-        handleCloseModal();
+        // handleCloseModal();
       })
       .catch((error) => {
         console.error(error);
       });
     setRating(0);
     setComment("");
+    handleClose();
   };
 
   useEffect(() => {
@@ -124,66 +160,6 @@ export const CardDetails = (props) => {
     fetchReviews();
   }, [toggle]);
 
-  const checkoutHandler = async (e) => {
-    e.preventDefault();
-    const intPrice = parseInt(price.replace(",", ""));
-    const productId = props.data._id;
-    const cartItems = [{ productId: productId, quantity: quantity }];
-    const keyRes = await fetch("http://localhost:8000/getkey");
-    const keyResp = await keyRes.json();
-
-    const user = await fetch("http://localhost:8000/user/me", {
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        "Content-Type": "application/json",
-      },
-    });
-    const userData = await user.json();
-
-    const res = await fetch("http://localhost:8000/payment/checkout", {
-      method: "POST",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        amount: intPrice * quantity,
-        cart: cartItems,
-        buyer: localStorage.getItem("user_id") || cookies.userId,
-        address,
-        phone,
-        email: userData.user.email,
-      }),
-    });
-    const resp = await res.json();
-
-    const options = {
-      key: keyResp.key, // Enter the Key ID generated from the Dashboard
-      amount: resp.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-      currency: "INR",
-      name: "TechKart",
-      description: "RazorPay Transaction",
-      image:
-        "https://res.cloudinary.com/dywjchq8q/image/upload/v1681550262/logo1_hrtppt.png",
-      order_id: resp.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      callback_url: "http://localhost:8000/payment/paymentverification",
-      prefill: {
-        //logged in user details
-        name: userData.user.name,
-        email: userData.user.email,
-        contact: "9000090000",
-      },
-      notes: {
-        address: "Razorpay Corporate Office",
-      },
-      theme: {
-        color: "#7b2cbf",
-      },
-    };
-    const razor = new window.Razorpay(options);
-    razor.open();
-  };
-
   return (
     <>
       <div id="product-details">
@@ -198,9 +174,54 @@ export const CardDetails = (props) => {
               <p className="text-muted">{props.data.description}</p>
               <div className="ratings">
                 <StarRating rating={avgRating} />
-                <p className="number-of-reviews text-muted">
+                <span className="number-of-reviews text-muted">
                   ({numReviews} reviews)
-                </p>
+                </span>
+                <div className="rate-product">
+                  <Button
+                    onClick={handleOpen}
+                    variant="outlined"
+                    color="warning"
+                    sx={{ fontWeight: "500", border: "1px solid" }}
+                  >
+                    Rate this Product
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <form onSubmit={handleSubmit}>
+                        <Rating
+                          name="star-rating"
+                          value={rating}
+                          onChange={handleRatingChange}
+                        />
+                        <TextField
+                          id="outlined-multiline-flexible"
+                          label="Comment"
+                          multiline
+                          maxRows={4}
+                          fullWidth
+                          onChange={handleCommentChange}
+                          required
+                        />
+
+                        <Box mt={2}>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                          >
+                            Submit
+                          </Button>
+                        </Box>
+                      </form>
+                    </Box>
+                  </Modal>
+                </div>
               </div>
             </div>
             <div className="product-price">
@@ -208,7 +229,7 @@ export const CardDetails = (props) => {
               <h1>₹{price}</h1>
             </div>
             <div className="product-control-form">
-              <div className="pro-quantity">
+              {/* <div className="pro-quantity">
                 <label for="quantity">Quantity:</label>
                 <select
                   id="quantity"
@@ -222,10 +243,15 @@ export const CardDetails = (props) => {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-              </div>
+              </div> */}
               <div className="product-buy-cart">
-                <div className="product-buy" onClick={handleOpenModal}>
-                  Buy Now
+                <div
+                  className="product-buy"
+                  onClick={() => {
+                    addToWishlist(props.data._id);
+                  }}
+                >
+                  Add to Wish list
                 </div>
                 <div
                   className="product-cart"
@@ -235,32 +261,6 @@ export const CardDetails = (props) => {
                 >
                   Add to Cart
                 </div>
-                <Modal show={showModal} onHide={handleCloseModal}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Fill out this form</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <form className="address-form" onSubmit={checkoutHandler}>
-                      <textarea
-                        type="text"
-                        id="address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        placeholder="Enter Full Address"
-                        required={true}
-                      />
-                      <input
-                        type="number"
-                        id="phone"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        placeholder="Enter Phone Number"
-                        required={true}
-                      />
-                      <button type="submit">Proceed</button>
-                    </form>
-                  </Modal.Body>
-                </Modal>
               </div>
             </div>
             <ToastContainer
@@ -277,88 +277,40 @@ export const CardDetails = (props) => {
             />
           </div>
         </div>
-      </div>
-      <div className="container product-reviews">
-        <div className="row">
-          <div className="col-md-6 leave-review">
-            {/* <button className="rate-btn" onClick={handleOpenModal}>
-              Rate this product
-            </button>
-            <Modal show={showModal} onHide={handleCloseModal}>
-              <Modal.Header closeButton>
-                <Modal.Title>Rate this Product</Modal.Title>
-              </Modal.Header>
-              <Modal.Body className="review-modal">
-                <form onSubmit={handleSubmit}>
-                  <Rating
-                    count={5}
-                    value={rating}
-                    onChange={handleRatingChange}
-                    size={24}
-                    activeColor="#ffd700"
+        <Typography
+          variant="h3"
+          component="h3"
+          sx={{ textAlign: "center", marginBottom: "2rem" }}
+        >
+          Reviews
+        </Typography>
+        <Grid container spacing={2}>
+          {reviews.map((review, key) => {
+            return (
+              <Grid item xs={12} sm={6} md={3}>
+                <Paper
+                  style={{
+                    minHeight: 110,
+                    backgroundColor: "#f8f9fa",
+                    padding: "0.5rem",
+                  }}
+                >
+                  <Chip
+                    avatar={
+                      <Avatar sx={{ backgroundColor: "#f9bec7" }}>
+                        {review.author?.name.charAt(0)}
+                      </Avatar>
+                    }
+                    label={review.author?.name}
+                    variant="outlined"
                   />
-                  <textarea
-                    className="border border-3"
-                    value={comment}
-                    onChange={handleCommentChange}
-                  />
-                  <button className="btn" type="submit">
-                    Submit
-                  </button>
-                </form>
-              </Modal.Body>
-            </Modal> */}
-            <Accordion className="accordion" defaultActiveKey="0">
-              <Accordion.Item className="accordion-item" eventKey="0">
-                <Accordion.Header className="accordion-header">
-                  Rate this product
-                </Accordion.Header>
-                <Accordion.Body>
-                  <form onSubmit={handleSubmit}>
-                    <Rating
-                      count={5}
-                      value={rating}
-                      onChange={handleRatingChange}
-                      size={24}
-                      activeColor="#ffd700"
-                    />
-                    <textarea
-                      className="border border-3"
-                      value={comment}
-                      onChange={handleCommentChange}
-                    />
-                    <button className="btn" type="submit">
-                      Submit
-                    </button>
-                  </form>
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-          </div>
-          <div className="col-md-6">
-            <h3>Product Reviews</h3>
-            <div className="reviews">
-              {reviews?.map((review, key) => (
-                <div key={key}>
-                  <div className="review">
-                    <div className="review-name">
-                      <span>User: </span>
-                      {review.author?.name}
-                    </div>
-                    <div className="review-star">
-                      <span>Stars: </span>
-                      <StarRating rating={review?.rating} />
-                    </div>
-                    <div className="review-comment text-muted">
-                      <span>Comment: </span>
-                      {review?.comment}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+                  <StarRating rating={review.rating} />
+                  {review.comment}
+                </Paper>
+              </Grid>
+            );
+          })}
+        </Grid>
       </div>
     </>
   );

@@ -87,23 +87,13 @@ export const CartItems = (props) => {
                   <option value="5">5</option>
                 </select>
               </div>
-              <div className="product-wishlist-remove">
-                <div
-                  className="product-wishlist"
-                  onClick={() => {
-                    addToWishList(props.data.productId._id);
-                  }}
-                >
-                  <i className="fa-regular fa-heart"></i> Wishlist
-                </div>
-                <div
-                  className="product-remove"
-                  onClick={() => {
-                    cartRemoveHandler(props.data.productId._id);
-                  }}
-                >
-                  <i className="fa-solid fa-x"></i> Remove
-                </div>
+              <div
+                className="product-remove"
+                onClick={() => {
+                  cartRemoveHandler(props.data.productId._id);
+                }}
+              >
+                <i className="fa-solid fa-x"></i> Remove
               </div>
             </div>
           </div>
