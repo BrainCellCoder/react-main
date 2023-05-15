@@ -5,6 +5,7 @@ import StarRating from "../../ProductDetails/StarRating";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useCookies } from "react-cookie";
+import "./Card.css";
 
 export const Card = (props) => {
   const [addWishlist, setAddWishlist] = useState(false);
@@ -180,7 +181,7 @@ export const Card = (props) => {
                 addToCart(props.data._id);
               }}
             >
-              Add to cart
+              <i class="fa-solid fa-cart-plus"></i> Add to cart
             </div>
           )}
           {productInCart && (
@@ -198,7 +199,7 @@ export const Card = (props) => {
             to={`products/${props.data._id}`}
             state={{ product: props.data }}
           >
-            View
+            <i class="fa-sharp fa-solid fa-eye"></i> View
           </Link>
         </div>
         {!productInWishlist && (

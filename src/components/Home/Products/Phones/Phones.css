@@ -100,9 +100,19 @@
 .product .add-view {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .product .view {
   text-decoration: none;
+  padding: 0.3rem 1.3rem;
+  margin-left: 5px;
+  background-color: #c7f9cc;
+  color: #1b4332;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.product .view:hover {
+  background-color: #1b4332;
+  color: #c7f9cc;
 }
