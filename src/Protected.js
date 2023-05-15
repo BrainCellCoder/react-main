@@ -12,7 +12,7 @@ export const Protected = (props) => {
     let login = localStorage.getItem("user_id") || cookies.userId;
     console.log(login);
     if (!login) {
-      navigate("/login");
+      navigate("/");
     }
   });
   return (

@@ -11,6 +11,7 @@ import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import { useForm, Controller } from "react-hook-form";
 import Form from "react-bootstrap/Form";
+import { useCookies } from "react-cookie";
 
 const style = {
   position: "absolute",
@@ -28,6 +29,7 @@ export const AddProduct = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const [category, setCategory] = React.useState("");
 
@@ -51,6 +53,11 @@ export const AddProduct = () => {
     const res = await fetch("http://localhost:8000/admin/product/new", {
       method: "POST",
       body: formData,
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
     });
     const resp = await res.json();
     console.log(resp);

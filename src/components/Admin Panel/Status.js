@@ -15,6 +15,7 @@ export const Status = (props) => {
       {
         method: "POST",
         headers: {
+          authorization: `Abhi ${localStorage.getItem("token")}`,
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
         },

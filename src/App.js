@@ -16,6 +16,7 @@ import { Accessories } from "./components/Home/Products/Accessories/Accessories"
 import { PaymentSuccess } from "./components/PaymentSuccess";
 import { Protected } from "./Protected";
 import { UserDashboard } from "./components/UserDashboard/UserDashboard";
+import { LoginAdmin } from "./components/Admin Panel/Login";
 // import { Protected } from "./Protected";
 
 export const AppContext = createContext();
@@ -31,7 +32,9 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/adminlogin" element={<LoginAdmin />} />
+            {/* <Route path="/admin" element={<Admin />} /> */}
+            <Route path="/admin" element={<Protected Component={Admin} />} />
             <Route path="/dashboard/:id" element={<UserDashboard />} />
             <Route path="/headphones" element={<Headphones />} />
             <Route path="/accessories" element={<Accessories />} />

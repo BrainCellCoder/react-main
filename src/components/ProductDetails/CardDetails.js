@@ -193,32 +193,36 @@ export const CardDetails = (props) => {
                     aria-describedby="modal-modal-description"
                   >
                     <Box sx={style}>
-                      <form onSubmit={handleSubmit}>
-                        <Rating
-                          name="star-rating"
-                          value={rating}
-                          onChange={handleRatingChange}
-                        />
-                        <TextField
-                          id="outlined-multiline-flexible"
-                          label="Comment"
-                          multiline
-                          maxRows={4}
-                          fullWidth
-                          onChange={handleCommentChange}
-                          required
-                        />
+                      {localStorage.getItem("token") || cookies.token ? (
+                        <form onSubmit={handleSubmit}>
+                          <Rating
+                            name="star-rating"
+                            value={rating}
+                            onChange={handleRatingChange}
+                          />
+                          <TextField
+                            id="outlined-multiline-flexible"
+                            label="Comment"
+                            multiline
+                            maxRows={4}
+                            fullWidth
+                            onChange={handleCommentChange}
+                            required
+                          />
 
-                        <Box mt={2}>
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                          >
-                            Submit
-                          </Button>
-                        </Box>
-                      </form>
+                          <Box mt={2}>
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              type="submit"
+                            >
+                              Submit
+                            </Button>
+                          </Box>
+                        </form>
+                      ) : (
+                        "Please Login to Rate the Product"
+                      )}
                     </Box>
                   </Modal>
                 </div>
