@@ -130,28 +130,32 @@ export const Card = (props) => {
   };
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const res = await fetch("http://localhost:8000/user/me", {
-        headers: {
-          authorization: `Abhi ${
-            localStorage.getItem("token") || cookies.token
-          }`,
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-      setProductInWishlist(
-        data?.user?.wishList.some((item) => item._id === props.data._id)
-      );
-      const inCart = data?.user?.cart.some(
-        (item) => item.productId._id == props.data._id
-      );
-      setProductInCart(
-        data?.user?.cart.some((item) => item.productId._id === props.data._id)
-      );
-    };
-    fetchUser();
+    try {
+      const fetchUser = async () => {
+        const res = await fetch("http://localhost:8000/user/me", {
+          headers: {
+            authorization: `Abhi ${
+              localStorage.getItem("token") || cookies.token
+            }`,
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await res.json();
+        setProductInWishlist(
+          data?.user?.wishList.some((item) => item._id === props.data._id)
+        );
+        const inCart = data?.user?.cart.some(
+          (item) => item.productId._id == props.data._id
+        );
+        setProductInCart(
+          data?.user?.cart.some((item) => item.productId._id === props.data._id)
+        );
+        fetchUser();
+      };
+    } catch (err) {
+      console.log(err);
+    }
   }, [addWishlist, addCart]);
 
   return (
@@ -181,7 +185,7 @@ export const Card = (props) => {
                 addToCart(props.data._id);
               }}
             >
-              <i class="fa-solid fa-cart-plus"></i> Add to cart
+              <i className="fa-solid fa-cart-plus"></i> Add to cart
             </div>
           )}
           {productInCart && (
@@ -199,7 +203,7 @@ export const Card = (props) => {
             to={`products/${props.data._id}`}
             state={{ product: props.data }}
           >
-            <i class="fa-sharp fa-solid fa-eye"></i> View
+            <i className="fa-sharp fa-solid fa-eye"></i> View
           </Link>
         </div>
         {!productInWishlist && (

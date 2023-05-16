@@ -69,6 +69,7 @@ export const Login = () => {
   };
 
   const google = () => {
+    console.log("google");
     window.open("http://localhost:8000/auth/google", "_self");
   };
 

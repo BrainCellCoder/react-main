@@ -13,6 +13,29 @@
   font-size: 1.5rem;
 }
 
+.navbrand {
+  display: flex;
+  /* width: 300px; */
+  align-items: center;
+}
+
+.navbrand .logout {
+  margin-left: 20px;
+  font-size: 1rem;
+  background-color: #ffb3c1;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  color: #ba181b;
+  border: 1px solid #ba181b;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.navbrand .logout:hover {
+  background-color: #ba181b;
+  color: #ffb3c1;
+}
+
 #logo {
   width: 3rem;
 }

@@ -37,7 +37,7 @@ export const LoginAdmin = () => {
       localStorage.setItem("user_id", resp.admin._id);
       // document.cookie = `token=${resp.token}; path=/`;
 
-      navigate("/");
+      navigate("/admin");
     } else if (resp.success === false) {
       setError(true);
       navigate("/login");

@@ -1,17 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./Register.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Register = () => {
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
   const schema = yup.object().shape({
-    name: yup.string().required("*name is required"),
+    name: yup.string().min(4, "Minimum 4 chars").required("*name is required"),
     email: yup
       .string()
       .email("*please provide a valid email")
@@ -49,6 +50,30 @@ export const Register = () => {
     const resp = await res.json();
     console.log(resp);
     if (resp.success === true) {
+      toast.success(resp.message, {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      navigate("/login");
+      setLoading(false);
+    } else if (resp.success === false) {
+      console.log("falied");
+      toast.error(resp.message, {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       setLoading(false);
     }
   };
@@ -117,6 +142,18 @@ export const Register = () => {
                 "Register"
               )}
             </Button>
+            <ToastContainer
+              position="bottom-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              // closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
             <p className="reg-bottom-login">
               Already have an account?
               <Link className="reg-login" to="/login">

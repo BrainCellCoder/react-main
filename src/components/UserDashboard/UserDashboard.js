@@ -235,7 +235,7 @@ export const UserDashboard = () => {
                           <Avatar>
                             <i
                               style={{ fontSize: "1.3rem", color: "green" }}
-                              class="fa-solid fa-circle-check"
+                              className="fa-solid fa-circle-check"
                             ></i>
                           </Avatar>
                         }

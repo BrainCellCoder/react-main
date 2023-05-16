@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Navbar.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import isAuthenticated from "../../Utils/isAuth";
 import { AppContext } from "../../App";
 import { useCookies } from "react-cookie";
@@ -8,10 +8,11 @@ import { Checkbox } from "@chakra-ui/react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { Nav } from "react-bootstrap";
+import Cookies from "js-cookie";
 
 export const Navbars = () => {
   const [cookies, setCookie] = useCookies(["userId", "token"]);
-
+  const navigate = useNavigate();
   const { cartNumber } = useContext(AppContext);
   const location = useLocation();
   const isAuth = isAuthenticated();
@@ -49,17 +50,46 @@ export const Navbars = () => {
       console.error("Error occurred during search:", error);
     }
   };
+
+  const logoutHandler = async () => {
+    const res = await fetch("http://localhost:8000/user/logout", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    // Cookies.remove("userId");
+    // Cookies.remove("token");
+    const cookies = Cookies.get();
+    Object.keys(cookies).forEach((cookieName) => {
+      Cookies.remove(cookieName);
+    });
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    // navigate("/");
+    window.location.reload();
+  };
   return (
     <>
       <Navbar bg="light" expand="lg" fixed="top">
         <Container>
-          <Navbar.Brand href="/">
+          <Navbar.Brand className="navbrand">
             <Link to="/" className="logo">
               <img id="logo" src={require("./../Navbar/logo1.png")} alt="" />
               <span id="T">T</span>ech<span id="K">K</span>art
             </Link>
+            {isLoggedIn || cookies.userId ? (
+              <div className="logout" onClick={logoutHandler}>
+                Logout
+              </div>
+            ) : (
+              ""
+            )}
           </Navbar.Brand>
-
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto nav-right">
@@ -73,7 +103,7 @@ export const Navbars = () => {
                     style={{ color: "white" }}
                   />{" "}
                   <button>
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i className="fa-solid fa-magnifying-glass"></i>
                   </button>
                 </form>
               </div>
