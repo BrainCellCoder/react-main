@@ -70,7 +70,7 @@ export const Navbars = () => {
                     value={productName}
                     onChange={handleInputChange}
                     placeholder="Search Product..."
-                    style={{ color: "red" }}
+                    style={{ color: "white" }}
                   />{" "}
                   <button>
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -92,7 +92,11 @@ export const Navbars = () => {
                   </Link>
                 </div>
               ) : (
-                <Link to="/login">Login</Link>
+                <div className="login-btn">
+                  <Link className="a" to="/login">
+                    Login
+                  </Link>
+                </div>
               )}
               {isLoggedIn || cookies.userId ? (
                 <div className="wish-cart">

@@ -1,13 +1,15 @@
 #register {
   max-width: 70%;
-  margin-top: 50px;
+  margin-top: 80px;
 }
 
 .right-reg {
   padding: 50px !important;
   background-color: #f8f9fa;
-  width: 90%;
+  width: 500px;
+  margin: auto;
   height: 600px;
+  border-radius: 20px;
 }
 .left-reg {
   background-image: url("login5.jpg");

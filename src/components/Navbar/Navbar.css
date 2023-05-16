@@ -70,9 +70,9 @@
   margin-left: 20px;
 }
 
-.basic-navbar-nav {
+/* .basic-navbar-nav {
   background-color: red !important;
-}
+} */
 
 /* .search-bar {
   background-color: #dee2e6;
@@ -118,6 +118,25 @@
   color: #fff;
   font-size: 0.8rem;
   border-radius: 50%;
+}
+
+.login-btn .a:hover {
+  color: #c7f9cc;
+}
+
+.login-btn {
+  border-radius: 20px;
+  padding: 0.3rem 1rem;
+  border: 1px solid #1b4332;
+  background-color: #c7f9cc;
+  color: #1b4332;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-btn:hover {
+  background-color: #1b4332;
+  color: #c7f9cc;
 }
 
 @media (max-width: 991px) {

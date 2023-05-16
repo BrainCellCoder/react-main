@@ -59,44 +59,42 @@ export const Register = () => {
   return (
     <>
       <Container id="register">
-        <Row>
-          <Col className="left-reg"></Col>
-          <Col className="right-reg">
-            <h1>
-              Register <i className="fa-regular fa-pen-to-square"></i>
-            </h1>
-            <Form onSubmit={handleSubmit(onSubmit, onError)} method="POST">
-              <Form.Group className="mb-3">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter name"
-                  name="name"
-                  {...register("name")}
-                />
-                <p className="error-message">{errors.name?.message}</p>
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter email"
-                  name="email"
-                  {...register("email")}
-                />
-                <p className="error-message">{errors.email?.message}</p>
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter password"
-                  name="password"
-                  {...register("password")}
-                />
-                <p className="error-message">{errors.password?.message}</p>
-              </Form.Group>
-              {/* <Form.Group className="mb-3">
+        <Col className="right-reg">
+          <h1>
+            Register <i className="fa-regular fa-pen-to-square"></i>
+          </h1>
+          <Form onSubmit={handleSubmit(onSubmit, onError)} method="POST">
+            <Form.Group className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter name"
+                name="name"
+                {...register("name")}
+              />
+              <p className="error-message">{errors.name?.message}</p>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter email"
+                name="email"
+                {...register("email")}
+              />
+              <p className="error-message">{errors.email?.message}</p>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter password"
+                name="password"
+                {...register("password")}
+              />
+              <p className="error-message">{errors.password?.message}</p>
+            </Form.Group>
+            {/* <Form.Group className="mb-3">
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
                   type="password"
@@ -107,27 +105,26 @@ export const Register = () => {
                   {errors.confirmPassword?.message}
                 </p>
               </Form.Group> */}
-              <Button variant="primary" type="submit" className="login-button">
-                {loading ? (
-                  <div className="lds-ellipsis">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                  </div>
-                ) : (
-                  "Register"
-                )}
-              </Button>
-              <p className="reg-bottom-login">
-                Already have an account?
-                <Link className="reg-login" to="/login">
-                  Login
-                </Link>
-              </p>
-            </Form>
-          </Col>
-        </Row>
+            <Button variant="primary" type="submit" className="login-button">
+              {loading ? (
+                <div className="lds-ellipsis">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              ) : (
+                "Register"
+              )}
+            </Button>
+            <p className="reg-bottom-login">
+              Already have an account?
+              <Link className="reg-login" to="/login">
+                Login
+              </Link>
+            </p>
+          </Form>
+        </Col>
       </Container>
     </>
   );

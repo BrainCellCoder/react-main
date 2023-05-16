@@ -75,76 +75,73 @@ export const Login = () => {
   return (
     <>
       <Container id="login">
-        <Row>
-          <Col className="left-login"></Col>
-          <Col className="right-login">
-            <h1>
-              Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
-            </h1>
-            <Form onSubmit={handleSubmit(onSubmit, onError)} method="POST">
-              <Form.Group className="mb-3">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter email"
-                  name="email"
-                  {...register("email")}
-                />
-                <p className="error-message">{errors.email?.message}</p>
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter password"
-                  name="password"
-                  {...register("password")}
-                />
-                <p className="error-message">{errors.password?.message}</p>
-              </Form.Group>
-              {error && <p className="error-message">{errorMsg}</p>}
-              <Button variant="primary" type="submit" className="login-button">
-                {loading ? (
-                  <div className="lds-ellipsis">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                  </div>
-                ) : (
-                  "Login"
-                )}
-              </Button>
-            </Form>
-
-            <div className="signup-with">
-              <p>
-                {/* <i className="fa-solid fa-minus"></i> */}
-                Or SignUp With
-                {/* <i className="fa-solid fa-minus"></i> */}
-              </p>
-            </div>
-
-            <div className="sign-up-logos">
-              {/* <i className="fa-brands fa-facebook"></i> */}
-              <img src={require("./../Login/facebook.png")} alt="" />
-              <img src={require("./../Login/twitter.png")} alt="" />
-              <img src={require("./../Login/linkedin.png")} alt="" />
-              <img
-                src={require("./../Login/google.png")}
-                alt=""
-                onClick={google}
+        {/* <Row> */}
+        {/* <Col className="left-login"></Col> */}
+        <Col className="right-login">
+          <h1>
+            Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
+          </h1>
+          <Form onSubmit={handleSubmit(onSubmit, onError)} method="POST">
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter email"
+                name="email"
+                {...register("email")}
               />
-              <img src={require("./../Login/instagram.png")} alt="" />
-            </div>
-            <p className="login-bottom-reg">
-              Don't have an account?
-              <Link className="reg" to="/register">
-                Register
-              </Link>
+              <p className="error-message">{errors.email?.message}</p>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter password"
+                name="password"
+                {...register("password")}
+              />
+              <p className="error-message">{errors.password?.message}</p>
+            </Form.Group>
+            {error && <p className="error-message">{errorMsg}</p>}
+            <Button variant="primary" type="submit" className="login-button">
+              {loading ? (
+                <div className="lds-ellipsis">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              ) : (
+                "Login"
+              )}
+            </Button>
+          </Form>
+
+          <div className="signup-with">
+            <p>
+              {/* <i className="fa-solid fa-minus"></i> */}
+              Or SignUp With
+              {/* <i className="fa-solid fa-minus"></i> */}
             </p>
-          </Col>
-        </Row>
+          </div>
+
+          <div className="sign-up-logo">
+            {/* <i className="fa-brands fa-facebook"></i> */}
+            <img
+              src={require("./../Login/google.png")}
+              alt=""
+              onClick={google}
+            />
+            Google
+          </div>
+          <p className="login-bottom-reg">
+            Don't have an account?
+            <Link className="reg" to="/register">
+              Register
+            </Link>
+          </p>
+        </Col>
+        {/* </Row> */}
       </Container>
     </>
   );
