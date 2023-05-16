@@ -16,6 +16,7 @@ export const Filter = (props) => {
         return null;
     }
   };
+
   return (
     <>
       <div className="filters ">
@@ -48,9 +49,6 @@ export const Filter = (props) => {
             <option value="Mobile">Best-Worst</option>
             <option value="Mobile">Worst-Best</option>
           </select>
-        </div> */}
-        {/* <div className="color">
-          Color <i className="fa-solid fa-caret-down"></i>
         </div> */}
       </div>
     </>

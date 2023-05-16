@@ -18,3 +18,15 @@ select {
   border: none;
   cursor: pointer;
 }
+
+.filters .product-search {
+  background-color: #f5e1ff;
+}
+
+.filters .product-search input {
+  background-color: #f5e1ff;
+  color: #000;
+  border: none;
+  outline: none;
+  width: 300px;
+}

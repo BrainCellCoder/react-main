@@ -20,6 +20,35 @@ export const Navbars = () => {
   useEffect(() => {
     isAuth ? setIsLoggedIn(true) : setIsLoggedIn(false);
   }, [location]);
+  const [productName, setProductName] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    searchProduct(productName);
+  };
+
+  const handleInputChange = (event) => {
+    setProductName(event.target.value);
+  };
+  const searchProduct = async (productName) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/products?name=${productName}`,
+        {
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response);
+      const data = await response.json();
+      console.log("Search results:", data);
+      // Update the search results in the component state or perform any necessary actions
+    } catch (error) {
+      console.error("Error occurred during search:", error);
+    }
+  };
   return (
     <>
       <Navbar bg="light" expand="lg" fixed="top">
@@ -30,21 +59,38 @@ export const Navbars = () => {
               <span id="T">T</span>ech<span id="K">K</span>art
             </Link>
           </Navbar.Brand>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto nav-right">
+              <div className="product-search">
+                <form onSubmit={handleSubmit}>
+                  <input
+                    type="text"
+                    value={productName}
+                    onChange={handleInputChange}
+                    placeholder="Search Product..."
+                    style={{ color: "red" }}
+                  />{" "}
+                  <button>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </form>
+              </div>
               {isLoggedIn || cookies.userId ? (
-                <Link
-                  to={`/dashboard/${
-                    cookies.userId
-                      ? cookies.userId
-                      : localStorage.getItem("user_id")
-                  }`}
-                  className="account"
-                >
-                  <i className="fa-regular fa-user"></i>
-                  <span>Account</span>
-                </Link>
+                <div>
+                  <Link
+                    to={`/dashboard/${
+                      cookies.userId
+                        ? cookies.userId
+                        : localStorage.getItem("user_id")
+                    }`}
+                    className="account"
+                  >
+                    <i className="fa-regular fa-user"></i>
+                    <span>Account</span>
+                  </Link>
+                </div>
               ) : (
                 <Link to="/login">Login</Link>
               )}

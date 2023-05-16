@@ -28,11 +28,46 @@
   display: block;
 }
 
+.product-search {
+  background-color: #001f54;
+  border-radius: 20px;
+  color: #fff;
+  display: flex;
+  overflow: hidden;
+}
+
+.product-search form button {
+  border: none;
+  outline: none;
+  color: #fff;
+}
+
+.product-search input::placeholder {
+  color: #fff;
+}
+
+.product-search input {
+  background-color: transparent;
+  border: none;
+  padding: 0rem 1rem;
+  width: 200px;
+  outline: none;
+}
+
+.product-search i {
+  background-color: #00b4d8;
+  padding: 0.7rem 1rem;
+}
+
 .nav-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 300px;
+  /* width: 300px; */
+}
+
+.nav-right div {
+  margin-left: 20px;
 }
 
 .basic-navbar-nav {
