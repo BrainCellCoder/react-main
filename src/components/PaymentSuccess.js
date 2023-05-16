@@ -1,24 +1,42 @@
+import { Link, useSearchParams } from "react-router-dom";
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+import Chip from "@mui/material/Chip";
+import Avatar from "@mui/material/Avatar";
 
 export const PaymentSuccess = () => {
   const searchQuery = useSearchParams()[0];
   return (
-    <>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <div>PaymentSuccess</div>
-      <p>Reference ID: {searchQuery.get("reference")}</p>
-    </>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100vw",
+        height: "75vh",
+      }}
+    >
+      <div
+        style={{
+          width: "400px",
+          height: "200px",
+          padding: "2rem",
+          borderRadius: "20px",
+          backgroundColor: "#c7f9cc",
+        }}
+      >
+        <Chip
+          label="Payment Successfull"
+          avatar={
+            <Avatar>
+              <i class="fa-solid fa-check"></i>
+            </Avatar>
+          }
+        />
+        <p>Reference ID: {searchQuery.get("reference")}</p>
+        <Link style={{ textDecoration: "none" }} to="/">
+          Go to Home
+        </Link>
+      </div>
+    </div>
   );
 };
