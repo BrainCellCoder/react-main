@@ -23,13 +23,18 @@ export const AppContext = createContext();
 
 function App() {
   const [cartNumber, setCartNumber] = useState(0);
+  const [searchProducts, setSearchProducts] = useState([]);
   return (
     <>
       <AppContext.Provider value={{ cartNumber, setCartNumber }}>
         <Router id="router">
-          <Navbars />
+          <Navbars search={setSearchProducts} />
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route
+              exact
+              path="/"
+              element={<Home searchProducts={searchProducts} />}
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/adminlogin" element={<LoginAdmin />} />

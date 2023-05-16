@@ -9,8 +9,9 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { Nav } from "react-bootstrap";
 import Cookies from "js-cookie";
+import { set } from "date-fns";
 
-export const Navbars = () => {
+export const Navbars = (props) => {
   const [cookies, setCookie] = useCookies(["userId", "token"]);
   const navigate = useNavigate();
   const { cartNumber } = useContext(AppContext);
@@ -44,8 +45,8 @@ export const Navbars = () => {
       );
       console.log(response);
       const data = await response.json();
+      props.search(data.products);
       console.log("Search results:", data);
-      // Update the search results in the component state or perform any necessary actions
     } catch (error) {
       console.error("Error occurred during search:", error);
     }

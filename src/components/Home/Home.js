@@ -6,7 +6,9 @@ import { Laptops } from "./Products/Laptops/Laptops";
 import { Hero2 } from "./Hero2/Hero2";
 import { FilteredCategory } from "./FilteredCategory/FilteredCategory";
 import { PopularCategory } from "./PopularCategory/PopularCategory";
-export const Home = () => {
+import { Card } from "./Products/Card";
+import { SearchProducts } from "../SearchProducts";
+export const Home = (props) => {
   const [cat, setCat] = useState("all");
   const [products, setProducts] = useState([]);
   const [filterDep, setFilterDep] = useState(false);
@@ -38,15 +40,20 @@ export const Home = () => {
   );
   return (
     <>
-      <Hero data={headPhones} />
-      <PopularCategory />
-      <Filter
-        cat={setCat}
-        products={products}
-        lowToHigh={lowToHigh}
-        highToLow={highToLow}
-      />
-      {cat === "all" && (
+      {!props.searchProducts.length && <Hero data={headPhones} />}
+      {!props.searchProducts.length && <PopularCategory />}
+      {!props.searchProducts.length && (
+        <Filter
+          cat={setCat}
+          products={products}
+          lowToHigh={lowToHigh}
+          highToLow={highToLow}
+        />
+      )}
+      {props.searchProducts.length > 0 && (
+        <SearchProducts data={props.searchProducts} />
+      )}
+      {!props.searchProducts.length && cat === "all" && (
         <>
           <Phones data={phones} />
           <Hero2 data={accessories} />
