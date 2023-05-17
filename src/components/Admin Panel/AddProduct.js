@@ -42,13 +42,14 @@ export const AddProduct = () => {
   const selectedFile = watch("file");
 
   const onSubmit = async (data) => {
-    console.log(data);
+    console.log(data, category);
     const formData = new FormData();
     formData.append("category", category);
     formData.append("name", data.name);
     formData.append("description", data.description);
     formData.append("price", data.price);
     formData.append("file", data.file[0]);
+    console.log(formData);
     // Send the form data and file to the server
     const res = await fetch("http://localhost:8000/admin/product/new", {
       method: "POST",
@@ -57,6 +58,7 @@ export const AddProduct = () => {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
+        // "Content-Type": "multipart/form-data",
       },
     });
     const resp = await res.json();
@@ -104,6 +106,7 @@ export const AddProduct = () => {
                 <MenuItem value="Mobile">Mobile</MenuItem>
                 <MenuItem value="Headphone">Headphone</MenuItem>
                 <MenuItem value="Accessories">Accessories</MenuItem>
+                <MenuItem value="tv">TV</MenuItem>
               </Select>
             </FormControl>
 

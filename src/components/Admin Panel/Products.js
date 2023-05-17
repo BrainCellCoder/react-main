@@ -8,6 +8,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import StarRating from "../ProductDetails/StarRating";
+import { Button } from "@mui/material";
+import { useCookies } from "react-cookie";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,6 +32,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export const Products = (props) => {
+  const [cookies, setCookie] = useCookies(["userId", "token"]);
+
+  const deleteProduct = async (id) => {
+    const res = await fetch(`http://localhost:8000/admin/product/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        // "Content-Type": "multipart/form-data",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    window.location.reload();
+  };
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -40,7 +58,7 @@ export const Products = (props) => {
             <StyledTableCell align="left">Name</StyledTableCell>
             <StyledTableCell align="left">Price&nbsp;(₹)</StyledTableCell>
             <StyledTableCell align="left">Ratings</StyledTableCell>
-            {/* <StyledTableCell align="left">Protein&nbsp;(g)</StyledTableCell> */}
+            <StyledTableCell align="left">Action</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -59,7 +77,15 @@ export const Products = (props) => {
               <StyledTableCell align="left">
                 <StarRating rating={product.rating} />
               </StyledTableCell>
-              {/* <StyledTableCell align="left"></StyledTableCell> */}
+              <StyledTableCell align="left">
+                <Button
+                  onClick={() => {
+                    deleteProduct(product._id);
+                  }}
+                >
+                  Delete
+                </Button>
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

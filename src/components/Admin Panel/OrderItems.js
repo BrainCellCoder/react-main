@@ -52,20 +52,22 @@ export const OrderItems = (props) => {
                     >
                       <TableCell component="th" scope="row">
                         <img
-                          src={item.productId.image[0].url}
+                          src={item.productId?.image[0].url}
                           style={{ width: "100px" }}
                         ></img>
                       </TableCell>
-                      <TableCell align="right">{item.productId.name}</TableCell>
+                      <TableCell align="right">
+                        {item.productId?.name}
+                      </TableCell>
                       <TableCell align="right">
                         {item.quantity}{" "}
                         {item.quantity === 1 ? "piece" : "pieces"}
                       </TableCell>
                       <TableCell align="right">
-                        ₹ {item.productId.price}
+                        ₹ {item.productId?.price}
                       </TableCell>
                       <TableCell align="right">
-                        {item.productId.protein}
+                        {/* {item.productId.protein} */}
                       </TableCell>
                     </TableRow>
                   );

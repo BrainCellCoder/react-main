@@ -17,6 +17,11 @@ import { PaymentSuccess } from "./components/PaymentSuccess";
 import { Protected } from "./Protected";
 import { UserDashboard } from "./components/UserDashboard/UserDashboard";
 import { LoginAdmin } from "./components/Admin Panel/Login";
+import { Tv } from "./components/Home/Products/TV/Tv";
+import { Camera } from "./components/Home/Products/Camera/Camera";
+import { Gaming } from "./components/Home/Products/Gaming/Gaming";
+import { Landline } from "./components/Home/Products/Landline/Landline";
+import { Radio } from "./components/Home/Products/Radio/Radio";
 // import { Protected } from "./Protected";
 
 export const AppContext = createContext();
@@ -52,10 +57,20 @@ function App() {
               path="/headphones/products/:id"
               element={<ProductDetails />}
             />
+            <Route path="/tv/products/:id" element={<ProductDetails />} />
+            <Route path="/camera/products/:id" element={<ProductDetails />} />
+            <Route path="/gaming/products/:id" element={<ProductDetails />} />
+            <Route path="/landline/products/:id" element={<ProductDetails />} />
+            <Route path="/radio/products/:id" element={<ProductDetails />} />
             <Route
               path="/accessories/products/:id"
               element={<ProductDetails />}
             />
+            <Route path="/tv" element={<Tv />} />
+            <Route path="/camera" element={<Camera />} />
+            <Route path="/gaming" element={<Gaming />} />
+            <Route path="/landline" element={<Landline />} />
+            <Route path="/radio" element={<Radio />} />
             <Route path="/user/cart" element={<Cart />} />
             <Route path="/user/wishlist" element={<Wishlist />} />
             <Route path="/checkout" element={<CheckOut />} />

@@ -39,7 +39,7 @@ export const Customers = (props) => {
             <StyledTableCell>Customer ID</StyledTableCell>
             <StyledTableCell align="left">User Name</StyledTableCell>
             <StyledTableCell align="left">Email</StyledTableCell>
-            <StyledTableCell align="left">Action</StyledTableCell>
+            {/* <StyledTableCell align="left">Action</StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -48,7 +48,7 @@ export const Customers = (props) => {
               <StyledTableCell>{customer._id}</StyledTableCell>
               <StyledTableCell align="left">{customer.name}</StyledTableCell>
               <StyledTableCell align="left">{customer.email}</StyledTableCell>
-              <StyledTableCell align="left">Delete</StyledTableCell>
+              {/* <StyledTableCell align="left">Delete</StyledTableCell> */}
               {/* <StyledTableCell align="left"></StyledTableCell> */}
             </StyledTableRow>
           ))}

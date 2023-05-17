@@ -9,6 +9,7 @@ import speakerPic from "./Catspeaker.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   scrollContainer: {
@@ -30,35 +31,45 @@ export const PopularCategory = () => {
       <div id="popular-category" className={classes.scrollContainer}>
         {/* Content to be scrolled */}
         <div>
-          <div
-            className="popular-category-image"
-            style={{ backgroundImage: `url(${tvPic})` }}
-          ></div>
-          <div className="popular-category-name">Televisions</div>
+          <Link to="/tv">
+            <div
+              className="popular-category-image"
+              style={{ backgroundImage: `url(${tvPic})` }}
+            ></div>
+            <div className="popular-category-name">Televisions</div>
+          </Link>
         </div>
         <div>
-          <div className="popular-category-image">
-            <img src={cameraPic} alt="img" />
-          </div>
-          <div className="popular-category-name">Cameras</div>
+          <Link to="/camera">
+            <div className="popular-category-image">
+              <img src={cameraPic} alt="img" />
+            </div>
+            <div className="popular-category-name">Cameras</div>
+          </Link>
         </div>
         <div>
-          <div className="popular-category-image">
-            <img src={gamingPic} alt="img" />
-          </div>
-          <div className="popular-category-name">Gamings</div>
+          <Link to="/gaming">
+            <div className="popular-category-image">
+              <img src={gamingPic} alt="img" />
+            </div>
+            <div className="popular-category-name">Gamings</div>
+          </Link>
         </div>
         <div>
-          <div className="popular-category-image">
-            <img src={landlinePic} alt="img" />
-          </div>
-          <div className="popular-category-name">Landlines</div>
+          <Link to="/landline">
+            <div className="popular-category-image">
+              <img src={landlinePic} alt="img" />
+            </div>
+            <div className="popular-category-name">Landlines</div>
+          </Link>
         </div>
         <div>
-          <div className="popular-category-image">
-            <img src={radioPic} alt="img" />
-          </div>
-          <div className="popular-category-name">Radios</div>
+          <Link to="/radio">
+            <div className="popular-category-image">
+              <img src={radioPic} alt="img" />
+            </div>
+            <div className="popular-category-name">Radios</div>
+          </Link>
         </div>
         <div>
           <div className="popular-category-image">
