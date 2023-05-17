@@ -8,11 +8,11 @@ export const Headphones = () => {
 
   return (
     <>
-      <div className="headphone-clip-path">
-        <h1 className="container">HEADPHONES</h1>
-      </div>
-      <div id="headphone" className="products container">
-        <h3>Headphones</h3>
+      <div
+        className="products"
+        style={{ marginTop: "100px", minHeight: "70vh" }}
+      >
+        <h1>Headphones</h1>
         <div className="headphones-items row gy-5">
           {location.state.product.map((product, key) => {
             return <Card key={key} data={product} />;

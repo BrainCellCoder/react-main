@@ -15,6 +15,7 @@ import { Grid, Paper, TextField } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
+import Alert from "@mui/material/Alert";
 
 const style = {
   position: "absolute",
@@ -289,6 +290,11 @@ export const CardDetails = (props) => {
           Reviews
         </Typography>
         <Grid container spacing={2}>
+          {reviews.length === 0 && (
+            <Alert sx={{ margin: "auto" }} severity="info">
+              No Reviews Yet
+            </Alert>
+          )}
           {reviews.map((review, key) => {
             return (
               <Grid item xs={12} sm={6} md={3}>

@@ -21,19 +21,19 @@
 
 .navbrand .logout {
   margin-left: 20px;
-  font-size: 1rem;
-  background-color: #ffb3c1;
-  padding: 0.3rem 1rem;
+  font-size: 0.9rem;
+  background-color: #ffccd5;
+  padding: 0.2rem 0.9rem;
   border-radius: 20px;
-  color: #ba181b;
-  border: 1px solid #ba181b;
+  color: #c9184a;
+  /* border: 1px solid #ba181b; */
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
 
 .navbrand .logout:hover {
-  background-color: #ba181b;
-  color: #ffb3c1;
+  background-color: #c9184a;
+  color: #ffccd5;
 }
 
 #logo {
@@ -150,8 +150,7 @@
 .login-btn {
   border-radius: 20px;
   padding: 0.3rem 1rem;
-  border: 1px solid #1b4332;
-  background-color: #c7f9cc;
+  background-color: #8eff99;
   color: #1b4332;
   cursor: pointer;
   transition: all 0.3s ease-in-out;

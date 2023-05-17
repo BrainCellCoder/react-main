@@ -28,6 +28,7 @@ export const Landline = () => {
         className="products"
         style={{ marginTop: "100px", minHeight: "70vh" }}
       >
+        <h1>Landline</h1>
         <div className="row gy-5">
           {products.map((product, key) => {
             return <Card key={key} data={product} />;

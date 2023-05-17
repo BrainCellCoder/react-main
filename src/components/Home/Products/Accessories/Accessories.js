@@ -7,11 +7,11 @@ export const Accessories = (props) => {
   const location = useLocation();
   return (
     <>
-      <div className="accessories-clip-path">
-        <h1 className="container">ACCESSORIES</h1>
-      </div>
-      <div id="headphone" className="products container">
-        <h3>Accessories</h3>
+      <div
+        className="products"
+        style={{ marginTop: "100px", minHeight: "70vh" }}
+      >
+        <h1>Accessories</h1>
         <div className="accessories-items row gy-5">
           {location.state.product.map((product, key) => {
             return <Card key={key} data={product} />;

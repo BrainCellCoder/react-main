@@ -12,6 +12,7 @@ import FormControl from "@mui/material/FormControl";
 import { useForm, Controller } from "react-hook-form";
 import Form from "react-bootstrap/Form";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -51,14 +52,14 @@ export const AddProduct = () => {
     formData.append("file", data.file[0]);
     console.log(formData);
     // Send the form data and file to the server
-    const res = await fetch("http://localhost:8000/admin/product/new", {
-      method: "POST",
-      body: formData,
+    const res = await axios.post("http://localhost:8000/admin/product/new", {
+      formData,
+
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-        // "Content-Type": "multipart/form-data",
+        //   Accept: "application/json, text/plain, */*",
+        //   "Content-Type": "application/json",
+        //   // "Content-Type": "multipart/form-data",
       },
     });
     const resp = await res.json();
@@ -91,7 +92,7 @@ export const AddProduct = () => {
           >
             Add a new product
           </Typography>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
             <FormControl fullWidth sx={{ marginBottom: "10px" }}>
               <InputLabel id="demo-simple-select-label">Category</InputLabel>
               <Select

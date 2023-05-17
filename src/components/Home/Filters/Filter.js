@@ -27,6 +27,12 @@ export const Filter = (props) => {
             <option value="phones">Phone</option>
             <option value="headphones">Headphone</option>
             <option value="accessories">Accessories</option>
+            <option value="TV">TV</option>
+            <option value="Camera">Camera</option>
+            <option value="Gaming">Gaming</option>
+            <option value="Landline">Landline</option>
+            <option value="Radio">Radio</option>
+            <option value="Speaker">Speaker</option>
           </select>
         </div>
         <div className="price">

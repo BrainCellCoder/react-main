@@ -207,7 +207,13 @@ export const Cart = () => {
                     >
                       Proceed to CheckOut
                     </div> */}
-                    <div className="shopping">Continue Shopping</div>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to="/"
+                      className="shopping"
+                    >
+                      Continue Shopping
+                    </Link>
                   </div>
                   {/* <Modal show={showModal} onHide={handleCloseModal}>
                     <Modal.Header closeButton>

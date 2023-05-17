@@ -22,6 +22,7 @@ import { Camera } from "./components/Home/Products/Camera/Camera";
 import { Gaming } from "./components/Home/Products/Gaming/Gaming";
 import { Landline } from "./components/Home/Products/Landline/Landline";
 import { Radio } from "./components/Home/Products/Radio/Radio";
+import { Speaker } from "./components/Home/Products/Speaker/Speaker";
 // import { Protected } from "./Protected";
 
 export const AppContext = createContext();
@@ -45,7 +46,13 @@ function App() {
             <Route path="/adminlogin" element={<LoginAdmin />} />
             {/* <Route path="/admin" element={<Admin />} /> */}
             <Route path="/admin" element={<Protected Component={Admin} />} />
-            <Route path="/dashboard/:id" element={<UserDashboard />} />
+
+            {/* <Route path="/dashboard/:id" element={<UserDashboard />} /> */}
+            <Route
+              path="/dashboard/:id"
+              element={<Protected Component={UserDashboard} />}
+            />
+
             <Route path="/headphones" element={<Headphones />} />
             <Route path="/accessories" element={<Accessories />} />
             <Route path="/products/:id" element={<ProductDetails />} />
@@ -62,24 +69,47 @@ function App() {
             <Route path="/gaming/products/:id" element={<ProductDetails />} />
             <Route path="/landline/products/:id" element={<ProductDetails />} />
             <Route path="/radio/products/:id" element={<ProductDetails />} />
+            <Route path="/speaker/products/:id" element={<ProductDetails />} />
             <Route
               path="/accessories/products/:id"
               element={<ProductDetails />}
             />
-            <Route path="/tv" element={<Tv />} />
+            <Route
+              path="/tv"
+              element={<Tv searchProducts={searchProducts} />}
+            />
             <Route path="/camera" element={<Camera />} />
             <Route path="/gaming" element={<Gaming />} />
             <Route path="/landline" element={<Landline />} />
             <Route path="/radio" element={<Radio />} />
-            <Route path="/user/cart" element={<Cart />} />
-            <Route path="/user/wishlist" element={<Wishlist />} />
-            <Route path="/checkout" element={<CheckOut />} />
+            <Route path="/speaker" element={<Speaker />} />
+
+            {/* <Route path="/user/cart" element={<Cart />} /> */}
+            <Route path="/user/cart" element={<Protected Component={Cart} />} />
+
+            {/* <Route path="/user/wishlist" element={<Wishlist />} /> */}
+            <Route
+              path="/user/wishlist"
+              element={<Protected Component={Wishlist} />}
+            />
+
+            {/* <Route path="/checkout" element={<CheckOut />} /> */}
+            <Route
+              path="/checkout"
+              element={<Protected Component={CheckOut} />}
+            />
+
             <Route path="/checkout/products/:id" element={<ProductDetails />} />
             <Route
               path="user/wishlist/products/:id"
               element={<ProductDetails />}
             />
-            <Route path="/paymentsuccess" element={<PaymentSuccess />} />
+
+            {/* <Route path="/paymentsuccess" element={<PaymentSuccess />} /> */}
+            <Route
+              path="/paymentsuccess"
+              element={<Protected Component={PaymentSuccess} />}
+            />
           </Routes>
           <Footer />
         </Router>

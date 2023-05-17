@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
+import { color } from "@chakra-ui/react";
 
 const useStyles = makeStyles((theme) => ({
   scrollContainer: {
@@ -31,7 +32,7 @@ export const PopularCategory = () => {
       <div id="popular-category" className={classes.scrollContainer}>
         {/* Content to be scrolled */}
         <div>
-          <Link to="/tv">
+          <Link style={{ textDecoration: "none", color: "brown" }} to="/tv">
             <div
               className="popular-category-image"
               style={{ backgroundImage: `url(${tvPic})` }}
@@ -40,7 +41,7 @@ export const PopularCategory = () => {
           </Link>
         </div>
         <div>
-          <Link to="/camera">
+          <Link style={{ textDecoration: "none", color: "brown" }} to="/camera">
             <div className="popular-category-image">
               <img src={cameraPic} alt="img" />
             </div>
@@ -48,7 +49,7 @@ export const PopularCategory = () => {
           </Link>
         </div>
         <div>
-          <Link to="/gaming">
+          <Link style={{ textDecoration: "none", color: "brown" }} to="/gaming">
             <div className="popular-category-image">
               <img src={gamingPic} alt="img" />
             </div>
@@ -56,7 +57,10 @@ export const PopularCategory = () => {
           </Link>
         </div>
         <div>
-          <Link to="/landline">
+          <Link
+            style={{ textDecoration: "none", color: "brown" }}
+            to="/landline"
+          >
             <div className="popular-category-image">
               <img src={landlinePic} alt="img" />
             </div>
@@ -64,7 +68,7 @@ export const PopularCategory = () => {
           </Link>
         </div>
         <div>
-          <Link to="/radio">
+          <Link style={{ textDecoration: "none", color: "brown" }} to="/radio">
             <div className="popular-category-image">
               <img src={radioPic} alt="img" />
             </div>
@@ -72,10 +76,15 @@ export const PopularCategory = () => {
           </Link>
         </div>
         <div>
-          <div className="popular-category-image">
-            <img src={speakerPic} alt="img" />
-          </div>
-          <div className="popular-category-name">Speakers</div>
+          <Link
+            style={{ textDecoration: "none", color: "brown" }}
+            to="/speaker"
+          >
+            <div className="popular-category-image">
+              <img src={speakerPic} alt="img" />
+            </div>
+            <div className="popular-category-name">Speakers</div>
+          </Link>
         </div>
       </div>
       {/* <div className="popular-category-list">

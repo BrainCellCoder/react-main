@@ -38,6 +38,14 @@ export const Home = (props) => {
   const accessories = products.filter(
     (product) => product.category === "Accessories"
   );
+  const tv = products.filter((product) => product.category === "TV");
+  const camera = products.filter((product) => product.category === "Camera");
+  const gaming = products.filter((product) => product.category === "Gaming");
+  const landline = products.filter(
+    (product) => product.category === "Landline"
+  );
+  const radio = products.filter((product) => product.category === "Radio");
+  const speaker = products.filter((product) => product.category === "Speaker");
   return (
     <>
       {!props.searchProducts.length && <Hero data={headPhones} />}
@@ -64,6 +72,12 @@ export const Home = (props) => {
       {cat === "phones" && <FilteredCategory data={phones} />}
       {cat === "headphones" && <FilteredCategory data={headPhones} />}
       {cat === "accessories" && <FilteredCategory data={accessories} />}
+      {cat === "TV" && <FilteredCategory data={tv} />}
+      {cat === "Camera" && <FilteredCategory data={camera} />}
+      {cat === "Gaming" && <FilteredCategory data={gaming} />}
+      {cat === "Landline" && <FilteredCategory data={landline} />}
+      {cat === "Radio" && <FilteredCategory data={radio} />}
+      {cat === "Speaker" && <FilteredCategory data={speaker} />}
     </>
   );
 };

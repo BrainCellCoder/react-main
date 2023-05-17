@@ -45,6 +45,7 @@
 .tabpanel {
   width: 90%;
   overflow: scroll;
+  padding: 0 4rem;
 }
 
 .order-product-img {

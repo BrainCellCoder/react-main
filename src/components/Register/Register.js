@@ -22,6 +22,12 @@ export const Register = () => {
       .min(4, "*password must be atleast 4 characters")
       .max(20)
       .required("*password is required"),
+    cPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Passwords must match")
+      .min(4, "*password must be atleast 4 characters")
+      .max(20)
+      .required("*password is required"),
   });
   const {
     register,
@@ -45,6 +51,7 @@ export const Register = () => {
         name: data.name,
         email: data.email,
         password: data.password,
+        cPassword: data.cPassword,
       }),
     });
     const resp = await res.json();
@@ -119,17 +126,15 @@ export const Register = () => {
               />
               <p className="error-message">{errors.password?.message}</p>
             </Form.Group>
-            {/* <Form.Group className="mb-3">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Re-enter password"
-                  {...register("confirmPassword")}
-                />
-                <p className="error-message">
-                  {errors.confirmPassword?.message}
-                </p>
-              </Form.Group> */}
+            <Form.Group className="mb-3">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Re-enter password"
+                {...register("cPassword")}
+              />
+              <p className="error-message">{errors.cPassword?.message}</p>
+            </Form.Group>
             <Button variant="primary" type="submit" className="login-button">
               {loading ? (
                 <div className="lds-ellipsis">

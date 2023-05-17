@@ -10,6 +10,9 @@ import Navbar from "react-bootstrap/Navbar";
 import { Nav } from "react-bootstrap";
 import Cookies from "js-cookie";
 import { set } from "date-fns";
+import Avatar from "@mui/material/Avatar";
+import Chip from "@mui/material/Chip";
+import FaceIcon from "@mui/icons-material/Face";
 
 export const Navbars = (props) => {
   const [cookies, setCookie] = useCookies(["userId", "token"]);
@@ -118,8 +121,11 @@ export const Navbars = (props) => {
                     }`}
                     className="account"
                   >
-                    <i className="fa-regular fa-user"></i>
-                    <span>Account</span>
+                    <Chip
+                      sx={{ cursor: "pointer" }}
+                      icon={<FaceIcon />}
+                      label="Account"
+                    />
                   </Link>
                 </div>
               ) : (
@@ -136,8 +142,9 @@ export const Navbars = (props) => {
                       id="wishlist"
                       src={require("./../Navbar/love.png")}
                       alt=""
+                      style={{ width: "28px", height: "28px" }}
                     />
-                    Wishlist
+                    {/* Wishlist */}
                   </a>
                   <Link to="/user/cart" className="cart">
                     <img
