@@ -213,7 +213,7 @@ export const UserDashboard = () => {
           <div className="user-details">
             <Chip label={user?.user?.name} sx={{ fontSize: "1.3rem" }} />
             <div className="email">{user?.user?.email}</div>
-            {/* <div className="phone">9706469235</div> */}
+            <div className="phone">{user?.user?.phoneNo}</div>
             <Button variant="contained" onClick={handleOpen}>
               Edit profile
             </Button>

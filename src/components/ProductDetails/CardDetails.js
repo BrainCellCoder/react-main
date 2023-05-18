@@ -49,6 +49,10 @@ export const CardDetails = (props) => {
     maximumSignificantDigits: 3,
   }).format(props.data.price);
 
+  const handleQuantityChange = (e) => {
+    setQuantity(e.target.value);
+  };
+
   const addToCart = async (id) => {
     const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
       method: "POST",
@@ -234,7 +238,7 @@ export const CardDetails = (props) => {
               <h1>₹{price}</h1>
             </div>
             <div className="product-control-form">
-              {/* <div className="pro-quantity">
+              <div className="pro-quantity">
                 <label for="quantity">Quantity:</label>
                 <select
                   id="quantity"
@@ -248,7 +252,7 @@ export const CardDetails = (props) => {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-              </div> */}
+              </div>
               <div className="product-buy-cart">
                 <div
                   className="product-buy"

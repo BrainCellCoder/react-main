@@ -131,32 +131,29 @@ export const Card = (props) => {
   };
 
   useEffect(() => {
-    try {
-      const fetchUser = async () => {
-        const res = await fetch("http://localhost:8000/user/me", {
-          headers: {
-            authorization: `Abhi ${
-              localStorage.getItem("token") || cookies.token
-            }`,
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await res.json();
-        setProductInWishlist(
-          data.user.wishList.some((item) => item._id === props.data._id)
-        );
-        const inCart = data.user.cart.some(
-          (item) => item.productId._id == props.data._id
-        );
-        setProductInCart(
-          data.user.cart.some((item) => item.productId._id === props.data._id)
-        );
-      };
-      fetchUser();
-    } catch (err) {
-      console.log(err);
-    }
+    const fetchUser = async () => {
+      const res = await fetch("http://localhost:8000/user/me", {
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+      setProductInWishlist(
+        data.user?.wishList.some((item) => item._id === props.data._id)
+      );
+      const inCart = data.user?.cart.some(
+        (item) => item.productId._id == props.data._id
+      );
+      setProductInCart(
+        data.user?.cart.some((item) => item.productId._id === props.data._id)
+      );
+    };
+    fetchUser();
   }, [addWishlist, addCart]);
 
   return (
