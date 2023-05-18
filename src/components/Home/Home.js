@@ -30,6 +30,10 @@ export const Home = (props) => {
     setProducts(sortProducts);
     setFilterDep(!filterDep);
   };
+  const all = () => {
+    setProducts(products);
+    setFilterDep(!filterDep);
+  };
   const laptops = products.filter((product) => product.category === "Laptop");
   const phones = products.filter((product) => product.category === "Mobile");
   const headPhones = products.filter(
@@ -54,6 +58,7 @@ export const Home = (props) => {
         <Filter
           cat={setCat}
           products={products}
+          all={all}
           lowToHigh={lowToHigh}
           highToLow={highToLow}
         />

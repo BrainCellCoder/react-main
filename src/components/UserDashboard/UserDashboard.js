@@ -22,6 +22,8 @@ import { TrackOrder } from "./TrackOrder";
 import { DeliveryDate } from "./DeliveryDate";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -106,6 +108,11 @@ export const UserDashboard = () => {
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState(null);
 
+  const [userEmail, setUserEmail] = useState("");
+  const [userFristName, setUserFirstName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -125,6 +132,10 @@ export const UserDashboard = () => {
       });
       const data = await res.json();
 
+      setUserFirstName(data.user.firstName);
+      setUserLastName(data.user.lastName);
+      setUserPhone(data.user.phoneNo);
+      setUserEmail(data.user.email);
       setUser(data);
     };
     userFetch();
@@ -144,12 +155,45 @@ export const UserDashboard = () => {
         }),
       });
       const data = await res.json();
-      console.log(data);
       setOrders(data.orders);
     };
     orderFetch();
   }, []);
-  console.log(orders);
+
+  const handleUserFirstNameChange = (e) => {
+    setUserFirstName(e.target.value);
+  };
+  const handleUserLastNameChange = (e) => {
+    setUserLastName(e.target.value);
+  };
+  const handleUserPhoneChange = (e) => {
+    setUserPhone(e.target.value);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8000/user/me", {
+        method: "PUT",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: userFristName,
+          lastName: userLastName,
+          phoneNo: userPhone,
+        }),
+      });
+      const data = await response.json();
+      console.log("Form submitted successfully:", data);
+      handleClose();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
 
   return (
     <div id="userdashboard">
@@ -179,14 +223,53 @@ export const UserDashboard = () => {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Text in a modal
+              <Box sx={style} noValidate autoComplete="off">
+                <Typography variant="h6" component="h6">
+                  Edit Profile
                 </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Duis mollis, est non commodo luctus, nisi erat porttitor
-                  ligula.
-                </Typography>
+                <form onSubmit={handleSubmit}>
+                  <TextField
+                    id="outlined-basic"
+                    label="Email"
+                    variant="outlined"
+                    fullWidth
+                    name="email"
+                    value={userEmail}
+                    sx={{ marginBottom: "10px" }}
+                    disabled
+                  />
+                  <TextField
+                    id="outlined-basic"
+                    label="First name"
+                    variant="outlined"
+                    fullWidth
+                    name="firstName"
+                    value={userFristName}
+                    onChange={handleUserFirstNameChange}
+                    sx={{ marginBottom: "10px" }}
+                  />
+                  <TextField
+                    id="outlined-basic"
+                    label="Last name"
+                    variant="outlined"
+                    fullWidth
+                    name="lastName"
+                    value={userLastName}
+                    onChange={handleUserLastNameChange}
+                    sx={{ marginBottom: "10px" }}
+                  />
+                  <TextField
+                    id="outlined-basic"
+                    label="Phone No"
+                    variant="outlined"
+                    fullWidth
+                    name="phoneNo"
+                    value={userPhone}
+                    onChange={handleUserPhoneChange}
+                    sx={{ marginBottom: "10px" }}
+                  />
+                  <Button type="submit">Submit</Button>
+                </form>
               </Box>
             </Modal>
           </div>
@@ -261,7 +344,11 @@ export const UserDashboard = () => {
                       />
                     </TableCell>
                     <TableCell>
-                      <DeliveryDate deliveryDate={order.deliveryDate} />
+                      {order.status === "Delivered" ? (
+                        <Chip label="Delivered" color="success" />
+                      ) : (
+                        <DeliveryDate deliveryDate={order.deliveryDate} />
+                      )}
                     </TableCell>
                     <TableCell>
                       <Chip
@@ -276,7 +363,13 @@ export const UserDashboard = () => {
                         label="Paid"
                       />
                     </TableCell>
-                    <TableCell></TableCell>
+                    <TableCell>
+                      {/* {order.status === "Delivered" ? (
+                        <Chip label="Delivered" color="success" />
+                      ) : (
+                        ""
+                      )} */}
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

@@ -58,3 +58,13 @@
     width: 100%;
   }
 }
+
+@media (max-width: 573px) {
+  .popular-category-image {
+    width: 60px;
+    height: 40px;
+  }
+  .popular-category-name {
+    font-size: 0.7rem;
+  }
+}

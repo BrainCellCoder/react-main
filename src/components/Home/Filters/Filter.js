@@ -10,7 +10,7 @@ export const Filter = (props) => {
         return props.highToLow();
       case "low-high":
         return props.lowToHigh();
-      case "default":
+      case "all":
         return props.products;
       default:
         return null;
@@ -38,7 +38,7 @@ export const Filter = (props) => {
         <div className="price">
           <select onChange={onChangePrice}>
             <option>Price</option>
-            <option value="default">All</option>
+            {/* <option value="all">All</option> */}
             <option value="high-low">High-Low</option>
             <option value="low-high">Low-High</option>
           </select>
