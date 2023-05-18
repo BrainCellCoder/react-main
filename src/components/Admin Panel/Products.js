@@ -8,8 +8,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import StarRating from "../ProductDetails/StarRating";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 import { useCookies } from "react-cookie";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import { EditProduct } from "./EditProduct";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -79,12 +84,19 @@ export const Products = (props) => {
               </StyledTableCell>
               <StyledTableCell align="left">
                 <Button
+                  variant="outlined"
+                  color="error"
                   onClick={() => {
                     deleteProduct(product._id);
                   }}
                 >
                   Delete
                 </Button>
+                <EditProduct
+                  // productId={product._id}
+                  // productImg={product.image[0].url}
+                  product={product}
+                />
               </StyledTableCell>
             </StyledTableRow>
           ))}

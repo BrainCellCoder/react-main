@@ -51,8 +51,9 @@ export const AddProduct = () => {
     formData.append("price", data.price);
     formData.append("file", data.file[0]);
     console.log(formData);
-    const res = await axios.post("http://localhost:8000/admin/product/new", {
-      formData,
+    const res = await fetch("http://localhost:8000/admin/product/new", {
+      method: "POST",
+      body: formData,
 
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
@@ -62,6 +63,7 @@ export const AddProduct = () => {
       },
     });
     const resp = await res.json();
+    handleClose();
     console.log(resp);
   };
 
@@ -106,7 +108,12 @@ export const AddProduct = () => {
                 <MenuItem value="Mobile">Mobile</MenuItem>
                 <MenuItem value="Headphone">Headphone</MenuItem>
                 <MenuItem value="Accessories">Accessories</MenuItem>
-                <MenuItem value="tv">TV</MenuItem>
+                <MenuItem value="TV">TV</MenuItem>
+                <MenuItem value="Camera">Camera</MenuItem>
+                <MenuItem value="Gaming">Gaming</MenuItem>
+                <MenuItem value="Landline">Landline</MenuItem>
+                <MenuItem value="Radio">Radio</MenuItem>
+                <MenuItem value="Speaker">Speaker</MenuItem>
               </Select>
             </FormControl>
 
