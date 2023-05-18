@@ -23,6 +23,7 @@ import { Gaming } from "./components/Home/Products/Gaming/Gaming";
 import { Landline } from "./components/Home/Products/Landline/Landline";
 import { Radio } from "./components/Home/Products/Radio/Radio";
 import { Speaker } from "./components/Home/Products/Speaker/Speaker";
+import { Page404 } from "./components/Page404";
 // import { Protected } from "./Protected";
 
 export const AppContext = createContext();
@@ -152,6 +153,7 @@ function App() {
               path="/paymentsuccess"
               element={<Protected Component={PaymentSuccess} />}
             />
+            <Route path="*" element={<Page404 />} />
           </Routes>
           <Footer />
         </Router>
