@@ -53,36 +53,78 @@ function App() {
               element={<Protected Component={UserDashboard} />}
             />
 
-            <Route path="/headphones" element={<Headphones />} />
-            <Route path="/accessories" element={<Accessories />} />
-            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route
+              path="/headphones"
+              element={<Headphones searchProducts={searchProducts} />}
+            />
+            <Route
+              path="/accessories"
+              element={<Accessories searchProducts={searchProducts} />}
+            />
+            <Route
+              path="/products/:id"
+              element={<ProductDetails searchProducts={searchProducts} />}
+            />
             {/* <Route
               path="/products/:id"
               element={<Protected Component={ProductDetails} />}
             /> */}
             <Route
               path="/headphones/products/:id"
-              element={<ProductDetails />}
+              element={<ProductDetails searchProducts={searchProducts} />}
             />
-            <Route path="/tv/products/:id" element={<ProductDetails />} />
-            <Route path="/camera/products/:id" element={<ProductDetails />} />
-            <Route path="/gaming/products/:id" element={<ProductDetails />} />
-            <Route path="/landline/products/:id" element={<ProductDetails />} />
-            <Route path="/radio/products/:id" element={<ProductDetails />} />
-            <Route path="/speaker/products/:id" element={<ProductDetails />} />
+            <Route
+              path="/tv/products/:id"
+              element={<ProductDetails searchProducts={searchProducts} />}
+            />
+            <Route
+              path="/camera/products/:id"
+              element={<ProductDetails searchProducts={searchProducts} />}
+            />
+            <Route
+              path="/gaming/products/:id"
+              element={<ProductDetails searchProducts={searchProducts} />}
+            />
+            <Route
+              path="/landline/products/:id"
+              element={<ProductDetails searchProducts={searchProducts} />}
+            />
+            <Route
+              path="/radio/products/:id"
+              element={<ProductDetails searchProducts={searchProducts} />}
+            />
+            <Route
+              path="/speaker/products/:id"
+              element={<ProductDetails searchProducts={searchProducts} />}
+            />
             <Route
               path="/accessories/products/:id"
-              element={<ProductDetails />}
+              element={<ProductDetails searchProducts={searchProducts} />}
             />
             <Route
               path="/tv"
               element={<Tv searchProducts={searchProducts} />}
             />
-            <Route path="/camera" element={<Camera />} />
-            <Route path="/gaming" element={<Gaming />} />
-            <Route path="/landline" element={<Landline />} />
-            <Route path="/radio" element={<Radio />} />
-            <Route path="/speaker" element={<Speaker />} />
+            <Route
+              path="/camera"
+              element={<Camera searchProducts={searchProducts} />}
+            />
+            <Route
+              path="/gaming"
+              element={<Gaming searchProducts={searchProducts} />}
+            />
+            <Route
+              path="/landline"
+              element={<Landline searchProducts={searchProducts} />}
+            />
+            <Route
+              path="/radio"
+              element={<Radio searchProducts={searchProducts} />}
+            />
+            <Route
+              path="/speaker"
+              element={<Speaker searchProducts={searchProducts} />}
+            />
 
             {/* <Route path="/user/cart" element={<Cart />} /> */}
             <Route path="/user/cart" element={<Protected Component={Cart} />} />

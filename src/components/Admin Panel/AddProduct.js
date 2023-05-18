@@ -51,7 +51,6 @@ export const AddProduct = () => {
     formData.append("price", data.price);
     formData.append("file", data.file[0]);
     console.log(formData);
-    // Send the form data and file to the server
     const res = await axios.post("http://localhost:8000/admin/product/new", {
       formData,
 

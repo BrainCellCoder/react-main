@@ -152,7 +152,7 @@ export const Navbars = (props) => {
                       src={require("./../Navbar/cart.png")}
                       alt=""
                     />
-                    <span className="cart-number">{cartNumber}</span>
+                    {/* <span className="cart-number">{cartNumber}</span> */}
                   </Link>
                 </div>
               ) : (

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../Phones/Phones.css";
 import { Card } from "../Card";
+import { SearchProducts } from "../../../SearchProducts";
 
-export const Landline = () => {
+export const Landline = (props) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchTv = async () => {
@@ -24,6 +25,9 @@ export const Landline = () => {
   }, []);
   return (
     <>
+      {props.searchProducts.length > 0 && (
+        <SearchProducts data={props.searchProducts} />
+      )}
       <div
         className="products"
         style={{ marginTop: "100px", minHeight: "70vh" }}
