@@ -16,6 +16,7 @@ import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
+import StarIcon from "@mui/icons-material/Star";
 
 const style = {
   position: "absolute",
@@ -185,11 +186,11 @@ export const CardDetails = (props) => {
                 <div className="rate-product">
                   <Button
                     onClick={handleOpen}
-                    variant="outlined"
+                    variant="contained"
                     color="warning"
-                    sx={{ fontWeight: "500", border: "1px solid" }}
+                    sx={{ fontWeight: "500" }}
                   >
-                    Rate this Product
+                    <StarIcon /> Rate
                   </Button>
                   <Modal
                     open={open}
