@@ -12,7 +12,7 @@ export const PaymentSuccess = () => {
         justifyContent: "center",
         alignItems: "center",
         width: "100vw",
-        height: "75vh",
+        height: "79vh",
       }}
     >
       <div

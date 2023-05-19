@@ -207,7 +207,9 @@ export const CheckOut = () => {
                 <i className="fa-solid fa-circle"></i>
                 <div className="checkout-user-name-email">
                   <p style={{ margin: "0" }}>User</p>
-                  {userData.user?.name} :{" "}
+                  <span style={{ fontWeight: "600" }}>
+                    {userData.user?.name} :
+                  </span>{" "}
                   <Chip avatar={<EmailIcon />} label={userData.user?.email} />
                 </div>
               </div>
@@ -221,7 +223,7 @@ export const CheckOut = () => {
                     <div key={key} className="address-list-radio">
                       <label className="address-list-label mb-3">
                         <input
-                          defaultChecked={key === 0}
+                          // defaultChecked={key === 0}
                           className="input-type"
                           type="radio"
                           name="option"
@@ -421,9 +423,8 @@ export const CheckOut = () => {
                 <div className="checkout-shopping">
                   <button
                     onClick={checkoutHandler}
-                    disabled={
-                      !userData?.user?.shippingAddress.length && !isChecked
-                    }
+                    // disabled={!userData?.user?.shippingAddress.length}
+                    disabled={!isChecked}
                     className="checkout"
                   >
                     Proceed to Pay
@@ -431,7 +432,8 @@ export const CheckOut = () => {
                   {/* <div className="shopping">Continue Shopping</div> */}
                 </div>
               </div>
-              {!userData?.user?.shippingAddress.length && (
+              {/* {!userData?.user?.shippingAddress.length && ( */}
+              {!isChecked && (
                 <p className="address-alert-msg">
                   <i className="fa-solid fa-circle-exclamation"></i> Select the
                   Delivery Address
