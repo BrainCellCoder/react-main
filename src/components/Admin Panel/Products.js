@@ -92,11 +92,7 @@ export const Products = (props) => {
                 >
                   Delete
                 </Button>
-                <EditProduct
-                  // productId={product._id}
-                  // productImg={product.image[0].url}
-                  product={product}
-                />
+                <EditProduct product={product} />
               </StyledTableCell>
             </StyledTableRow>
           ))}

@@ -8,6 +8,7 @@ import { FilteredCategory } from "./FilteredCategory/FilteredCategory";
 import { PopularCategory } from "./PopularCategory/PopularCategory";
 import { Card } from "./Products/Card";
 import { SearchProducts } from "../SearchProducts";
+import "./Home.css";
 export const Home = (props) => {
   const [cat, setCat] = useState("all");
   const [products, setProducts] = useState([]);
@@ -51,7 +52,7 @@ export const Home = (props) => {
   const radio = products.filter((product) => product.category === "Radio");
   const speaker = products.filter((product) => product.category === "Speaker");
   return (
-    <>
+    <div id="home">
       {!props.searchProducts.length && <Hero data={headPhones} />}
       {!props.searchProducts.length && <PopularCategory />}
       {!props.searchProducts.length && (
@@ -83,6 +84,6 @@ export const Home = (props) => {
       {cat === "Landline" && <FilteredCategory data={landline} />}
       {cat === "Radio" && <FilteredCategory data={radio} />}
       {cat === "Speaker" && <FilteredCategory data={speaker} />}
-    </>
+    </div>
   );
 };

@@ -135,6 +135,7 @@ export const Navbars = (props) => {
                   </Link>
                 </div>
               )}
+
               {isLoggedIn || cookies.userId ? (
                 <div className="wish-cart">
                   <a href="/user/wishlist">

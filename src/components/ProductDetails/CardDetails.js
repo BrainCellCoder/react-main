@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import "./CardDetails.css";
 import Rating from "react-rating-stars-component";
 import StarRating from "./StarRating";
@@ -226,7 +226,18 @@ export const CardDetails = (props) => {
                           </Box>
                         </form>
                       ) : (
-                        "Please Login to Rate the Product"
+                        <p>
+                          Please{" "}
+                          <Button variant="contained" color="success">
+                            <Link
+                              style={{ textDecoration: "none", color: "white" }}
+                              to="/login"
+                            >
+                              Login
+                            </Link>
+                          </Button>{" "}
+                          to rate the product
+                        </p>
                       )}
                     </Box>
                   </Modal>

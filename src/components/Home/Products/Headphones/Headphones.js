@@ -14,7 +14,7 @@ export const Headphones = (props) => {
       )}
       <div
         className="products"
-        style={{ marginTop: "100px", minHeight: "70vh" }}
+        style={{ marginTop: "100px", marginBottom: "5rem", minHeight: "70vh" }}
       >
         <h1>Headphones</h1>
         <div className="headphones-items row gy-5">
