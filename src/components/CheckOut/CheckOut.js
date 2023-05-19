@@ -23,9 +23,11 @@ export const CheckOut = () => {
   const [addressDelete, setAddressDelete] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [cookies, setCookie] = useCookies(["userId", "token"]);
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleOptionChange = (event) => {
     setSelectedOption(JSON.parse(event.target.value));
+    setIsChecked(event.target.checked);
   };
 
   useEffect(() => {
@@ -125,11 +127,12 @@ export const CheckOut = () => {
         },
         body: JSON.stringify({
           addressId: id,
-          userId: localStorage.getItem("user_id") || cookies.user_id,
+          userId: localStorage.getItem("user_id") || cookies.userId,
         }),
       }
     );
     const resp = await res.json();
+    console.log(resp);
     setAddressDelete(!addressDelete);
   };
 
@@ -229,13 +232,26 @@ export const CheckOut = () => {
                           onChange={handleOptionChange}
                         />
                         <div className="address-info">
-                          <p>{address.address} </p>
-                          <i
-                            className="fa-solid fa-trash"
-                            onClick={() => deleteAddress(address._id)}
-                          ></i>
+                          <p>
+                            <span style={{ fontWeight: "700" }}>Address:</span>
+                            {address.address} <br />
+                            <span style={{ fontWeight: "700" }}>City:</span>
+                            {address.city}{" "}
+                            <span style={{ fontWeight: "700" }}>State:</span>
+                            {address.state}{" "}
+                            <span style={{ fontWeight: "700" }}>Country:</span>
+                            {address.country}{" "}
+                            <span style={{ fontWeight: "700" }}>Pincode:</span>{" "}
+                            {address.pinCode}{" "}
+                            <span style={{ fontWeight: "700" }}>Phone:</span>{" "}
+                            {address.phoneNo}
+                          </p>
                         </div>
                       </label>
+                      <i
+                        className="fa-solid fa-trash delete-address-btn"
+                        onClick={() => deleteAddress(address._id)}
+                      ></i>
                     </div>
                   ))}
                   {/* <p>{selectedOption}</p> */}
@@ -396,7 +412,9 @@ export const CheckOut = () => {
                 <div className="checkout-shopping">
                   <button
                     onClick={checkoutHandler}
-                    disabled={!userData?.user?.shippingAddress.length}
+                    disabled={
+                      !userData?.user?.shippingAddress.length && !isChecked
+                    }
                     className="checkout"
                   >
                     Proceed to Pay
