@@ -9,6 +9,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import Chip from "@mui/material/Chip";
+import EmailIcon from "@mui/icons-material/Email";
+import Button from "@mui/material/Button";
 
 export const CheckOut = () => {
   const location = useLocation();
@@ -204,7 +207,8 @@ export const CheckOut = () => {
                 <i className="fa-solid fa-circle"></i>
                 <div className="checkout-user-name-email">
                   <p style={{ margin: "0" }}>User</p>
-                  {userData.user?.name} : {userData.user?.email}
+                  {userData.user?.name} :{" "}
+                  <Chip avatar={<EmailIcon />} label={userData.user?.email} />
                 </div>
               </div>
               <div className="delivery-address">
@@ -255,11 +259,14 @@ export const CheckOut = () => {
                     </div>
                   ))}
                   {/* <p>{selectedOption}</p> */}
-                  <div className="add-address mb-3" onClick={toggleAddressForm}>
+                  <Button variant="contained" onClick={toggleAddressForm}>
                     {showForm ? "Cancel" : "+ Add a new address"}
-                  </div>
+                  </Button>
                   {showForm && (
-                    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+                    <Form
+                      style={{ marginTop: "20px" }}
+                      onSubmit={handleSubmit(onSubmit, onError)}
+                    >
                       <div className="row">
                         <div className="col-md-6">
                           <FloatingLabel
@@ -360,7 +367,9 @@ export const CheckOut = () => {
                           </Form.Group>
                         </div>
                       </div>
-                      <button className="address-submit-btn">Add</button>
+                      <Button type="submit" variant="contained" color="success">
+                        Add
+                      </Button>
                     </Form>
                   )}
                 </div>
