@@ -1,0 +1,33 @@
+UNIQUE FEATURES:
+1. Secure Payment Gateway: The e-commerce project integrates a highly secure payment gateway, 
+    providing customers with a safe and seamless transaction process. Multiple payment options, 
+    such as credit/debit cards, digital wallets, and net banking, are supported to accommodate 
+    diverse user preferences.
+
+2. Order Tracking : Customers can track their orders in real-time regarding order status updates, 
+    including shipment tracking details and estimated delivery date. This feature helps users 
+    stay informed and manage their expectations effectively.
+
+3. Customer Reviews and Ratings: Users can provide feedback, rate products, and write reviews, 
+    fostering a sense of community and trust among customers. The reviews and ratings feature helps 
+    other users make informed purchasing decisions and contributes to the overall credibility of the platform.
+
+These unique features differentiate my MERN stack e-commerce project from others, enhancing user engagement, 
+satisfaction, and ultimately driving sales.
+
+ARCHITECTURE AND TECHNOLOGY STACK:
+ Q1.Why did you choose the MERN stack for your e-commerce project?
+ ANS: I chose the MERN stack (MongoDB, Express.js, React, Node.js) for my e-commerce project because 
+      it provides modern framework for building scalable and efficient web applications. 
+
+ Q2.What are the advantages of using MongoDB as the database?
+ ANS:  MongoDB was selected as the database due to its flexibility and scalability for handling
+       product catalog and user data.
+
+ Q3.How did you handle the integration between the frontend (React) and backend (Node.js) components of your project?
+ ANS: The frontend was developed using React for its component-based architecture and efficient rendering. 
+      Node.js was used for the backend to ensure high-performance server-side operations and seamless integration 
+      with the frontend components. The combination of these technologies allowed for a streamlined and consistent 
+      development process.
+
+ Q4.Did you consider any alternative technology stacks? If so, what were they and why did you ultimately choose MERN?

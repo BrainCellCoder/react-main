@@ -17,6 +17,8 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import StarIcon from "@mui/icons-material/Star";
+import { ProductImage } from "./ProductImage";
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
 
 const style = {
   position: "absolute",
@@ -170,10 +172,14 @@ export const CardDetails = (props) => {
     <>
       <div id="product-details">
         <div id="gutter" className="row">
-          <div
+          {/* <div
             className="col-md-6 product-img"
             style={{ backgroundImage: `url(${imageUrl})` }}
-          ></div>
+          ></div> */}
+          <div className="col-md-6 product-img">
+            <ProductImage image={imageUrl} />
+          </div>
+
           <div className="col-md-6 product-info">
             <div className="product-details">
               <h3>{props.data.name}</h3>
@@ -184,14 +190,21 @@ export const CardDetails = (props) => {
                   ({numReviews} reviews)
                 </span>
                 <div className="rate-product">
-                  <Button
+                  <button
                     onClick={handleOpen}
-                    variant="contained"
-                    color="warning"
-                    sx={{ fontWeight: "500" }}
+                    style={{
+                      fontWeight: "500",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      padding: "0.3rem",
+                      backgroundColor: "orange",
+                      borderRadius: "5px",
+                      boxShadow: "3px 3px 4px -2px #000",
+                    }}
                   >
-                    <StarIcon /> Rate
-                  </Button>
+                    <StarIcon /> RATE
+                  </button>
                   <Modal
                     open={open}
                     onClose={handleClose}
