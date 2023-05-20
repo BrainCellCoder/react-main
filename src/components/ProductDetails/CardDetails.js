@@ -218,6 +218,7 @@ export const CardDetails = (props) => {
                             name="star-rating"
                             value={rating}
                             onChange={handleRatingChange}
+                            size={30}
                           />
                           <TextField
                             id="outlined-multiline-flexible"
