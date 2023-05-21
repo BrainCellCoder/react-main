@@ -23,8 +23,9 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 500,
   bgcolor: "background.paper",
+  // bgcolor: "#fff2b2",
   borderRadius: "20px",
   // border: "2px solid #000",
   // boxShadow: 24,
@@ -41,6 +42,7 @@ export const CardDetails = (props) => {
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const [cookies, setCookie] = useCookies(["userId", "token"]);
+  const [isProductOrdered, setIsProductOrdered] = useState(false);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -167,6 +169,71 @@ export const CardDetails = (props) => {
     fetchReviews();
   }, [toggle]);
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await fetch("http://localhost:8000/user/me/myorders", {
+        method: "POST",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: localStorage.getItem("user_id") || cookies.userId,
+        }),
+      });
+
+      const data = await res.json();
+      console.log(data);
+      const getProductIds = () => {
+        const productIds = data.orders.flatMap((order) =>
+          order.products.map((product) => product.productId._id)
+        );
+        return productIds;
+      };
+
+      const productIds = getProductIds();
+      console.log("Product IDs:", productIds);
+      const isOrdered = productIds.includes(id);
+      console.log(isOrdered);
+      setIsProductOrdered(isOrdered);
+    };
+    fetchUser();
+  }, []);
+
+  const form = isProductOrdered ? (
+    <form onSubmit={handleSubmit}>
+      <Rating
+        name="star-rating"
+        value={rating}
+        onChange={handleRatingChange}
+        size={30}
+      />
+      <TextField
+        id="outlined-multiline-flexible"
+        label="Comment"
+        multiline
+        maxRows={4}
+        fullWidth
+        onChange={handleCommentChange}
+        required
+      />
+
+      <Box mt={2}>
+        <Button variant="contained" color="primary" type="submit">
+          Submit
+        </Button>
+      </Box>
+    </form>
+  ) : (
+    <Alert severity="info">
+      <h3>Haven't purchased this product?</h3> Sorry! You are not allowed to
+      review this product since you haven't bought it on TechKart.
+    </Alert>
+  );
+
   return (
     <>
       <div id="product-details">
@@ -213,33 +280,7 @@ export const CardDetails = (props) => {
                   >
                     <Box sx={style}>
                       {localStorage.getItem("token") || cookies.token ? (
-                        <form onSubmit={handleSubmit}>
-                          <Rating
-                            name="star-rating"
-                            value={rating}
-                            onChange={handleRatingChange}
-                            size={30}
-                          />
-                          <TextField
-                            id="outlined-multiline-flexible"
-                            label="Comment"
-                            multiline
-                            maxRows={4}
-                            fullWidth
-                            onChange={handleCommentChange}
-                            required
-                          />
-
-                          <Box mt={2}>
-                            <Button
-                              variant="contained"
-                              color="primary"
-                              type="submit"
-                            >
-                              Submit
-                            </Button>
-                          </Box>
-                        </form>
+                        form
                       ) : (
                         <p>
                           Please{" "}
