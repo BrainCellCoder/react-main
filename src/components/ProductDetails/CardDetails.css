@@ -201,6 +201,33 @@
   font-style: italic;
 }
 
+.product-wish {
+  /* color: #ff0a54; */
+  font-size: 2rem;
+  background-color: #f2f2f2;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.addWish {
+  color: #ff0a54;
+}
+
+.product-wish:hover {
+  color: #ff0a54;
+}
+
+.removecart {
+  color: #ff0a54;
+  border-color: #ff0a54;
+}
+
+.removecart:hover {
+  background-color: #ff0a54;
+  color: #fff;
+}
+
 @media (max-width: 1440px) {
   #img-small {
     display: none;

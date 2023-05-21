@@ -25,10 +25,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 500,
   bgcolor: "background.paper",
-  // bgcolor: "#fff2b2",
   borderRadius: "20px",
-  // border: "2px solid #000",
-  // boxShadow: 24,
   p: 4,
 };
 
@@ -43,6 +40,10 @@ export const CardDetails = (props) => {
   const { id } = useParams();
   const [cookies, setCookie] = useCookies(["userId", "token"]);
   const [isProductOrdered, setIsProductOrdered] = useState(false);
+  const [addWishlist, setAddWishlist] = useState(false);
+  const [addCart, setAddCart] = useState(false);
+  const [productInWishlist, setProductInWishlist] = useState(false);
+  const [productInCart, setProductInCart] = useState(false);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -72,6 +73,7 @@ export const CardDetails = (props) => {
     });
     const data = await res.json();
     console.log(data);
+    setAddCart(!addCart);
     toast.success(data.message, {
       position: "bottom-center",
       autoClose: 3000,
@@ -98,6 +100,7 @@ export const CardDetails = (props) => {
       },
     });
     const data = await res.json();
+    setAddWishlist(!addWishlist);
     toast.success(data.message, {
       position: "bottom-center",
       autoClose: 3000,
@@ -202,6 +205,79 @@ export const CardDetails = (props) => {
     };
     fetchUser();
   }, []);
+
+  const removeFromCart = async (id) => {
+    const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    toast.success(data.message, {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    setAddCart(!addCart);
+    if (!data.success) {
+      Navigate("/login");
+    }
+  };
+
+  const removeFromWishList = async (id) => {
+    const res = await fetch(`http://localhost:8000/user/wishlist/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    toast.success(data.message, {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    setAddWishlist(!addWishlist);
+    if (!data.success) {
+      Navigate("/login");
+    }
+  };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await fetch("http://localhost:8000/user/me", {
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+      setProductInWishlist(data.user?.wishList.some((item) => item._id === id));
+      setProductInCart(
+        data.user?.cart.some((item) => item.productId._id === id)
+      );
+    };
+    fetchUser();
+  }, [addWishlist, addCart]);
 
   const form = isProductOrdered ? (
     <form onSubmit={handleSubmit}>
@@ -321,22 +397,64 @@ export const CardDetails = (props) => {
                 </select>
               </div>
               <div className="product-buy-cart">
-                <div
+                {/* <div
                   className="product-buy"
                   onClick={() => {
                     addToWishlist(props.data._id);
                   }}
                 >
                   Add to Wish list
-                </div>
-                <div
+                </div> */}
+                {!productInWishlist && (
+                  <div
+                    className="product-wish"
+                    onClick={() => {
+                      addToWishlist(props.data._id);
+                    }}
+                  >
+                    <i className="fa-regular fa-heart"></i>
+                  </div>
+                )}
+                {productInWishlist && (
+                  <div
+                    className="product-wish addWish"
+                    onClick={() => {
+                      removeFromWishList(props.data._id);
+                    }}
+                  >
+                    <i className="fa-solid fa-heart"></i>
+                  </div>
+                )}
+
+                {/* <div
                   className="product-cart"
                   onClick={() => {
                     addToCart(props.data._id);
                   }}
                 >
                   Add to Cart
-                </div>
+                </div> */}
+                {!productInCart && (
+                  <div
+                    className="product-cart"
+                    onClick={() => {
+                      addToCart(props.data._id);
+                    }}
+                  >
+                    <i className="fa-solid fa-cart-plus"></i> Add to cart
+                  </div>
+                )}
+                {productInCart && (
+                  <div
+                    className="product-cart removecart"
+                    // style={{ color: "red", borderColor: "red" }}
+                    onClick={() => {
+                      removeFromCart(props.data._id);
+                    }}
+                  >
+                    Remove from Cart
+                  </div>
+                )}
               </div>
             </div>
             <ToastContainer
@@ -344,7 +462,6 @@ export const CardDetails = (props) => {
               autoClose={3000}
               hideProgressBar={false}
               newestOnTop={false}
-              // closeOnClick
               rtl={false}
               pauseOnFocusLoss
               draggable
