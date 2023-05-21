@@ -14,11 +14,9 @@ import "../../Utils/star.css";
 import { Grid, Paper, TextField } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import StarIcon from "@mui/icons-material/Star";
 import { ProductImage } from "./ProductImage";
-import ZoomInIcon from "@mui/icons-material/ZoomIn";
 
 const style = {
   position: "absolute",
@@ -27,8 +25,9 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
+  borderRadius: "20px",
+  // border: "2px solid #000",
+  // boxShadow: 24,
   p: 4,
 };
 
@@ -172,11 +171,12 @@ export const CardDetails = (props) => {
     <>
       <div id="product-details">
         <div id="gutter" className="row">
-          {/* <div
+          <div
+            id="img-small"
             className="col-md-6 product-img"
             style={{ backgroundImage: `url(${imageUrl})` }}
-          ></div> */}
-          <div className="col-md-6 product-img">
+          ></div>
+          <div id="img-big" className="col-md-6 product-img">
             <ProductImage image={imageUrl} />
           </div>
 

@@ -146,9 +146,6 @@ export const Card = (props) => {
       setProductInWishlist(
         data.user?.wishList.some((item) => item._id === props.data._id)
       );
-      const inCart = data.user?.cart.some(
-        (item) => item.productId._id == props.data._id
-      );
       setProductInCart(
         data.user?.cart.some((item) => item.productId._id === props.data._id)
       );

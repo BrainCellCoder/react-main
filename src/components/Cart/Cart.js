@@ -145,7 +145,7 @@ export const Cart = () => {
       <div id="cartItems">
         <div>
           <div className="row">
-            <div className="col-md-7">
+            <div className="col-md-7" style={{ marginBottom: "30px" }}>
               <div className="heading-my-cart">
                 <h3>My Cart ({cartItems.length})</h3>
                 <span>Total Amount: ₹ {cartItemstotalPrice}</span>

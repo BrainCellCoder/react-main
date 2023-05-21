@@ -15,6 +15,7 @@
   display: flex;
   padding: 1.5rem;
   border-bottom: 1px solid #e9ecef;
+  /* margin-bottom: 30px; */
 }
 
 .cart-item .product-information {

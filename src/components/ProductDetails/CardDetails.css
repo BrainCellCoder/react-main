@@ -200,3 +200,21 @@
 .review-comment {
   font-style: italic;
 }
+
+@media (max-width: 1440px) {
+  #img-small {
+    display: none;
+  }
+  #img-big {
+    display: block;
+  }
+}
+
+@media (max-width: 1040px) {
+  #img-small {
+    display: block;
+  }
+  #img-big {
+    display: none;
+  }
+}
