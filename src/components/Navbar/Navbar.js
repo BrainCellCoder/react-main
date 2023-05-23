@@ -46,10 +46,8 @@ export const Navbars = (props) => {
           },
         }
       );
-      console.log(response);
       const data = await response.json();
       props.search(data.products);
-      console.log("Search results:", data);
     } catch (error) {
       console.error("Error occurred during search:", error);
     }
