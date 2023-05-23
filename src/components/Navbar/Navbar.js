@@ -38,7 +38,7 @@ export const Navbars = (props) => {
   const searchProduct = async (productName) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/products?name=${productName}`,
+        `http://localhost:8000/products/search?text=${productName}`,
         {
           headers: {
             Accept: "application/json, text/plain, */*",
