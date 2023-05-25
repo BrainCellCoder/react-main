@@ -181,6 +181,10 @@
   border-radius: 10px;
 }
 
+.empty-cart {
+  padding: 2rem;
+}
+
 @media (max-width: 1148px) {
   .checkout,
   .shopping {

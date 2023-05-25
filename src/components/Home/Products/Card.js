@@ -155,7 +155,8 @@ export const Card = (props) => {
 
   return (
     <div className="col-lg-3 col-md-6">
-      <div className="product animate__animated animate__fadeInUp">
+      {/* <div className="product animate__animated animate__fadeInUp"> */}
+      <div className="product">
         <div
           className="image"
           style={{ backgroundImage: `url(${imgURL})` }}

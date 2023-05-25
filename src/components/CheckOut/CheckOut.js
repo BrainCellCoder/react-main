@@ -424,7 +424,9 @@ export const CheckOut = () => {
                   <button
                     onClick={checkoutHandler}
                     // disabled={!userData?.user?.shippingAddress.length}
-                    disabled={!isChecked}
+                    disabled={
+                      !isChecked || !userData?.user?.shippingAddress.length
+                    }
                     className="checkout"
                   >
                     Proceed to Pay
@@ -433,11 +435,13 @@ export const CheckOut = () => {
                 </div>
               </div>
               {/* {!userData?.user?.shippingAddress.length && ( */}
-              {!isChecked && (
+              {!isChecked || !userData?.user?.shippingAddress.length ? (
                 <p className="address-alert-msg">
                   <i className="fa-solid fa-circle-exclamation"></i> Select the
                   Delivery Address
                 </p>
+              ) : (
+                ""
               )}
             </div>
           </div>

@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, Link } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import Button from "@mui/material/Button";
 
 export const Cart = () => {
   const { cartNumber, setCartNumber } = useContext(AppContext);
@@ -146,10 +148,33 @@ export const Cart = () => {
         <div>
           <div className="row">
             <div className="col-md-7" style={{ marginBottom: "30px" }}>
-              <div className="heading-my-cart">
-                <h3>My Cart ({cartItems.length})</h3>
-                <span>Total Amount: ₹ {cartItemstotalPrice}</span>
-              </div>
+              {cartItems.length >= 1 && (
+                <div className="heading-my-cart">
+                  <h3>My Cart ({cartItems.length})</h3>
+                  <span>Total Amount: ₹ {cartItemstotalPrice}</span>
+                </div>
+              )}
+              {!cartItems.length && (
+                <div className="empty-cart">
+                  <Alert
+                    sx={{
+                      width: "50%",
+                      margin: "auto",
+                      border: "1px solid #ff758f",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                    severity="error"
+                  >
+                    <span style={{ marginRight: "60px" }}>
+                      No Products in Cart
+                    </span>
+                    <Link to="/">
+                      <Button variant="contained">Go Home</Button>
+                    </Link>
+                  </Alert>
+                </div>
+              )}
               <div className="cart-items">
                 {cartItems.map((item, key) => (
                   <CartItems
@@ -166,13 +191,6 @@ export const Cart = () => {
                   <p className="delivery-date">
                     Delivery date: {formattedDate}
                   </p>
-                  {/* <div className="promocode">
-                    <p>Apply Promocode and get 20% off</p>
-                    <div className="promocode-input">
-                      <input type="text" placeholder="Promocode" />
-                      <button> Apply </button>
-                    </div>
-                  </div> */}
                   <div className="subtotal">
                     <div className="discount">
                       <p>Price ({cartItems.length} items)</p>
@@ -200,13 +218,6 @@ export const Cart = () => {
                     >
                       Proceed to Checkout
                     </Link>
-                    {/* <div
-                      className="checkout"
-                      onClick={handleOpenModal}
-                      // onClick={checkoutHandler}
-                    >
-                      Proceed to CheckOut
-                    </div> */}
                     <Link
                       style={{ textDecoration: "none" }}
                       to="/"
@@ -215,32 +226,6 @@ export const Cart = () => {
                       Continue Shopping
                     </Link>
                   </div>
-                  {/* <Modal show={showModal} onHide={handleCloseModal}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Fill out this form</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <form className="address-form" onSubmit={checkoutHandler}>
-                        <textarea
-                          type="text"
-                          id="address"
-                          value={address}
-                          onChange={(e) => setAddress(e.target.value)}
-                          placeholder="Enter Full Address"
-                          required={true}
-                        />
-                        <input
-                          type="number"
-                          id="phone"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          placeholder="Enter Phone Number"
-                          required={true}
-                        />
-                        <button type="submit">Proceed</button>
-                      </form>
-                    </Modal.Body>
-                  </Modal> */}
                 </div>
               ) : (
                 ""
