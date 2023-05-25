@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { Card } from "../Home/Products/Card";
 import "./Wishlist.css";
+import Alert from "@mui/material/Alert";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export const Wishlist = () => {
   const [wishItems, setWishItems] = useState([]);
@@ -22,9 +25,26 @@ export const Wishlist = () => {
     fetchWishlist();
   });
   return (
-    <section style={{ minHeight: "100vh", marginTop: "100px" }}>
+    <section style={{ minHeight: "70vh", marginTop: "100px" }}>
       <div className="container">
-        <h3>My Wishlist ({wishItems.length})</h3>
+        {wishItems.length >= 1 && <h3>My Wishlist ({wishItems.length})</h3>}
+        {!wishItems.length && (
+          <Alert
+            sx={{
+              width: "30%",
+              margin: "auto",
+              border: "1px solid #ff758f",
+              display: "flex",
+              alignItems: "center",
+            }}
+            severity="error"
+          >
+            <span style={{ marginRight: "60px" }}>No Product in Wish list</span>
+            <Link to="/">
+              <Button variant="contained">Go Home</Button>
+            </Link>
+          </Alert>
+        )}
         <div className="row gy-5">
           {wishItems.map((item, key) => (
             <Card key={key} data={item} />
