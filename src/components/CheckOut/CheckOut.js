@@ -377,9 +377,19 @@ export const CheckOut = () => {
                 </div>
               </div>
               <div className="orderSummary">
-                <div className="orderSummary-head">
-                  <i className="fa-solid fa-circle"></i>
-                  <p className="orderSummary-text">ORDER SUMMARY</p>
+                <div
+                  className="orderSummary-head"
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <i className="fa-solid fa-circle"></i>
+                    <p className="orderSummary-text">ORDER SUMMARY</p>
+                  </div>
+                  <Link to="/user/cart">
+                    <Button variant="contained" color="success">
+                      Go to Cart
+                    </Button>
+                  </Link>
                 </div>
 
                 <div className="orderSummary-list">
@@ -437,8 +447,8 @@ export const CheckOut = () => {
               {/* {!userData?.user?.shippingAddress.length && ( */}
               {!isChecked || !userData?.user?.shippingAddress.length ? (
                 <p className="address-alert-msg">
-                  <i className="fa-solid fa-circle-exclamation"></i> Select the
-                  Delivery Address
+                  <i className="fa-solid fa-circle-exclamation"></i> Select a
+                  delivery address
                 </p>
               ) : (
                 ""

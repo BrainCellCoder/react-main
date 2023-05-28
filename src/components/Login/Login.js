@@ -131,7 +131,9 @@ export const Login = () => {
             <img
               src={require("./../Login/google.png")}
               alt=""
-              onClick={google}
+              onClick={() => {
+                google();
+              }}
             />
             Google
           </div>
