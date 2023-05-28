@@ -5,7 +5,7 @@ import { Card } from "../Card";
 export const Phones = (props) => {
   return (
     <>
-      <div className="products">
+      <div className="products animate__animated  animate__fadeInLeft">
         <h3>Phones For You!</h3>
         <div className="row gy-5">
           {props.data.map((product, key) => {

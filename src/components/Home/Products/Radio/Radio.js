@@ -26,7 +26,7 @@ export const Radio = (props) => {
         <SearchProducts data={props.searchProducts} />
       )}
       <div
-        className="products"
+        className="products animate__animated  animate__fadeInLeft"
         style={{ marginTop: "100px", minHeight: "70vh" }}
       >
         <h1>Radio</h1>
