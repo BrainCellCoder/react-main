@@ -68,9 +68,13 @@ export const Login = () => {
     console.log("Error");
   };
 
-  const google = () => {
-    console.log("google");
-    window.open("http://localhost:8000/auth/google", "_self");
+  const google = async () => {
+    try {
+      console.log("google");
+      window.open("http://localhost:8000/auth/google", "_self");
+    } catch (err) {
+      console.log("error");
+    }
   };
 
   return (
@@ -131,9 +135,7 @@ export const Login = () => {
             <img
               src={require("./../Login/google.png")}
               alt=""
-              onClick={() => {
-                google();
-              }}
+              onClick={google}
             />
             Google
           </div>

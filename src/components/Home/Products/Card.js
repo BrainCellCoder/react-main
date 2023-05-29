@@ -89,7 +89,7 @@ export const Card = (props) => {
     });
     const data = await res.json();
     toast.success(data.message, {
-      position: "bottom-center",
+      position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -115,7 +115,7 @@ export const Card = (props) => {
     });
     const data = await res.json();
     toast.success(data.message, {
-      position: "bottom-center",
+      position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
