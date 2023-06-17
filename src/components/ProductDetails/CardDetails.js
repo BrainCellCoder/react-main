@@ -312,10 +312,7 @@ export const CardDetails = (props) => {
 
   return (
     <>
-      <div
-        id="product-details"
-        className="animate__animated animate__slideInDown"
-      >
+      <div id="product-details">
         <div id="gutter" className="row">
           <div
             id="img-small"

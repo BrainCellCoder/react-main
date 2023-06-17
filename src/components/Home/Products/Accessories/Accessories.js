@@ -12,7 +12,7 @@ export const Accessories = (props) => {
         <SearchProducts data={props.searchProducts} />
       )}
       <div
-        className="products animate__animated  animate__fadeInLeft"
+        className="products"
         style={{ marginTop: "100px", marginBottom: "5rem", minHeight: "70vh" }}
       >
         <h1>Accessories</h1>

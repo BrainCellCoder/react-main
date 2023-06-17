@@ -28,7 +28,7 @@ export const PopularCategory = () => {
   return (
     <>
       {/* <h3 className="popular-category-heading">Popular Categories</h3> */}
-      <div className="animate__animated  animate__fadeInLeft">
+      <div>
         <div id="popular-category" className={classes.scrollContainer}>
           {/* Content to be scrolled */}
           <div>

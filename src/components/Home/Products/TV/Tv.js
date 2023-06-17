@@ -26,7 +26,7 @@ export const Tv = (props) => {
         <SearchProducts data={props.searchProducts} />
       )}
       <div
-        className="products animate__animated  animate__fadeInLeft"
+        className="products"
         style={{ marginTop: "100px", minHeight: "70vh" }}
       >
         <h1>Television</h1>
