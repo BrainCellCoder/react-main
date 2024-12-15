@@ -12,7 +12,7 @@ export const Wishlist = () => {
 
   useEffect(() => {
     const fetchWishlist = async () => {
-      const res = await fetch("http://localhost:8001/user/me", {
+      const res = await fetch("https://ecommercetechv.onrender.com/user/me", {
         headers: {
           authorization: `Abhi ${
             localStorage.getItem("token") || cookies.token

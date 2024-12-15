@@ -123,7 +123,7 @@ export const UserDashboard = () => {
 
   useEffect(() => {
     const userFetch = async () => {
-      const res = await fetch("http://localhost:8001/user/me", {
+      const res = await fetch("https://ecommercetechv.onrender.com/user/me", {
         headers: {
           authorization: `Abhi ${
             localStorage.getItem("token") || cookies.token
@@ -141,19 +141,22 @@ export const UserDashboard = () => {
     userFetch();
 
     const orderFetch = async () => {
-      const res = await fetch("http://localhost:8001/user/me/myorders", {
-        method: "POST",
-        headers: {
-          authorization: `Abhi ${
-            localStorage.getItem("token") || cookies.token
-          }`,
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: localStorage.getItem("user_id") || cookies.userId,
-        }),
-      });
+      const res = await fetch(
+        "https://ecommercetechv.onrender.com/user/me/myorders",
+        {
+          method: "POST",
+          headers: {
+            authorization: `Abhi ${
+              localStorage.getItem("token") || cookies.token
+            }`,
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: localStorage.getItem("user_id") || cookies.userId,
+          }),
+        }
+      );
       const data = await res.json();
       setOrders(data.orders);
     };
@@ -172,21 +175,24 @@ export const UserDashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8001/user/me", {
-        method: "PUT",
-        headers: {
-          authorization: `Abhi ${
-            localStorage.getItem("token") || cookies.token
-          }`,
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: userFristName,
-          lastName: userLastName,
-          phoneNo: userPhone,
-        }),
-      });
+      const response = await fetch(
+        "https://ecommercetechv.onrender.com/user/me",
+        {
+          method: "PUT",
+          headers: {
+            authorization: `Abhi ${
+              localStorage.getItem("token") || cookies.token
+            }`,
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: userFristName,
+            lastName: userLastName,
+            phoneNo: userPhone,
+          }),
+        }
+      );
       const data = await response.json();
       console.log("Form submitted successfully:", data);
       handleClose();

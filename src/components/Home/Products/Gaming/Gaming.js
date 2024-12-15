@@ -8,7 +8,7 @@ export const Gaming = (props) => {
   useEffect(() => {
     const fetchTv = async () => {
       const res = await fetch(
-        "http://localhost:8001/products?category=gaming",
+        "https://ecommercetechv.onrender.com/products?category=gaming",
         {
           headers: {
             Accept: "application/json, text/plain, */*",

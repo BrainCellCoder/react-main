@@ -8,7 +8,7 @@ export const Camera = (props) => {
   useEffect(() => {
     const fetchTv = async () => {
       const res = await fetch(
-        "http://localhost:8001/products?category=camera",
+        "https://ecommercetechv.onrender.com/products?category=camera",
         {
           headers: {
             Accept: "application/json, text/plain, */*",

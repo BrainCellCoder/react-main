@@ -8,7 +8,7 @@ export const Speaker = (props) => {
   useEffect(() => {
     const fetchTv = async () => {
       const res = await fetch(
-        "http://localhost:8001/products?category=speaker",
+        "https://ecommercetechv.onrender.com/products?category=speaker",
         {
           headers: {
             Accept: "application/json, text/plain, */*",

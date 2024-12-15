@@ -87,20 +87,23 @@ export const Admin = () => {
 
   useEffect(() => {
     const ordersFetch = async () => {
-      const res = await fetch("http://localhost:8001/admin/allorders", {
-        headers: {
-          authorization: `Abhi ${localStorage.getItem("token")}`,
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        "https://ecommercetechv.onrender.com/admin/allorders",
+        {
+          headers: {
+            authorization: `Abhi ${localStorage.getItem("token")}`,
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await res.json();
       setAllOrders(data.orders);
     };
     ordersFetch();
 
     const productsFetch = async () => {
-      const res = await fetch("http://localhost:8001/products", {
+      const res = await fetch("https://ecommercetechv.onrender.com/products", {
         headers: {
           authorization: `Abhi ${localStorage.getItem("token")}`,
           Accept: "application/json, text/plain, */*",
@@ -113,13 +116,16 @@ export const Admin = () => {
     productsFetch();
 
     const userFetch = async () => {
-      const res = await fetch("http://localhost:8001/admin/users", {
-        headers: {
-          authorization: `Abhi ${localStorage.getItem("token")}`,
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        "https://ecommercetechv.onrender.com/admin/users",
+        {
+          headers: {
+            authorization: `Abhi ${localStorage.getItem("token")}`,
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await res.json();
       setAllCustomers(data);
     };

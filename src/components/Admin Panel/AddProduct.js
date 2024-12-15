@@ -51,17 +51,22 @@ export const AddProduct = () => {
     formData.append("price", data.price);
     formData.append("file", data.file[0]);
     console.log(formData);
-    const res = await fetch("http://localhost:8001/admin/product/new", {
-      method: "POST",
-      body: formData,
+    const res = await fetch(
+      "https://ecommercetechv.onrender.com/admin/product/new",
+      {
+        method: "POST",
+        body: formData,
 
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        //   Accept: "application/json, text/plain, */*",
-        //   "Content-Type": "application/json",
-        //   // "Content-Type": "multipart/form-data",
-      },
-    });
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          //   Accept: "application/json, text/plain, */*",
+          //   "Content-Type": "application/json",
+          //   // "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     const resp = await res.json();
     handleClose();
     console.log(resp);

@@ -8,7 +8,7 @@ export const Landline = (props) => {
   useEffect(() => {
     const fetchTv = async () => {
       const res = await fetch(
-        "http://localhost:8001/products?category=landline",
+        "https://ecommercetechv.onrender.com/products?category=landline",
         {
           headers: {
             Accept: "application/json, text/plain, */*",

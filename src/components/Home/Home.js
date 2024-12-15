@@ -15,7 +15,8 @@ export const Home = (props) => {
   const [filterDep, setFilterDep] = useState(false);
   useEffect(() => {
     async function allProducts() {
-      const res = await fetch("http://localhost:8001/products");
+      // const res = await fetch("https://ecommercetechv.onrender.com/products");
+      const res = await fetch("https://ecommercetechv.onrender.com/products");
       const product = await res.json();
       setProducts(product.products);
     }

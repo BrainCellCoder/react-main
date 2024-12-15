@@ -35,7 +35,7 @@ export const CheckOut = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const user = await fetch("http://localhost:8001/user/me", {
+      const user = await fetch("https://ecommercetechv.onrender.com/user/me", {
         headers: {
           authorization: `Abhi ${
             localStorage.getItem("token") || cookies.token
@@ -88,7 +88,7 @@ export const CheckOut = () => {
   });
 
   const onSubmit = async (data) => {
-    const res = await fetch("http://localhost:8001/user/me", {
+    const res = await fetch("https://ecommercetechv.onrender.com/user/me", {
       method: "POST",
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
@@ -118,7 +118,7 @@ export const CheckOut = () => {
   const deleteAddress = async (id) => {
     console.log(id);
     const res = await fetch(
-      `http://localhost:8001/user/me/delete-address/${id}`,
+      `https://ecommercetechv.onrender.com/user/me/delete-address/${id}`,
       {
         method: "PUT",
         headers: {
@@ -141,9 +141,9 @@ export const CheckOut = () => {
 
   const checkoutHandler = async (e) => {
     e.preventDefault();
-    const keyRes = await fetch("http://localhost:8001/getkey");
+    const keyRes = await fetch("https://ecommercetechv.onrender.com/getkey");
     const keyResp = await keyRes.json();
-    const user = await fetch("http://localhost:8001/user/me", {
+    const user = await fetch("https://ecommercetechv.onrender.com/user/me", {
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         "Content-Type": "application/json",
@@ -152,21 +152,26 @@ export const CheckOut = () => {
     const userData = await user.json();
     const price = Number(data.cartItemstotalPrice.replace(/,/g, ""));
 
-    const res = await fetch("http://localhost:8001/payment/checkout", {
-      method: "POST",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        amount: price,
-        cart: userData.user.cart,
-        buyer: localStorage.getItem("user_id") || cookies.userId,
-        shippingInfo: selectedOption,
-        email: userData.user.email,
-        deliveryDate: data.formattedDate,
-      }),
-    });
+    const res = await fetch(
+      "https://ecommercetechv.onrender.com/payment/checkout",
+      {
+        method: "POST",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: price,
+          cart: userData.user.cart,
+          buyer: localStorage.getItem("user_id") || cookies.userId,
+          shippingInfo: selectedOption,
+          email: userData.user.email,
+          deliveryDate: data.formattedDate,
+        }),
+      }
+    );
     const resp = await res.json();
 
     const options = {
@@ -178,7 +183,8 @@ export const CheckOut = () => {
       image:
         "https://res.cloudinary.com/dywjchq8q/image/upload/v1681550262/logo1_hrtppt.png",
       order_id: resp.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      callback_url: "http://localhost:8001/payment/paymentverification",
+      callback_url:
+        "https://ecommercetechv.onrender.com/payment/paymentverification",
       prefill: {
         //logged in user details
         name: userData.user.name,

@@ -7,13 +7,16 @@ export const Radio = (props) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchTv = async () => {
-      const res = await fetch("http://localhost:8001/products?category=radio", {
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-          // "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await fetch(
+        "https://ecommercetechv.onrender.com/products?category=radio",
+        {
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+            // "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       const data = await res.json();
       console.log(data);
       setProducts(data.products);

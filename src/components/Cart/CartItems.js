@@ -16,17 +16,22 @@ export const CartItems = (props) => {
 
   const cartRemoveHandler = async (id) => {
     setIsLoading(true);
-    const res = await fetch(`http://localhost:8001/user/cart/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-      },
-    });
+    const res = await fetch(
+      `https://ecommercetechv.onrender.com/user/cart/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+        },
+      }
+    );
     setIsLoading(false);
   };
 
   const addToWishList = async (id) => {
-    await fetch(`http://localhost:8001/user/wishlist/${id}`, {
+    await fetch(`https://ecommercetechv.onrender.com/user/wishlist/${id}`, {
       method: "POST",
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
@@ -38,17 +43,22 @@ export const CartItems = (props) => {
 
   const handleQuantityChange = async (id, event) => {
     setQuantity(parseInt(event.target.value));
-    const res = await fetch(`http://localhost:8001/user/cart/${id}`, {
-      method: "PATCH",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        quantity: parseInt(event.target.value),
-      }),
-    });
+    const res = await fetch(
+      `https://ecommercetechv.onrender.com/user/cart/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          quantity: parseInt(event.target.value),
+        }),
+      }
+    );
     const data = await res.json();
     console.log(data);
   };

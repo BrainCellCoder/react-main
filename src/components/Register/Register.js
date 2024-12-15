@@ -41,19 +41,22 @@ export const Register = () => {
   const onSubmit = async (data) => {
     console.log(data);
     setLoading(true);
-    const res = await fetch("http://localhost:8001/user/register", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        cPassword: data.cPassword,
-      }),
-    });
+    const res = await fetch(
+      "https://ecommercetechv.onrender.com/user/register",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          cPassword: data.cPassword,
+        }),
+      }
+    );
     const resp = await res.json();
     console.log(resp);
     if (resp.success === true) {

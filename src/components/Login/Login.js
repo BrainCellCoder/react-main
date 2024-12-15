@@ -36,7 +36,7 @@ export const Login = () => {
     console.log(data);
     setLoading(true);
     // https://rose-doubtful-moth.cyclic.app/user/login
-    const res = await fetch(`http://localhost:8001/user/login`, {
+    const res = await fetch(`https://ecommercetechv.onrender.com/user/login`, {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -71,7 +71,7 @@ export const Login = () => {
   const google = async () => {
     try {
       console.log("google");
-      window.open("http://localhost:8001/auth/google", "_self");
+      window.open("https://ecommercetechv.onrender.com/auth/google", "_self");
     } catch (err) {
       console.log("error");
     }

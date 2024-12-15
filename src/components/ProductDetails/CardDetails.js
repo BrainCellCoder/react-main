@@ -59,18 +59,23 @@ export const CardDetails = (props) => {
   };
 
   const addToCart = async (id) => {
-    const res = await fetch(`http://localhost:8001/user/cart/${id}`, {
-      method: "POST",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        productId: id,
-        quantity: quantity,
-      }),
-    });
+    const res = await fetch(
+      `https://ecommercetechv.onrender.com/user/cart/${id}`,
+      {
+        method: "POST",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productId: id,
+          quantity: quantity,
+        }),
+      }
+    );
     const data = await res.json();
     console.log(data);
     setAddCart(!addCart);
@@ -91,14 +96,19 @@ export const CardDetails = (props) => {
   };
 
   const addToWishlist = async (id) => {
-    const res = await fetch(`http://localhost:8001/user/wishlist/${id}`, {
-      method: "POST",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `https://ecommercetechv.onrender.com/user/wishlist/${id}`,
+      {
+        method: "POST",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await res.json();
     setAddWishlist(!addWishlist);
     toast.success(data.message, {
@@ -129,7 +139,7 @@ export const CardDetails = (props) => {
     console.log(rating, comment);
     event.preventDefault();
 
-    fetch(`http://localhost:8001/review/${props.data._id}/new`, {
+    fetch(`https://ecommercetechv.onrender.com/review/${props.data._id}/new`, {
       method: "POST",
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
@@ -157,13 +167,16 @@ export const CardDetails = (props) => {
 
   useEffect(() => {
     const fetchReviews = async () => {
-      const res = await fetch(`http://localhost:8001/products/${id}`, {
-        headers: {
-          authorization: `Abhi ${
-            localStorage.getItem("token") || cookies.token
-          }`,
-        },
-      });
+      const res = await fetch(
+        `https://ecommercetechv.onrender.com/products/${id}`,
+        {
+          headers: {
+            authorization: `Abhi ${
+              localStorage.getItem("token") || cookies.token
+            }`,
+          },
+        }
+      );
       const data = await res.json();
       setReviews(data.product.reviews);
       setAvgRating(data.product.rating);
@@ -174,19 +187,22 @@ export const CardDetails = (props) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch("http://localhost:8001/user/me/myorders", {
-        method: "POST",
-        headers: {
-          authorization: `Abhi ${
-            localStorage.getItem("token") || cookies.token
-          }`,
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: localStorage.getItem("user_id") || cookies.userId,
-        }),
-      });
+      const res = await fetch(
+        "https://ecommercetechv.onrender.com/user/me/myorders",
+        {
+          method: "POST",
+          headers: {
+            authorization: `Abhi ${
+              localStorage.getItem("token") || cookies.token
+            }`,
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: localStorage.getItem("user_id") || cookies.userId,
+          }),
+        }
+      );
 
       const data = await res.json();
       console.log(data);
@@ -207,14 +223,19 @@ export const CardDetails = (props) => {
   }, []);
 
   const removeFromCart = async (id) => {
-    const res = await fetch(`http://localhost:8001/user/cart/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `https://ecommercetechv.onrender.com/user/cart/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await res.json();
     toast.success(data.message, {
       position: "bottom-center",
@@ -233,14 +254,19 @@ export const CardDetails = (props) => {
   };
 
   const removeFromWishList = async (id) => {
-    const res = await fetch(`http://localhost:8001/user/wishlist/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `https://ecommercetechv.onrender.com/user/wishlist/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await res.json();
     toast.success(data.message, {
       position: "bottom-center",
@@ -260,7 +286,7 @@ export const CardDetails = (props) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch("http://localhost:8001/user/me", {
+      const res = await fetch("https://ecommercetechv.onrender.com/user/me", {
         headers: {
           authorization: `Abhi ${
             localStorage.getItem("token") || cookies.token

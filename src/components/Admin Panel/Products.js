@@ -40,15 +40,20 @@ export const Products = (props) => {
   const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const deleteProduct = async (id) => {
-    const res = await fetch(`http://localhost:8001/admin/product/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-        // "Content-Type": "multipart/form-data",
-      },
-    });
+    const res = await fetch(
+      `https://ecommercetechv.onrender.com/admin/product/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+          // "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     const data = await res.json();
     console.log(data);
     window.location.reload();

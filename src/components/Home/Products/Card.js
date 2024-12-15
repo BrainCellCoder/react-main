@@ -22,18 +22,23 @@ export const Card = (props) => {
   const navigate = useNavigate();
 
   const addToCart = async (id) => {
-    const res = await fetch(`http://localhost:8001/user/cart/${id}`, {
-      method: "POST",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        productId: id,
-        quantity: 1,
-      }),
-    });
+    const res = await fetch(
+      `https://ecommercetechv.onrender.com/user/cart/${id}`,
+      {
+        method: "POST",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productId: id,
+          quantity: 1,
+        }),
+      }
+    );
     const data = await res.json();
     toast.success(data.message, {
       position: "top-right",
@@ -53,14 +58,19 @@ export const Card = (props) => {
   };
 
   const addToWishList = async (id) => {
-    const res = await fetch(`http://localhost:8001/user/wishlist/${id}`, {
-      method: "POST",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `https://ecommercetechv.onrender.com/user/wishlist/${id}`,
+      {
+        method: "POST",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await res.json();
     toast.success(data.message, {
       position: "top-right",
@@ -79,14 +89,19 @@ export const Card = (props) => {
   };
 
   const removeFromWishList = async (id) => {
-    const res = await fetch(`http://localhost:8001/user/wishlist/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `https://ecommercetechv.onrender.com/user/wishlist/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await res.json();
     toast.success(data.message, {
       position: "top-right",
@@ -105,14 +120,19 @@ export const Card = (props) => {
   };
 
   const removeFromCart = async (id) => {
-    const res = await fetch(`http://localhost:8001/user/cart/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `https://ecommercetechv.onrender.com/user/cart/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `Abhi ${
+            localStorage.getItem("token") || cookies.token
+          }`,
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await res.json();
     toast.success(data.message, {
       position: "top-right",
@@ -132,7 +152,7 @@ export const Card = (props) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch("http://localhost:8001/user/me", {
+      const res = await fetch("https://ecommercetechv.onrender.com/user/me", {
         headers: {
           authorization: `Abhi ${
             localStorage.getItem("token") || cookies.token
