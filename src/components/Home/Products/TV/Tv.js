@@ -7,7 +7,7 @@ export const Tv = (props) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchTv = async () => {
-      const res = await fetch("http://localhost:8000/products?category=tv", {
+      const res = await fetch("http://localhost:8001/products?category=tv", {
         headers: {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",

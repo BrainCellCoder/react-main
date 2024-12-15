@@ -7,7 +7,7 @@ export const Radio = (props) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchTv = async () => {
-      const res = await fetch("http://localhost:8000/products?category=radio", {
+      const res = await fetch("http://localhost:8001/products?category=radio", {
         headers: {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",

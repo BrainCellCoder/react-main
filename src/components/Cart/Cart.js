@@ -58,7 +58,7 @@ export const Cart = () => {
 
   useEffect(() => {
     const fetchCart = async () => {
-      const res = await fetch("http://localhost:8000/user/me", {
+      const res = await fetch("http://localhost:8001/user/me", {
         headers: {
           authorization: `Abhi ${
             localStorage.getItem("token") || cookies.token
@@ -85,9 +85,9 @@ export const Cart = () => {
     e.preventDefault();
     const price = totalPrice;
     // const productId = props.data._id;
-    const keyRes = await fetch("http://localhost:8000/getkey");
+    const keyRes = await fetch("http://localhost:8001/getkey");
     const keyResp = await keyRes.json();
-    const user = await fetch("http://localhost:8000/user/me", {
+    const user = await fetch("http://localhost:8001/user/me", {
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
         "Content-Type": "application/json",
@@ -95,7 +95,7 @@ export const Cart = () => {
     });
     const userData = await user.json();
 
-    const res = await fetch("http://localhost:8000/payment/checkout", {
+    const res = await fetch("http://localhost:8001/payment/checkout", {
       method: "POST",
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
@@ -123,7 +123,7 @@ export const Cart = () => {
       image:
         "https://res.cloudinary.com/dywjchq8q/image/upload/v1681550262/logo1_hrtppt.png",
       order_id: resp.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      callback_url: "http://localhost:8000/payment/paymentverification",
+      callback_url: "http://localhost:8001/payment/paymentverification",
       prefill: {
         //logged in user details
         name: userData.user.name,

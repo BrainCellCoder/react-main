@@ -51,7 +51,7 @@ export const AddProduct = () => {
     formData.append("price", data.price);
     formData.append("file", data.file[0]);
     console.log(formData);
-    const res = await fetch("http://localhost:8000/admin/product/new", {
+    const res = await fetch("http://localhost:8001/admin/product/new", {
       method: "POST",
       body: formData,
 

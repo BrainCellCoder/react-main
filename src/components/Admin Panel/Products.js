@@ -40,7 +40,7 @@ export const Products = (props) => {
   const [cookies, setCookie] = useCookies(["userId", "token"]);
 
   const deleteProduct = async (id) => {
-    const res = await fetch(`http://localhost:8000/admin/product/${id}`, {
+    const res = await fetch(`http://localhost:8001/admin/product/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,

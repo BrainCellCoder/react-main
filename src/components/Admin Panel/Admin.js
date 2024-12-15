@@ -87,7 +87,7 @@ export const Admin = () => {
 
   useEffect(() => {
     const ordersFetch = async () => {
-      const res = await fetch("http://localhost:8000/admin/allorders", {
+      const res = await fetch("http://localhost:8001/admin/allorders", {
         headers: {
           authorization: `Abhi ${localStorage.getItem("token")}`,
           Accept: "application/json, text/plain, */*",
@@ -100,7 +100,7 @@ export const Admin = () => {
     ordersFetch();
 
     const productsFetch = async () => {
-      const res = await fetch("http://localhost:8000/products", {
+      const res = await fetch("http://localhost:8001/products", {
         headers: {
           authorization: `Abhi ${localStorage.getItem("token")}`,
           Accept: "application/json, text/plain, */*",
@@ -113,7 +113,7 @@ export const Admin = () => {
     productsFetch();
 
     const userFetch = async () => {
-      const res = await fetch("http://localhost:8000/admin/users", {
+      const res = await fetch("http://localhost:8001/admin/users", {
         headers: {
           authorization: `Abhi ${localStorage.getItem("token")}`,
           Accept: "application/json, text/plain, */*",

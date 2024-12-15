@@ -41,7 +41,7 @@ export const Register = () => {
   const onSubmit = async (data) => {
     console.log(data);
     setLoading(true);
-    const res = await fetch("http://localhost:8000/user/register", {
+    const res = await fetch("http://localhost:8001/user/register", {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",

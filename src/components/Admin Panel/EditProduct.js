@@ -42,7 +42,7 @@ export const EditProduct = (props) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8000/admin/product/${props.product._id}`,
+        `http://localhost:8001/admin/product/${props.product._id}`,
         {
           method: "PUT",
           headers: {

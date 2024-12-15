@@ -59,7 +59,7 @@ export const CardDetails = (props) => {
   };
 
   const addToCart = async (id) => {
-    const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
+    const res = await fetch(`http://localhost:8001/user/cart/${id}`, {
       method: "POST",
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
@@ -91,7 +91,7 @@ export const CardDetails = (props) => {
   };
 
   const addToWishlist = async (id) => {
-    const res = await fetch(`http://localhost:8000/user/wishlist/${id}`, {
+    const res = await fetch(`http://localhost:8001/user/wishlist/${id}`, {
       method: "POST",
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
@@ -129,7 +129,7 @@ export const CardDetails = (props) => {
     console.log(rating, comment);
     event.preventDefault();
 
-    fetch(`http://localhost:8000/review/${props.data._id}/new`, {
+    fetch(`http://localhost:8001/review/${props.data._id}/new`, {
       method: "POST",
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
@@ -157,7 +157,7 @@ export const CardDetails = (props) => {
 
   useEffect(() => {
     const fetchReviews = async () => {
-      const res = await fetch(`http://localhost:8000/products/${id}`, {
+      const res = await fetch(`http://localhost:8001/products/${id}`, {
         headers: {
           authorization: `Abhi ${
             localStorage.getItem("token") || cookies.token
@@ -174,7 +174,7 @@ export const CardDetails = (props) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch("http://localhost:8000/user/me/myorders", {
+      const res = await fetch("http://localhost:8001/user/me/myorders", {
         method: "POST",
         headers: {
           authorization: `Abhi ${
@@ -207,7 +207,7 @@ export const CardDetails = (props) => {
   }, []);
 
   const removeFromCart = async (id) => {
-    const res = await fetch(`http://localhost:8000/user/cart/${id}`, {
+    const res = await fetch(`http://localhost:8001/user/cart/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
@@ -233,7 +233,7 @@ export const CardDetails = (props) => {
   };
 
   const removeFromWishList = async (id) => {
-    const res = await fetch(`http://localhost:8000/user/wishlist/${id}`, {
+    const res = await fetch(`http://localhost:8001/user/wishlist/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Abhi ${localStorage.getItem("token") || cookies.token}`,
@@ -260,7 +260,7 @@ export const CardDetails = (props) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch("http://localhost:8000/user/me", {
+      const res = await fetch("http://localhost:8001/user/me", {
         headers: {
           authorization: `Abhi ${
             localStorage.getItem("token") || cookies.token

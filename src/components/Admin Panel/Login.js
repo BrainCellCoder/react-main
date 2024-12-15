@@ -18,7 +18,7 @@ export const LoginAdmin = () => {
     console.log(data);
     setLoading(true);
     // https://rose-doubtful-moth.cyclic.app/user/login
-    const res = await fetch(`http://localhost:8000/admin/login`, {
+    const res = await fetch(`http://localhost:8001/admin/login`, {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",

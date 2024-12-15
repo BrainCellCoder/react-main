@@ -36,7 +36,7 @@ export const Login = () => {
     console.log(data);
     setLoading(true);
     // https://rose-doubtful-moth.cyclic.app/user/login
-    const res = await fetch(`http://localhost:8000/user/login`, {
+    const res = await fetch(`http://localhost:8001/user/login`, {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -71,7 +71,7 @@ export const Login = () => {
   const google = async () => {
     try {
       console.log("google");
-      window.open("http://localhost:8000/auth/google", "_self");
+      window.open("http://localhost:8001/auth/google", "_self");
     } catch (err) {
       console.log("error");
     }
@@ -122,23 +122,20 @@ export const Login = () => {
             </Button>
           </Form>
 
-          <div className="signup-with">
+          {/* <div className="signup-with">
             <p>
-              {/* <i className="fa-solid fa-minus"></i> */}
               Or SignUp With
-              {/* <i className="fa-solid fa-minus"></i> */}
             </p>
           </div>
 
           <div className="sign-up-logo">
-            {/* <i className="fa-brands fa-facebook"></i> */}
             <img
               src={require("./../Login/google.png")}
               alt=""
               onClick={google}
             />
             Google
-          </div>
+          </div> */}
           <p className="login-bottom-reg">
             Don't have an account?
             <Link className="reg" to="/register">

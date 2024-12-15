@@ -11,7 +11,7 @@ export const Status = (props) => {
     event.preventDefault();
     console.log(event.target.value);
     const res = await fetch(
-      `http://localhost:8000/admin/orderstatus/${props.orderId}`,
+      `http://localhost:8001/admin/orderstatus/${props.orderId}`,
       {
         method: "POST",
         headers: {

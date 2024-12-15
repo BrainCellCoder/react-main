@@ -123,7 +123,7 @@ export const UserDashboard = () => {
 
   useEffect(() => {
     const userFetch = async () => {
-      const res = await fetch("http://localhost:8000/user/me", {
+      const res = await fetch("http://localhost:8001/user/me", {
         headers: {
           authorization: `Abhi ${
             localStorage.getItem("token") || cookies.token
@@ -141,7 +141,7 @@ export const UserDashboard = () => {
     userFetch();
 
     const orderFetch = async () => {
-      const res = await fetch("http://localhost:8000/user/me/myorders", {
+      const res = await fetch("http://localhost:8001/user/me/myorders", {
         method: "POST",
         headers: {
           authorization: `Abhi ${
@@ -172,7 +172,7 @@ export const UserDashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/user/me", {
+      const response = await fetch("http://localhost:8001/user/me", {
         method: "PUT",
         headers: {
           authorization: `Abhi ${

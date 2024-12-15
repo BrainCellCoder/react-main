@@ -38,7 +38,7 @@ export const Navbars = (props) => {
   const searchProduct = async (productName) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/products/search?text=${productName}`,
+        `http://localhost:8001/products/search?text=${productName}`,
         {
           headers: {
             Accept: "application/json, text/plain, */*",
@@ -54,7 +54,7 @@ export const Navbars = (props) => {
   };
 
   const logoutHandler = async () => {
-    const res = await fetch("http://localhost:8000/user/logout", {
+    const res = await fetch("http://localhost:8001/user/logout", {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
